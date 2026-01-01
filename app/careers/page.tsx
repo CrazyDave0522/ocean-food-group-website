@@ -1,7 +1,7 @@
 export const metadata = {
-  title: 'Careers — Ocean Food Group',
-  description: 'Careers and job opportunities at Ocean Food Group.'
-}
+  title: "Careers — Ocean Food Group",
+  description: "Careers and job opportunities at Ocean Food Group.",
+};
 
 export default function Page() {
   return (
@@ -9,5 +9,5 @@ export default function Page() {
       <h1 className="text-2xl font-bold">Careers</h1>
       <p className="mt-4">Join our team — placeholder careers content.</p>
     </div>
-  )
+  );
 }
