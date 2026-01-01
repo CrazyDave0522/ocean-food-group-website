@@ -13,8 +13,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Dark mode media query removed to enforce light-only theme per openspec/change prevent-dark-mode */
-
 body {
   background: var(--background);
   color: var(--foreground);
