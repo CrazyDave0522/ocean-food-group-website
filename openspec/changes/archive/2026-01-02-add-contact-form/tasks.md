@@ -1,0 +1,11 @@
+## 1. Implementation
+- [x] 1.1 Create Supabase client helper in `lib/supabase.ts` using environment variables.
+- [x] 1.2 Create server action `app/actions/contact.ts` to validate and insert form data into `contact_message` table.
+- [x] 1.3 Update `/contact` page with form UI including all required fields (first name, last name, email, phone, subject, message).
+- [x] 1.4 Add client-side validation (required fields, email format, length limits).
+- [x] 1.5 Implement form submission handling with loading state and success/error feedback.
+- [x] 1.6 Build a reusable submit button component to be used by this and future forms.
+- [x] 1.7 Build a reusable form layout/styling wrapper to standardize form appearance while allowing different fields.
+- [x] 1.8 Send notification email via Resend after successful insert; use a configurable recipient stored outside code (env var/config) and set sender to `contact_inquiry@notify.oceanfoodgroup.com`.
+- [x] 1.9 Test form submission end-to-end (validation, DB insert, email notification, user feedback, shared components reuse).
+- [x] 1.10 Run lint/build checks to ensure no regressions.
