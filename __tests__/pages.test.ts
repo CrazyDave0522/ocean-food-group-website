@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest'
+
 import * as home from '../app/page'
 import * as media from '../app/media-reviews/page'
 import * as franchise from '../app/franchise/page'
@@ -18,32 +20,32 @@ function getMetadataTitle(mod: unknown): string | undefined {
 }
 
 describe('page metadata exports', () => {
-  test('home has metadata.title', () => {
-     const meta = getMetadataTitle(home)
+  it('home has metadata.title', () => {
+    const meta = getMetadataTitle(home)
     expect(meta).toBeTruthy()
   })
 
-  test('media reviews has metadata.title', () => {
+  it('media reviews has metadata.title', () => {
     expect(getMetadataTitle(media)).toBeTruthy()
   })
 
-  test('franchise has metadata.title', () => {
+  it('franchise has metadata.title', () => {
     expect(getMetadataTitle(franchise)).toBeTruthy()
   })
 
-  test('careers has metadata.title', () => {
+  it('careers has metadata.title', () => {
     expect(getMetadataTitle(careers)).toBeTruthy()
   })
 
-  test('contact has metadata.title', () => {
+  it('contact has metadata.title', () => {
     expect(getMetadataTitle(contact)).toBeTruthy()
   })
 
-  test('terms has metadata.title', () => {
+  it('terms has metadata.title', () => {
     expect(getMetadataTitle(terms)).toBeTruthy()
   })
 
-  test('privacy has metadata.title', () => {
+  it('privacy has metadata.title', () => {
     expect(getMetadataTitle(privacy)).toBeTruthy()
   })
 })
