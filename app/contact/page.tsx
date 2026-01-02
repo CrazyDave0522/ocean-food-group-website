@@ -1,5 +1,6 @@
 import { ContactForm } from "@/components/contact/ContactForm";
 import { FormShell } from "@/components/forms/FormShell";
+import { FormTitle } from "@/components/forms/FormTitle";
 
 export const metadata = {
   title: "Contact — Ocean Food Group",
@@ -9,10 +10,11 @@ export const metadata = {
 export default function Page() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <FormShell
+      <FormTitle
         title="Reach Out To Us"
-        description="Have any comments, feedback or media inquiries? Get in touch with us below!"
-      >
+        subtitle="Have any comments, feedback or media inquiries? Get in touch with us below!"
+      />
+      <FormShell>
         <ContactForm />
       </FormShell>
     </div>
