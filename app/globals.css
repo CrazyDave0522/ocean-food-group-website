@@ -1,20 +1,34 @@
+/* app/globals.css */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-family-base: "Montserrat", Georgia, serif;
-}
+/* Design system */
+@import "../styles/tokens.css";
+
+/* Base styles */
+@import "../styles/base.css";
+
+/* Layout system */
+@import "../styles/layout.css";
+
+/* Animations */
+@import "../styles/animations.css";
+
+/* Component styles (add as needed) */
+@import "../styles/components/button.css";
+@import "../styles/components/header.css";
+@import "../styles/components/footer.css";
+@import "../styles/components/hero.css";
+@import "../styles/components/modal.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-family-base);
 }

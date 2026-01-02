@@ -1,0 +1,10 @@
+/* app/styles/layout.css */
+.container-main {
+  max-width: 1920px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 64px);
+}
+
+.section {
+  padding-block: clamp(40px, 8vw, 120px);
+}
