@@ -5,23 +5,27 @@ Thank you for contributing to the Ocean Food Group website! This document outlin
 ## Code Style & Quality
 
 ### Formatting & Linting
+
 - **Prettier**: Use as the single source of truth for code formatting.
 - **ESLint**: Follow project linting rules defined in `eslint.config.mjs`.
 - **TypeScript**: Strict mode is enabled; prefer typed interfaces and avoid `any`.
 
 Before committing:
+
 ```bash
-pnpm lint      # Run ESLint
+pnpm check     # Run ESLint and TypeScript type checking
 pnpm test:run  # Run tests (required before PR)
 ```
 
 ### File Naming Conventions
+
 - **React Components**: PascalCase (`MyComponent.tsx`)
 - **Hooks & Helpers**: camelCase (`useAuth.ts`, `formatDate.ts`)
 - **CSS Files**: kebab-case (`button-styles.css`)
 - **Test Files**: `.test.ts` or `.test.tsx` suffix (`FormTitle.test.tsx`)
 
 ### TypeScript & React
+
 - Prefer function components over class components.
 - Use server components by default in `app/`; add `"use client"` only when necessary (hooks, local state, browser APIs).
 - For server operations, place code in `lib/actions/` with `"use server"` directive.
@@ -29,12 +33,15 @@ pnpm test:run  # Run tests (required before PR)
 ## Git Workflow
 
 ### Branching
+
 Use trunk-based development with short-lived branches:
+
 - `feature/<feature-name>` — New features or capabilities
 - `fix/<issue>` — Bug fixes
 - `chore/<task>` — Refactoring, dependencies, configuration
 
 Example:
+
 ```bash
 git checkout -b feature/add-hero-section
 git checkout -b fix/contact-form-validation
@@ -42,6 +49,7 @@ git checkout -b chore/update-tailwind-config
 ```
 
 ### Commits
+
 Follow [Conventional Commits](https://www.conventionalcommits.org/) style:
 
 ```
@@ -51,6 +59,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/) style:
 ```
 
 **Types:**
+
 - `feat:` — New feature
 - `fix:` — Bug fix
 - `refactor:` — Code refactoring without behavior change
@@ -60,6 +69,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/) style:
 - `style:` — Formatting, whitespace (typically handled by Prettier)
 
 **Examples:**
+
 ```
 feat: add contact form with Supabase integration
 fix: correct image sizes in header
@@ -69,6 +79,7 @@ test: add validation tests for contact form
 ```
 
 If implementing an OpenSpec change, include the change ID:
+
 ```
 feat: add header logo
 
@@ -96,11 +107,13 @@ Implements: add-header-logo
 ## Testing
 
 New features should include tests:
+
 - **Server actions**: Unit tests for validation and data logic
 - **Components**: Component tests for rendering and interactions
 - **Forms**: Test validation, success, and error states
 
 Run tests during development:
+
 ```bash
 pnpm test       # Watch mode
 pnpm test:run   # Single run (CI mode)

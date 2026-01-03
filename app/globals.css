@@ -13,6 +13,9 @@
 /* Animations */
 @import "../styles/animations.css";
 
+/* Utilities */
+@import "../styles/utilities.css";
+
 /* Component styles (add as needed) */
 @import "../styles/components/button.css";
 @import "../styles/components/header.css";
@@ -25,10 +28,4 @@
   --color-foreground: var(--color-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-family-base);
 }

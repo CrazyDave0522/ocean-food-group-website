@@ -27,8 +27,10 @@ Ocean Food Group public website — marketing and product information site for O
   - `pnpm check` — Both type checking and linting combined (recommended pre-commit).
 - TypeScript: `strict: true` — prefer typed interfaces and avoid `any` where possible.
 - File naming: PascalCase for React components (`MyComponent.tsx`), camelCase for hooks and helpers, kebab-case for CSS files if needed.
+- **Styling approach**: Use Tailwind CSS classes as the primary method (~80% of styling). When custom CSS is necessary (~20%), place it in separate `.css` files under `./styles/` — never mix CSS into component code via inline styles or `<style>` blocks. All CSS files are imported in `app/globals.css`, which aggregates them with Tailwind. Follow the existing structure: `tokens.css` for design tokens, `base.css` for global element styles, `layout.css` for layout-specific rules, `animations.css` for keyframes and animations, `utilities.css` for utility classes, and `components/` for component-scoped styles (e.g., `button.css`, `header.css`, `footer.css`, `hero.css`, `modal.css`, `carousel.css`). This keeps styling centralized, reusable, and maintainable.
 - React: Prefer function components. Use server components by default in `app/` and add `"use client"` only when hooks/local state or browser-only APIs are required.
 - Server Actions: Place data mutations and validated server operations in `lib/actions/` with `"use server"` directive. Only async functions should be exported from server files.
+- **Image & asset handling**: When referencing image files in code, check the file's basic info first (especially dimensions and file size). Use Next.js Image component for optimized rendering; leverage Python PIL for bulk image processing (cropping, resizing, optimization) before committing assets.
 
 ### Architecture Patterns
 
@@ -41,7 +43,7 @@ Ocean Food Group public website — marketing and product information site for O
   - `lib/supabase.ts`: Centralized Supabase client helper for service role operations.
 - Data fetching: Prefer server-side fetching (server components) for public data; use client components + server actions for form submissions and interactive features.
 - Form handling: Use React 19 `useActionState` hook with server actions for validation and submission. Client-side validation mirrors server rules. Types and constants shared in `lib/` files.
-- Design tokens & styles: Centralize tokens under `styles/base/tokens` and use Tailwind configuration for design system utilities.
+- Design tokens & styles: Centralize tokens in `styles/tokens.css` and use Tailwind configuration for design system utilities.
 
 ### Testing Strategy
 
@@ -67,6 +69,21 @@ Ocean Food Group public website — marketing and product information site for O
 - Branching: Use trunk-based flow. Create short-lived branches named `feature/<feature-name>`, `fix/<issue>`, or `chore/<task>`.
 - Commits: Use Conventional Commits style (e.g., `feat: add hero section`, `fix: correct image sizes`). Include brief spec-related notes if implementing an OpenSpec change.
 - Pull Requests: Open PRs against `main`. Include a short description, screenshots if UI changes, and list of changes. Require at least one approving review before merge when possible.
+
+### OpenSpec Workflow
+
+- **Purpose**: OpenSpec enables spec-driven development — document *why* and *what* before implementing, ensure approvals, and formalize completed work.
+- **Workflow**:
+  1. **Create a proposal**: `openspec proposal <change-id>` — Define the change, impact, and implementation notes.
+  2. **Wait for review/approval** — Ensure the proposal aligns with project goals before coding.
+  3. **Implement**: Create commits referencing the change: `feat: add X\n\nImplements: <change-id>`
+  4. **Archive after merge**: `openspec archive <change-id>` — Moves the change to archive and creates a reusable spec.
+- **Available commands**:
+  - `openspec list` — Show all changes (current and archived).
+  - `openspec show <change-id>` — View change details (proposal, design, tasks, specs).
+  - `openspec archive <change-id>` — Archive a completed change and create specs.
+  - `openspec validate --strict` — Validate all specs for consistency.
+- **Change structure**: Each change includes `proposal.md` (why/what), `design.md` (technical approach), `tasks.md` (checklist), and `specs/` (reusable spec definitions).
 
 ## Domain Context
 
@@ -97,8 +114,3 @@ Ocean Food Group public website — marketing and product information site for O
 - `CONTACT_INQUIRY_RECIPIENT` — Email address to receive contact form submissions.
 
 ---
-
-If you want, I can also:
-
-- Add a minimal `CONTRIBUTING.md` with the Git and commit conventions.
-- Create CI config (GitHub Actions) to run lint, format check, and (optionally) tests on PRs.
