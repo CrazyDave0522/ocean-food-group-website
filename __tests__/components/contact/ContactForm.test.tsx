@@ -25,12 +25,12 @@ describe('ContactForm', () => {
   it('renders form with all required fields', () => {
     render(<ContactForm />)
     
-    expect(screen.getByLabelText('First name')).toBeInTheDocument()
-    expect(screen.getByLabelText('Last name')).toBeInTheDocument()
-    expect(screen.getByLabelText('Email')).toBeInTheDocument()
+    expect(screen.getByLabelText(/First name/)).toBeInTheDocument()
+    expect(screen.getByLabelText(/Last name/)).toBeInTheDocument()
+    expect(screen.getByLabelText(/Email/)).toBeInTheDocument()
     expect(screen.getByLabelText('Phone (optional)')).toBeInTheDocument()
-    expect(screen.getByLabelText('Subject')).toBeInTheDocument()
-    expect(screen.getByLabelText('Message')).toBeInTheDocument()
+    expect(screen.getByLabelText(/Subject/)).toBeInTheDocument()
+    expect(screen.getByLabelText(/Message/)).toBeInTheDocument()
   })
 
   it('renders submit button', () => {
@@ -59,10 +59,10 @@ describe('ContactForm', () => {
     const user = userEvent.setup()
     render(<ContactForm />)
     
-    const lastNameInput = screen.getByLabelText('Last name')
-    const emailInput = screen.getByLabelText('Email')
-    const subjectInput = screen.getByLabelText('Subject')
-    const messageInput = screen.getByLabelText('Message')
+    const lastNameInput = screen.getByLabelText(/Last name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const subjectInput = screen.getByLabelText(/Subject/)
+    const messageInput = screen.getByLabelText(/Message/)
     
     await user.type(lastNameInput, 'Doe')
     await user.type(emailInput, 'test@example.com')
@@ -81,11 +81,11 @@ describe('ContactForm', () => {
     const user = userEvent.setup()
     render(<ContactForm />)
     
-    const firstNameInput = screen.getByLabelText('First name')
-    const lastNameInput = screen.getByLabelText('Last name')
-    const emailInput = screen.getByLabelText('Email')
-    const subjectInput = screen.getByLabelText('Subject')
-    const messageInput = screen.getByLabelText('Message')
+    const firstNameInput = screen.getByLabelText(/First name/)
+    const lastNameInput = screen.getByLabelText(/Last name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const subjectInput = screen.getByLabelText(/Subject/)
+    const messageInput = screen.getByLabelText(/Message/)
     
     await user.type(firstNameInput, 'John')
     await user.type(lastNameInput, 'Doe')
@@ -108,11 +108,11 @@ describe('ContactForm', () => {
     render(<ContactForm />)
     
     // Test that validation logic runs (note: maxlength attribute prevents input beyond limit at browser level)
-    const firstNameInput = screen.getByLabelText('First name') as HTMLInputElement
-    const lastNameInput = screen.getByLabelText('Last name')
-    const emailInput = screen.getByLabelText('Email')
-    const subjectInput = screen.getByLabelText('Subject')
-    const messageInput = screen.getByLabelText('Message')
+    const firstNameInput = screen.getByLabelText(/First name/) as HTMLInputElement
+    const lastNameInput = screen.getByLabelText(/Last name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const subjectInput = screen.getByLabelText(/Subject/)
+    const messageInput = screen.getByLabelText(/Message/)
     
     // Fill with valid data
     await user.type(firstNameInput, 'John')
@@ -144,11 +144,11 @@ describe('ContactForm', () => {
     
     render(<ContactForm />)
     
-    const firstNameInput = screen.getByLabelText('First name')
-    const lastNameInput = screen.getByLabelText('Last name')
-    const emailInput = screen.getByLabelText('Email')
-    const subjectInput = screen.getByLabelText('Subject')
-    const messageInput = screen.getByLabelText('Message')
+    const firstNameInput = screen.getByLabelText(/First name/)
+    const lastNameInput = screen.getByLabelText(/Last name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const subjectInput = screen.getByLabelText(/Subject/)
+    const messageInput = screen.getByLabelText(/Message/)
     
     await user.type(firstNameInput, 'John')
     await user.type(lastNameInput, 'Doe')
@@ -174,11 +174,11 @@ describe('ContactForm', () => {
     
     render(<ContactForm />)
     
-    const firstNameInput = screen.getByLabelText('First name')
-    const lastNameInput = screen.getByLabelText('Last name')
-    const emailInput = screen.getByLabelText('Email')
-    const subjectInput = screen.getByLabelText('Subject')
-    const messageInput = screen.getByLabelText('Message')
+    const firstNameInput = screen.getByLabelText(/First name/)
+    const lastNameInput = screen.getByLabelText(/Last name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const subjectInput = screen.getByLabelText(/Subject/)
+    const messageInput = screen.getByLabelText(/Message/)
     
     await user.type(firstNameInput, 'John')
     await user.type(lastNameInput, 'Doe')
@@ -207,11 +207,11 @@ describe('ContactForm', () => {
     
     render(<ContactForm />)
     
-    const firstNameInput = screen.getByLabelText('First name')
-    const lastNameInput = screen.getByLabelText('Last name')
-    const emailInput = screen.getByLabelText('Email')
-    const subjectInput = screen.getByLabelText('Subject')
-    const messageInput = screen.getByLabelText('Message')
+    const firstNameInput = screen.getByLabelText(/First name/)
+    const lastNameInput = screen.getByLabelText(/Last name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const subjectInput = screen.getByLabelText(/Subject/)
+    const messageInput = screen.getByLabelText(/Message/)
     
     await user.type(firstNameInput, 'John')
     await user.type(lastNameInput, 'Doe')
@@ -238,11 +238,11 @@ describe('ContactForm', () => {
     
     render(<ContactForm />)
     
-    const firstNameInput = screen.getByLabelText('First name')
-    const lastNameInput = screen.getByLabelText('Last name')
-    const emailInput = screen.getByLabelText('Email')
-    const subjectInput = screen.getByLabelText('Subject')
-    const messageInput = screen.getByLabelText('Message')
+    const firstNameInput = screen.getByLabelText(/First name/)
+    const lastNameInput = screen.getByLabelText(/Last name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const subjectInput = screen.getByLabelText(/Subject/)
+    const messageInput = screen.getByLabelText(/Message/)
     
     await user.type(firstNameInput, 'John')
     await user.type(lastNameInput, 'Doe')
@@ -268,15 +268,15 @@ describe('ContactForm', () => {
     
     render(<ContactForm />)
     
-    const firstNameInput = screen.getByLabelText('First name') as HTMLInputElement
-    const lastNameInput = screen.getByLabelText('Last name') as HTMLInputElement
-    const emailInput = screen.getByLabelText('Email') as HTMLInputElement
+    const firstNameInput = screen.getByLabelText(/First name/) as HTMLInputElement
+    const lastNameInput = screen.getByLabelText(/Last name/) as HTMLInputElement
+    const emailInput = screen.getByLabelText(/Email/) as HTMLInputElement
     
     await user.type(firstNameInput, 'John')
     await user.type(lastNameInput, 'Doe')
     await user.type(emailInput, 'john@example.com')
-    await user.type(screen.getByLabelText('Subject'), 'Test')
-    await user.type(screen.getByLabelText('Message'), 'Test message')
+    await user.type(screen.getByLabelText(/Subject/), 'Test')
+    await user.type(screen.getByLabelText(/Message/), 'Test message')
     
     const submitButton = screen.getByRole('button', { name: 'Talk To Us' })
     await user.click(submitButton)
@@ -298,11 +298,11 @@ describe('ContactForm', () => {
     
     render(<ContactForm />)
     
-    const firstNameInput = screen.getByLabelText('First name')
-    const lastNameInput = screen.getByLabelText('Last name')
-    const emailInput = screen.getByLabelText('Email')
-    const subjectInput = screen.getByLabelText('Subject')
-    const messageInput = screen.getByLabelText('Message')
+    const firstNameInput = screen.getByLabelText(/First name/)
+    const lastNameInput = screen.getByLabelText(/Last name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const subjectInput = screen.getByLabelText(/Subject/)
+    const messageInput = screen.getByLabelText(/Message/)
     const phoneInput = screen.getByLabelText('Phone (optional)')
     
     // Don't fill in phone field
@@ -336,7 +336,7 @@ describe('ContactForm', () => {
     })
     
     // Fill in first name
-    const firstNameInput = screen.getByLabelText('First name')
+    const firstNameInput = screen.getByLabelText(/First name/)
     await user.type(firstNameInput, 'John')
     
     // The error for firstName should be cleared (or at least there should be a way to dismiss it)

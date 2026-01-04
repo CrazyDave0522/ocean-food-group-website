@@ -94,6 +94,7 @@ export function ContactForm() {
     "mt-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200";
   const labelClass = "text-sm font-medium text-gray-800";
   const errorClass = "mt-1 text-sm text-red-600";
+  const requiredIndicator = <span className="text-red-600">*</span>;
 
   const getError = (field: ContactField) => combinedErrors[field];
 
@@ -120,7 +121,7 @@ export function ContactForm() {
       <div className="grid gap-4 md:grid-cols-2">
         <div>
           <label className={labelClass} htmlFor="firstName">
-            First name
+            First name {requiredIndicator}
           </label>
           <input
             id="firstName"
@@ -138,7 +139,7 @@ export function ContactForm() {
         </div>
         <div>
           <label className={labelClass} htmlFor="lastName">
-            Last name
+            Last name {requiredIndicator}
           </label>
           <input
             id="lastName"
@@ -159,7 +160,7 @@ export function ContactForm() {
       <div className="grid gap-4 md:grid-cols-2">
         <div>
           <label className={labelClass} htmlFor="email">
-            Email
+            Email {requiredIndicator}
           </label>
           <input
             id="email"
@@ -197,7 +198,7 @@ export function ContactForm() {
 
       <div>
         <label className={labelClass} htmlFor="subject">
-          Subject
+          Subject {requiredIndicator}
         </label>
         <input
           id="subject"
@@ -215,7 +216,7 @@ export function ContactForm() {
 
       <div>
         <label className={labelClass} htmlFor="message">
-          Message
+          Message {requiredIndicator}
         </label>
         <textarea
           id="message"
