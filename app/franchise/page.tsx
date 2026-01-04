@@ -11,14 +11,24 @@ export const metadata = {
 export const revalidate = 3600; // Cache for 1 hour, then regenerate in background
 
 export default async function Page() {
-  const supabase = getSupabaseServerClient();
+  let brands: Array<{ name: string }> = [];
 
-  // Fetch active brands for concept selection dropdown
-  const { data: brands = [] } = await supabase
-    .from("brand")
-    .select("name")
-    .eq("is_active", true)
-    .order("name");
+  try {
+    const supabase = getSupabaseServerClient();
+
+    // Fetch active brands for concept selection dropdown
+    const { data: brandsData = [] } = await supabase
+      .from("brand")
+      .select("name")
+      .eq("is_active", true)
+      .order("name");
+
+    brands = brandsData || [];
+  } catch {
+    // During prerendering or if Supabase is not configured,
+    // gracefully fall back to empty brands array
+    brands = [];
+  }
 
   return (
     <div className="container mx-auto px-4 py-12">
