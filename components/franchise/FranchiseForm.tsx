@@ -175,6 +175,9 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
     if (state.status === "success") {
       formRef.current?.reset();
     }
+    if (state.status === "success" || state.status === "error") {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }, [state.status]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
