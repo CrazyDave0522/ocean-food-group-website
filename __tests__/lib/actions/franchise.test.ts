@@ -35,7 +35,7 @@ describe('Franchise Form Validation', () => {
         it('should have correct required fields', () => {
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('firstName')
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('lastName')
-            expect(REQUIRED_FRANCHISE_FIELDS).toContain('countryCode')
+            expect(REQUIRED_FRANCHISE_FIELDS).toContain('regionCode')
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('phone')
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('conceptInterest')
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('preferredLocation')
@@ -50,7 +50,7 @@ describe('Franchise Form Validation', () => {
         it('should have correct field limits', () => {
             expect(FRANCHISE_FIELD_LIMITS.firstName).toBe(100)
             expect(FRANCHISE_FIELD_LIMITS.lastName).toBe(100)
-            expect(FRANCHISE_FIELD_LIMITS.countryCode).toBe(20)
+            expect(FRANCHISE_FIELD_LIMITS.regionCode).toBe(20)
             expect(FRANCHISE_FIELD_LIMITS.phone).toBe(20)
             expect(FRANCHISE_FIELD_LIMITS.email).toBe(255)
             expect(FRANCHISE_FIELD_LIMITS.referralSource).toBe(500)
@@ -83,7 +83,7 @@ describe('Franchise Form Validation', () => {
         const validData = {
             firstName: 'John',
             lastName: 'Doe',
-            countryCode: 'AU +61',
+            regionCode: 'AU +61',
             phone: '400 123 456',
             preferredContactMethod: 'whatsapp',
             email: 'john@example.com',
@@ -124,16 +124,16 @@ describe('Franchise Form Validation', () => {
             expect(result.errors?.lastName).toBe('This field is required.')
         })
 
-        it('should return validation error for missing countryCode', async () => {
+        it('should return validation error for missing regionCode', async () => {
             const formData = createFormData({
                 ...validData,
-                countryCode: '',
+                regionCode: '',
             })
 
             const result = await submitFranchiseInquiry({ status: 'idle' }, formData)
 
             expect(result.status).toBe('error')
-            expect(result.errors?.countryCode).toBe('This field is required.')
+            expect(result.errors?.regionCode).toBe('This field is required.')
         })
 
         it('should return validation error for missing phone', async () => {
@@ -200,16 +200,28 @@ describe('Franchise Form Validation', () => {
             expect(result.errors?.email).toBe('Enter a valid email.')
         })
 
-        it('should return validation error for invalid country code format', async () => {
+        it('should return validation error for invalid region code format', async () => {
             const formData = createFormData({
                 ...validData,
-                countryCode: 'invalid123',
+                regionCode: 'invalid123',
             })
 
             const result = await submitFranchiseInquiry({ status: 'idle' }, formData)
 
             expect(result.status).toBe('error')
-            expect(result.errors?.countryCode).toBe('Enter a valid country code.')
+            expect(result.errors?.regionCode).toBe('Enter a valid region code.')
+        })
+
+        it('should return validation error for unknown region code input', async () => {
+            const formData = createFormData({
+                ...validData,
+                regionCode: 'ZZ +999',
+            })
+
+            const result = await submitFranchiseInquiry({ status: 'idle' }, formData)
+
+            expect(result.status).toBe('error')
+            expect(result.errors?.regionCode).toBe('Please select a valid region code.')
         })
 
         it('should return validation error for invalid phone format', async () => {

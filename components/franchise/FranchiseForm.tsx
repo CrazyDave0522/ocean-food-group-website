@@ -20,8 +20,13 @@ import {
   type FranchiseField,
   AUSTRALIAN_STATES,
   CONTACT_METHODS,
-  COUNTRY_CODES,
 } from "@/lib/franchise/form";
+import {
+  filterCountryCodes,
+  formatCountryCode,
+  isValidCountryCodeInput,
+  type CountryCodeEntry,
+} from "@/lib/country-codes/phoneRegionCodes";
 
 type FieldErrors = Partial<Record<FranchiseField, string>>;
 
@@ -43,7 +48,7 @@ function validateClient(formData: FormData): FieldErrors {
   > = {
     firstName: readField(formData, "firstName"),
     lastName: readField(formData, "lastName"),
-    countryCode: readField(formData, "countryCode"),
+    regionCode: readField(formData, "regionCode"),
     phone: readField(formData, "phone"),
     email: readField(formData, "email"),
     conceptInterest: readField(formData, "conceptInterest"),
@@ -64,8 +69,8 @@ function validateClient(formData: FormData): FieldErrors {
   if (!values.lastName) {
     errors.lastName = "This field is required.";
   }
-  if (!values.countryCode) {
-    errors.countryCode = "This field is required.";
+  if (!values.regionCode) {
+    errors.regionCode = "This field is required.";
   }
   if (!values.phone) {
     errors.phone = "This field is required.";
@@ -94,12 +99,14 @@ function validateClient(formData: FormData): FieldErrors {
     errors.email = "Enter a valid email.";
   }
 
-  // Country code format validation
+  // Region code format validation
   if (
-    values.countryCode &&
-    !countryCodePattern.test(values.countryCode.toUpperCase())
+    values.regionCode &&
+    !countryCodePattern.test(values.regionCode.toUpperCase())
   ) {
-    errors.countryCode = "Enter a valid country code.";
+    errors.regionCode = "Enter a valid region code.";
+  } else if (values.regionCode && !isValidCountryCodeInput(values.regionCode)) {
+    errors.regionCode = "Please select a valid region code.";
   }
 
   // Phone format validation
@@ -145,7 +152,7 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
   );
   const [clientErrors, setClientErrors] = useState<FieldErrors>({});
   const [countryCodeSuggestions, setCountryCodeSuggestions] = useState<
-    typeof COUNTRY_CODES[number][]
+    CountryCodeEntry[]
   >([]);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -159,15 +166,9 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
       return;
     }
 
-    const inputUpper = value.toUpperCase();
-    const filtered = COUNTRY_CODES.filter(
-      (country) =>
-        country.code.includes(inputUpper) ||
-        country.name.toUpperCase().includes(inputUpper) ||
-        country.dialCode.includes(value)
-    );
+    const filtered = filterCountryCodes(value, 5);
 
-    setCountryCodeSuggestions(filtered.slice(0, 5));
+    setCountryCodeSuggestions(filtered);
   };
 
   useEffect(() => {
@@ -258,18 +259,18 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
       {/* Country Code & Phone */}
       <div className="grid gap-4 md:grid-cols-2">
         <div className="relative">
-          <label className={labelClass} htmlFor="countryCode">
-            Country code {requiredIndicator}
+          <label className={labelClass} htmlFor="regionCode">
+            Region code {requiredIndicator}
           </label>
           <input
-            id="countryCode"
-            name="countryCode"
+            id="regionCode"
+            name="regionCode"
             type="text"
             placeholder="e.g., AU +61 or Australia"
             required
-            maxLength={FRANCHISE_FIELD_LIMITS.countryCode}
+            maxLength={FRANCHISE_FIELD_LIMITS.regionCode}
             className={inputClass}
-            aria-invalid={Boolean(getError("countryCode"))}
+            aria-invalid={Boolean(getError("regionCode"))}
             onChange={(e) => handleCountryCodeChange(e.currentTarget.value)}
           />
           {countryCodeSuggestions.length > 0 && (
@@ -285,7 +286,7 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
                         "countryCode"
                       ) as HTMLInputElement | null;
                       if (countryCodeInput) {
-                        countryCodeInput.value = `${country.code} ${country.dialCode}`;
+                        countryCodeInput.value = formatCountryCode(country);
                         setCountryCodeSuggestions([]);
                         countryCodeInput.focus();
                       }
@@ -297,8 +298,8 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
               ))}
             </ul>
           )}
-          {getError("countryCode") ? (
-            <p className={errorClass}>{getError("countryCode")}</p>
+          {getError("regionCode") ? (
+            <p className={errorClass}>{getError("regionCode")}</p>
           ) : null}
         </div>
         <div>

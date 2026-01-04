@@ -17,6 +17,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.9",
     "@supabase/supabase-js": "^2.89.0",
+    "country-telephone-data": "^0.6.3",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
     "marked": "^5.1.2",

@@ -35,7 +35,7 @@ describe("FranchiseForm", () => {
 
     expect(screen.getByLabelText(/First name/)).toBeInTheDocument();
     expect(screen.getByLabelText(/Last name/)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Country code/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Region code/)).toBeInTheDocument();
     expect(screen.getByLabelText(/^Phone/)).toBeInTheDocument();
     expect(
       screen.getByLabelText(/Preferred contact method/)
@@ -88,6 +88,20 @@ describe("FranchiseForm", () => {
     expect(screen.getByText("Mobile")).toBeInTheDocument();
   });
 
+  it("shows region code suggestions from maintained dataset", async () => {
+    const user = userEvent.setup();
+    render(<FranchiseForm brands={mockBrands} />);
+
+    const countryCodeInput = screen.getByLabelText(/Region code/);
+    await user.type(countryCodeInput, "AUS");
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("button", { name: /AU \+61 — Australia/i })
+      ).toBeInTheDocument();
+    });
+  });
+
   it("shows required indicator (*) on required fields", () => {
     render(<FranchiseForm brands={mockBrands} />);
 
@@ -130,7 +144,7 @@ describe("FranchiseForm", () => {
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
-    const countryCodeInput = screen.getByLabelText(/Country code/);
+    const countryCodeInput = screen.getByLabelText(/Region code/);
     const phoneInput = screen.getByLabelText(/^Phone/);
     const contactMethodSelect = screen.getByLabelText(
       /Preferred contact method/
@@ -166,13 +180,13 @@ describe("FranchiseForm", () => {
     expect(mockSubmitFranchiseInquiry).not.toHaveBeenCalled();
   });
 
-  it("validates country code format on client", async () => {
+  it("validates region code format on client", async () => {
     const user = userEvent.setup();
     render(<FranchiseForm brands={mockBrands} />);
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
-    const countryCodeInput = screen.getByLabelText(/Country code/);
+    const countryCodeInput = screen.getByLabelText(/Region code/);
     const phoneInput = screen.getByLabelText(/^Phone/);
     const contactMethodSelect = screen.getByLabelText(
       /Preferred contact method/
@@ -201,7 +215,7 @@ describe("FranchiseForm", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText("Enter a valid country code.")
+        screen.getByText("Enter a valid region code.")
       ).toBeInTheDocument();
     });
 
@@ -220,7 +234,7 @@ describe("FranchiseForm", () => {
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
-    const countryCodeInput = screen.getByLabelText(/Country code/);
+    const countryCodeInput = screen.getByLabelText(/Region code/);
     const phoneInput = screen.getByLabelText(/^Phone/);
     const contactMethodSelect = screen.getByLabelText(
       /Preferred contact method/
@@ -266,7 +280,7 @@ describe("FranchiseForm", () => {
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
-    const countryCodeInput = screen.getByLabelText(/Country code/);
+    const countryCodeInput = screen.getByLabelText(/Region code/);
     const phoneInput = screen.getByLabelText(/^Phone/);
     const contactMethodSelect = screen.getByLabelText(
       /Preferred contact method/
@@ -315,7 +329,7 @@ describe("FranchiseForm", () => {
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
-    const countryCodeInput = screen.getByLabelText(/Country code/);
+    const countryCodeInput = screen.getByLabelText(/Region code/);
     const phoneInput = screen.getByLabelText(/^Phone/);
     const contactMethodSelect = screen.getByLabelText(
       /Preferred contact method/
@@ -370,7 +384,7 @@ describe("FranchiseForm", () => {
     ) as HTMLInputElement;
     const emailInput = screen.getByLabelText(/Email/) as HTMLInputElement;
     const countryCodeInput = screen.getByLabelText(
-      /Country code/
+      /Region code/,
     ) as HTMLInputElement;
     const phoneInput = screen.getByLabelText(/^Phone/) as HTMLInputElement;
     const contactMethodSelect = screen.getByLabelText(
@@ -421,7 +435,7 @@ describe("FranchiseForm", () => {
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
-    const countryCodeInput = screen.getByLabelText(/Country code/);
+    const countryCodeInput = screen.getByLabelText(/Region code/);
     const phoneInput = screen.getByLabelText(/^Phone/);
     const contactMethodSelect = screen.getByLabelText(
       /Preferred contact method/

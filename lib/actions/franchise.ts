@@ -8,13 +8,19 @@ import {
     type FranchiseField,
     type FranchiseFormState,
 } from "@/lib/franchise/form";
+import {
+    filterCountryCodes,
+    formatCountryCode,
+    isValidCountryCodeInput,
+    parseCountryCodeInput,
+} from "@/lib/country-codes/phoneRegionCodes";
 import { getSupabaseServerClient } from "@/lib/supabase";
 import { sendFormNotification } from "@/lib/email/sendFormNotification";
 
 type FranchiseFormInput = {
     firstName: string;
     lastName: string;
-    countryCode: string;
+    regionCode: string;
     phone: string;
     preferredContactMethod: string;
     email: string;
@@ -37,7 +43,7 @@ async function validateInput(formData: FormData): Promise<{
     const data: FranchiseFormInput = {
         firstName: readField(formData, "firstName"),
         lastName: readField(formData, "lastName"),
-        countryCode: readField(formData, "countryCode"),
+        regionCode: readField(formData, "regionCode"),
         phone: readField(formData, "phone"),
         preferredContactMethod: readField(formData, "preferredContactMethod"),
         email: readField(formData, "email"),
@@ -63,13 +69,12 @@ async function validateInput(formData: FormData): Promise<{
         errors.email = "Enter a valid email.";
     }
 
-    // Country code format validation
-    const countryCodePattern = /^[A-Z]{2}\s\+\d+$/;
-    if (
-        data.countryCode &&
-        !countryCodePattern.test(data.countryCode.toUpperCase())
-    ) {
-        errors.countryCode = "Enter a valid country code.";
+    // Region code format validation
+    const parsedRegionCode = parseCountryCodeInput(data.regionCode);
+    if (data.regionCode && !parsedRegionCode) {
+        errors.regionCode = "Enter a valid region code.";
+    } else if (data.regionCode && !isValidCountryCodeInput(data.regionCode)) {
+        errors.regionCode = "Please select a valid region code.";
     }
 
     // Phone format validation - basic numeric + spaces/dashes
@@ -142,7 +147,7 @@ function buildEmailText(payload: FranchiseFormInput): string {
         "",
         `First name: ${payload.firstName}`,
         `Last name: ${payload.lastName}`,
-        `Country code: ${payload.countryCode}`,
+        `Region code: ${payload.regionCode}`,
         `Phone: ${payload.phone}`,
         `Preferred contact method: ${payload.preferredContactMethod}`,
         `Email: ${payload.email}`,
@@ -185,7 +190,7 @@ export async function submitFranchiseInquiry(
         .insert({
             first_name: data.firstName,
             last_name: data.lastName,
-            country_code: data.countryCode,
+            region_code: data.regionCode,
             phone: data.phone,
             email: data.email,
             preferred_contact_method: data.preferredContactMethod,
