@@ -282,13 +282,13 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
                     className="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 active:bg-gray-100"
                     onClick={(e) => {
                       e.preventDefault();
-                      const countryCodeInput = document.getElementById(
-                        "countryCode"
+                      const regionCodeInput = document.getElementById(
+                        "regionCode"
                       ) as HTMLInputElement | null;
-                      if (countryCodeInput) {
-                        countryCodeInput.value = formatCountryCode(country);
+                      if (regionCodeInput) {
+                        regionCodeInput.value = formatCountryCode(country);
                         setCountryCodeSuggestions([]);
-                        countryCodeInput.focus();
+                        regionCodeInput.focus();
                       }
                     }}
                   >

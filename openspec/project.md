@@ -72,12 +72,13 @@ Ocean Food Group public website — marketing and product information site for O
 
 ### OpenSpec Workflow
 
-- **Purpose**: OpenSpec enables spec-driven development — document *why* and *what* before implementing, ensure approvals, and formalize completed work.
+- **Purpose**: OpenSpec enables spec-driven development — document _why_ and _what_ before implementing, ensure approvals, and formalize completed work.
 - **Workflow**:
   1. **Create a proposal**: `openspec proposal <change-id>` — Define the change, impact, and implementation notes.
   2. **Wait for review/approval** — Ensure the proposal aligns with project goals before coding.
   3. **Implement**: Create commits referencing the change: `feat: add X\n\nImplements: <change-id>`
-  4. **Archive after merge**: `openspec archive <change-id>` — Moves the change to archive and creates a reusable spec.
+  4. **Review implementation**: Before archiving, verify the implementation against the spec, proposal, and tasks to ensure all requirements, acceptance criteria, and design decisions are fully realized. Check that no details or edge cases were missed.
+  5. **Archive after merge**: `openspec archive <change-id>` — Moves the change to archive and creates a reusable spec.
 - **Available commands**:
   - `openspec list` — Show all changes (current and archived).
   - `openspec show <change-id>` — View change details (proposal, design, tasks, specs).

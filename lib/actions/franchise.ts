@@ -9,8 +9,6 @@ import {
     type FranchiseFormState,
 } from "@/lib/franchise/form";
 import {
-    filterCountryCodes,
-    formatCountryCode,
     isValidCountryCodeInput,
     parseCountryCodeInput,
 } from "@/lib/country-codes/phoneRegionCodes";
