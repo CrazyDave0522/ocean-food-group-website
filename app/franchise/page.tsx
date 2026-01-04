@@ -8,6 +8,8 @@ export const metadata = {
   description: "Franchise opportunities with Ocean Food Group.",
 };
 
+export const revalidate = 3600; // Cache for 1 hour, then regenerate in background
+
 export default async function Page() {
   const supabase = getSupabaseServerClient();
 
