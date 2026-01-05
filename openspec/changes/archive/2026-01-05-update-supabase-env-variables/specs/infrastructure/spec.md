@@ -1,6 +1,6 @@
 # infrastructure Specification Delta
 
-## MODIFIED Requirements
+## ADDED Requirements
 
 ### Requirement: System uses current Supabase environment variable naming
 
