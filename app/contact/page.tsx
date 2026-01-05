@@ -10,13 +10,15 @@ export const metadata = {
 export default function Page() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <FormTitle
-        title="Reach Out To Us"
-        subtitle="Have any comments, feedback or media inquiries? Get in touch with us below!"
-      />
-      <FormShell>
-        <ContactForm />
-      </FormShell>
+      <div id="form-section">
+        <FormTitle
+          title="Reach Out To Us"
+          subtitle="Have any comments, feedback or media inquiries? Get in touch with us below!"
+        />
+        <FormShell>
+          <ContactForm />
+        </FormShell>
+      </div>
     </div>
   );
 }

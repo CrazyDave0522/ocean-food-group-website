@@ -79,7 +79,12 @@ export function ContactForm() {
       formRef.current?.reset();
     }
     if (state.status === "success" || state.status === "error") {
-      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const formSection = document.getElementById("form-section");
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   }, [state.status]);
 

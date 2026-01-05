@@ -116,29 +116,15 @@ The form SHALL use a shared form layout/styling wrapper so future forms can adop
 
 ### Requirement: Form provides submission feedback
 
-The contact form SHALL display a success or error message upon submission and scroll the viewport to ensure the message is visible to the user.
+The contact form SHALL display a success or error message upon submission and scroll the viewport to anchor at the form title position, ensuring both the title and feedback message are visible.
 
-#### Scenario: User submits valid form and sees success message
+#### Scenario: User submits form and viewport scrolls to form title
 
-- **GIVEN** a user has filled all required fields with valid data
-- **WHEN** the user submits the form
-- **THEN** the system displays a green success message at the top of the form
-- **AND** the viewport smoothly scrolls to position the form and success message in view
-- **AND** the message text reads "Thank you! We'll be in touch soon."
-
-#### Scenario: User submits form with errors and sees error feedback
-
-- **GIVEN** a user has entered invalid data or left required fields empty
-- **WHEN** the user attempts to submit the form
-- **THEN** the system displays validation errors
-- **AND** the viewport smoothly scrolls to position the form and error messages in view
-- **AND** the errors are clearly visible without requiring manual scroll
-
-#### Scenario: User sees feedback message without scrolling
-
-- **GIVEN** a user has submitted the form (successfully or with errors)
+- **GIVEN** a user has submitted the contact form (successfully or with errors)
 - **WHEN** the form state updates with success or error status
-- **THEN** the browser automatically scrolls to position the form at the top of the viewport
-- **AND** the feedback message (success or error) is immediately visible
+- **THEN** the browser automatically scrolls to position the form section container at the top of the viewport
+- **AND** the form title "Reach Out To Us" and subtitle remain visible
+- **AND** the feedback message (success or error) is visible below the title
 - **AND** the scroll behavior is smooth and accessible
+- **AND** if the form section container is not found, the system falls back to scrolling to the form element
 

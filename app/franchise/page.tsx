@@ -32,13 +32,15 @@ export default async function Page() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <FormTitle
-        title="Become Our Partner"
-        subtitle="If you share our passion for perfection and you would like to find out how Ocean Food Group can support you to establish and grow a successful business, then let's have a chat about your business goals."
-      />
-      <FormShell>
-        <FranchiseForm brands={brands || []} />
-      </FormShell>
+      <div id="form-section">
+        <FormTitle
+          title="Become Our Partner"
+          subtitle="If you share our passion for perfection and you would like to find out how Ocean Food Group can support you to establish and grow a successful business, then let's have a chat about your business goals."
+        />
+        <FormShell>
+          <FranchiseForm brands={brands || []} />
+        </FormShell>
+      </div>
     </div>
   );
 }
