@@ -4,14 +4,14 @@ let supabaseClient: SupabaseClient | null = null;
 
 export function getSupabaseServerClient(): SupabaseClient {
   const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
-  if (!supabaseUrl || !supabaseServiceRoleKey) {
+  if (!supabaseUrl || !supabaseSecretKey) {
     throw new Error("Supabase credentials are not configured");
   }
 
   if (!supabaseClient) {
-    supabaseClient = createClient(supabaseUrl, supabaseServiceRoleKey, {
+    supabaseClient = createClient(supabaseUrl, supabaseSecretKey, {
       auth: {
         autoRefreshToken: false,
         persistSession: false,

@@ -110,7 +110,7 @@ Ocean Food Group public website — marketing and product information site for O
 ## Environment Variables (Required)
 
 - `SUPABASE_URL` — Supabase project URL.
-- `SUPABASE_SERVICE_ROLE_KEY` — Supabase service role key for server actions.
+- `SUPABASE_SECRET_KEY` — Supabase Secret key (formerly service role) for server actions.
 - `RESEND_API_KEY` — Resend API key for email service.
 - `CONTACT_INQUIRY_RECIPIENT` — Email address to receive contact form submissions.
 
