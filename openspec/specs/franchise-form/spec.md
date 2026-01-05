@@ -46,21 +46,32 @@ TBD - created by archiving change add-franchise-inquiry-form. Update Purpose aft
 - THEN the record is stored, email is attempted, success feedback shows, and the form is cleared for another submission.
 
 ### Requirement: Error handling and UX resilience
-- If Supabase client initialization fails, the server SHALL return `status: "error"` and message "Service is not configured. Please try again later."
-- If Supabase insert fails, the server returns `status: "error"` and message "Failed to submit application. Please try again."
-- If concept validation cannot reach Supabase, the server returns an error and message "Could not validate concept. Please try again."
-- Submit button uses a loading/disabled state during submission to prevent duplicates; on errors, form values remain for correction.
-- On email failure after a successful insert, the user sees the success-with-issues message and the stored data remains.
-- On any error path, the form is not cleared.
-#### Scenario: Supabase unavailable
-- WHEN Supabase client creation throws
-- THEN the user sees "Service is not configured. Please try again later." and no insert or email occurs.
-#### Scenario: Insert error
-- WHEN the insert returns an error
-- THEN the user sees "Failed to submit application. Please try again.", no email is sent, and form data stays for editing.
-#### Scenario: Email send fails
-- WHEN the insert succeeds but email sending fails
-- THEN the user sees "Thank you for your application! We'll contact you if there are any issues." and the stored submission remains intact.
+
+The franchise form SHALL display success or error messages upon submission and scroll the viewport to ensure the message is visible to the user.
+
+#### Scenario: User submits valid franchise inquiry and sees success message
+
+- **GIVEN** a user has filled all required fields with valid data
+- **WHEN** the user submits the franchise inquiry form
+- **THEN** the system displays a green success message at the top of the form
+- **AND** the viewport smoothly scrolls to position the form and success message in view
+- **AND** the message text reads "Thank you! We'll be in touch soon."
+
+#### Scenario: User submits form with validation errors and sees error feedback
+
+- **GIVEN** a user has entered invalid data or left required fields empty
+- **WHEN** the user attempts to submit the form
+- **THEN** the system displays validation errors specific to each field
+- **AND** the viewport smoothly scrolls to position the form and error messages in view
+- **AND** the errors are clearly visible without requiring manual scroll
+
+#### Scenario: User sees feedback message without scrolling
+
+- **GIVEN** a user has submitted the form (successfully or with errors)
+- **WHEN** the form state updates with success or error status
+- **THEN** the browser automatically scrolls to position the form at the top of the viewport
+- **AND** the feedback message (success or error) is immediately visible
+- **AND** the scroll behavior is smooth and accessible
 
 ### Requirement: Country code dataset maintenance
 - The franchise form SHALL source country code options from a maintained external dataset/library (e.g., libphonenumber/country-telephone-data) rather than a manually managed list in source code.

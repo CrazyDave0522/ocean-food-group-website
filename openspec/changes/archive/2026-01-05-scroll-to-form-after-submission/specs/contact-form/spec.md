@@ -2,7 +2,7 @@
 
 ## MODIFIED Requirements
 
-### Requirement: Form provides user feedback on submission outcome
+### Requirement: Form provides submission feedback
 
 The contact form SHALL display a success or error message upon submission and scroll the viewport to ensure the message is visible to the user.
 

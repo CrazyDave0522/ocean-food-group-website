@@ -3,9 +3,7 @@
 ## Purpose
 
 TBD - created by archiving change add-contact-form. Update Purpose after archive.
-
 ## Requirements
-
 ### Requirement: Contact form displays all required fields
 
 The contact page SHALL display a form with fields for first name, last name, email, phone (optional), subject, and message.
@@ -118,18 +116,29 @@ The form SHALL use a shared form layout/styling wrapper so future forms can adop
 
 ### Requirement: Form provides submission feedback
 
-The form SHALL display clear feedback to users about submission success or failure.
+The contact form SHALL display a success or error message upon submission and scroll the viewport to ensure the message is visible to the user.
 
-#### Scenario: Successful submission
+#### Scenario: User submits valid form and sees success message
 
-- **GIVEN** form data is successfully saved to the database
-- **WHEN** the submission completes
-- **THEN** the user sees a success message
-- **AND** the form fields are cleared or the user is shown a confirmation view
+- **GIVEN** a user has filled all required fields with valid data
+- **WHEN** the user submits the form
+- **THEN** the system displays a green success message at the top of the form
+- **AND** the viewport smoothly scrolls to position the form and success message in view
+- **AND** the message text reads "Thank you! We'll be in touch soon."
 
-#### Scenario: Submission failure
+#### Scenario: User submits form with errors and sees error feedback
 
-- **GIVEN** form submission fails due to network or database error
-- **WHEN** the error occurs
-- **THEN** the user sees an error message explaining the issue
-- **AND** the form data remains populated so the user can retry
+- **GIVEN** a user has entered invalid data or left required fields empty
+- **WHEN** the user attempts to submit the form
+- **THEN** the system displays validation errors
+- **AND** the viewport smoothly scrolls to position the form and error messages in view
+- **AND** the errors are clearly visible without requiring manual scroll
+
+#### Scenario: User sees feedback message without scrolling
+
+- **GIVEN** a user has submitted the form (successfully or with errors)
+- **WHEN** the form state updates with success or error status
+- **THEN** the browser automatically scrolls to position the form at the top of the viewport
+- **AND** the feedback message (success or error) is immediately visible
+- **AND** the scroll behavior is smooth and accessible
+

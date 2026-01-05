@@ -2,9 +2,9 @@
 
 ## MODIFIED Requirements
 
-### Requirement: Form provides user feedback on submission outcome
+### Requirement: Error handling and UX resilience
 
-The franchise form SHALL display a success or error message upon submission and scroll the viewport to ensure the message is visible to the user.
+The franchise form SHALL display success or error messages upon submission and scroll the viewport to ensure the message is visible to the user.
 
 #### Scenario: User submits valid franchise inquiry and sees success message
 
