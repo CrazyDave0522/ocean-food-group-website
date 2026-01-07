@@ -18,6 +18,7 @@
 
 /* Component styles (add as needed) */
 @import "../styles/components/button.css";
+@import "../styles/components/legal-content.css";
 @import "../styles/components/header.css";
 @import "../styles/components/footer.css";
 @import "../styles/components/hero.css";

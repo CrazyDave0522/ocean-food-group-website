@@ -1,7 +1,7 @@
 # franchise-form Specification
 
 ## Purpose
-TBD - created by archiving change add-franchise-inquiry-form. Update Purpose after archive.
+Defines the franchise inquiry form for the Ocean Food Group website. Provides a comprehensive application form at `/franchise` for prospective franchisees with 11 fields including contact details, brand preferences, location, financial qualifications, and referral source. Implements country code suggestions from a maintained external dataset, client-side validation, server-side processing via Supabase, and email notifications.
 ## Requirements
 ### Requirement: Franchise form UI and fields
 - The `/franchise` page SHALL render the franchise application form as the primary content, titled "Become Our Partner" with the provided subtitle and submit button label "Start your journey?".

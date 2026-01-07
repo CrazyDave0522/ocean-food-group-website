@@ -1,7 +1,7 @@
 # testing-framework Specification
 
 ## Purpose
-TBD - created by archiving change add-testing-setup. Update Purpose after archive.
+Defines the testing framework setup for the Ocean Food Group website. Establishes vitest as the test runner with @testing-library/react for component testing. Includes configuration for watch mode, run-once mode, environment setup, coverage reporting, and consistent test patterns across the codebase. Ensures reliable testing infrastructure for all features.
 ## Requirements
 ### Requirement: Testing framework configured with vitest and React Testing Library
 The project SHALL provide a fully configured testing framework using vitest as the test runner and @testing-library/react for component and integration testing, with consistent setup across all test files.

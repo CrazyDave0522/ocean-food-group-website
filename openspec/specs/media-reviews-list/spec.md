@@ -1,7 +1,7 @@
 # media-reviews-list Specification
 
 ## Purpose
-TBD - created by archiving change add-media-reviews-list. Update Purpose after archive.
+Defines the media reviews list feature for the Ocean Food Group website. Provides components and server actions to display a scrollable, auto-loading list of published media reviews fetched from Supabase. Includes the MediaReviewCard component for individual review display and MediaReviewsList component with infinite scroll functionality. Implements responsive layout, error handling, loading states, and empty state messaging.
 ## Requirements
 ### Requirement: MediaReviewCard component displays media review with image and metadata
 
@@ -102,7 +102,7 @@ The site SHALL provide a `MediaReviewsList` component that accepts an array of m
 - **WHEN** the `MediaReviewsList` component is rendered
 - **THEN** each item is rendered as a separate `MediaReviewCard`
 - **AND** the cards are laid out in a single column (one item per line/row)
-- **AND** there is no gap between cards (items placed directly adjacent)
+- **AND** cards are separated by horizontal divider lines (divide-y) with vertical padding (py-[--space-lg]) on each item
 - **AND** items appear in the order provided (most recent first)
 
 #### Scenario: Empty media reviews list

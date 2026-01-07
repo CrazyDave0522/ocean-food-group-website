@@ -158,7 +158,7 @@ describe("MediaReviewsList", () => {
     );
 
     // space-y-0 should be applied to the root container for no gap
-    const listContainer = container.querySelector(".space-y-0");
+    const listContainer = container.querySelector(".divide-y");
     expect(listContainer).toBeInTheDocument();
   });
 

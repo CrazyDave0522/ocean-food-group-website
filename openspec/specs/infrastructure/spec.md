@@ -1,7 +1,7 @@
 # infrastructure Specification
 
 ## Purpose
-TBD - created by archiving change update-supabase-env-variables. Update Purpose after archive.
+Defines Supabase configuration requirements for the Ocean Food Group website. Specifies the current environment variable naming convention for Supabase client initialization, replacing deprecated naming with the updated standard. Ensures compatibility with Supabase's latest SDK and prevents configuration errors.
 ## Requirements
 ### Requirement: System uses current Supabase environment variable naming
 

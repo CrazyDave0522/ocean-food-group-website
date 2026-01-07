@@ -1,7 +1,7 @@
 # site-layout Specification
 
 ## Purpose
-TBD - created by archiving change add-sticky-header-footer. Update Purpose after archive.
+Defines the global layout structure for the Ocean Food Group website including sticky header and footer positioning. Ensures the header remains pinned at the top during scroll while the footer stays anchored at the bottom of the viewport or content, whichever is lower. Establishes consistent page structure with proper z-index layering.
 ## Requirements
 ### Requirement: Header remains pinned to top during scroll
 The site SHALL keep the main header visible at the top of the viewport while users scroll page content.

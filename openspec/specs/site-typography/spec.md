@@ -1,7 +1,7 @@
 # site-typography Specification
 
 ## Purpose
-TBD - created by archiving change add-default-fonts. Update Purpose after archive.
+Defines the default font-family for the Ocean Food Group website. Specifies Montserrat as the primary web font with Georgia as the serif fallback. This establishes consistent typography across all pages and components using the `--font-family-base` CSS custom property.
 ## Requirements
 ### Requirement: Default font-family
 

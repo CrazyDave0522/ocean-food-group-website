@@ -1,0 +1,166 @@
+/* Legal Content Styling
+ * Applies typography and visual hierarchy to markdown-rendered privacy/terms pages.
+ * Scoped to .prose-legal class to avoid affecting other markdown content on the site.
+ */
+
+.prose-legal {
+  color: var(--color-text);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Heading Styles */
+
+.prose-legal h1 {
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 0;
+  margin-bottom: var(--space-lg);
+}
+
+.prose-legal h2 {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.prose-legal h3 {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.prose-legal h4 {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+/* Paragraph Styles */
+
+.prose-legal p {
+  margin-bottom: var(--space-md);
+  line-height: 1.8;
+}
+
+.prose-legal p:last-child {
+  margin-bottom: 0;
+}
+
+/* List Styles */
+
+.prose-legal ul,
+.prose-legal ol {
+  margin-bottom: var(--space-md);
+  padding-left: 1.5em;
+}
+
+.prose-legal li {
+  margin-bottom: 0.5em;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.prose-legal ul > li {
+  list-style-type: disc;
+}
+
+.prose-legal ol > li {
+  list-style-type: decimal;
+}
+
+/* Nested lists */
+.prose-legal ul ul,
+.prose-legal ol ol,
+.prose-legal ul ol,
+.prose-legal ol ul {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  padding-left: 1.5em;
+}
+
+/* Link Styles */
+
+.prose-legal a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.prose-legal a:hover {
+  opacity: 0.8;
+}
+
+.prose-legal a:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Inline Element Styles */
+
+.prose-legal strong {
+  font-weight: 700;
+}
+
+.prose-legal em {
+  font-style: italic;
+}
+
+.prose-legal code {
+  font-family: monospace;
+  font-size: 0.95em;
+  background-color: #f1f5f9;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+/* Blockquote Styles (if present) */
+
+.prose-legal blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: var(--space-md);
+  margin-left: 0;
+  margin-bottom: var(--space-md);
+  font-style: italic;
+  color: #64748b;
+}
+
+/* Horizontal Rule */
+
+.prose-legal hr {
+  margin: var(--space-xl) 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Mobile Optimization */
+
+@media (max-width: 640px) {
+  .prose-legal h2 {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .prose-legal h3 {
+    margin-top: var(--space-md);
+  }
+
+  .prose-legal ul,
+  .prose-legal ol {
+    padding-left: 1.25em;
+  }
+
+  .prose-legal li {
+    margin-bottom: 0.4em;
+  }
+}

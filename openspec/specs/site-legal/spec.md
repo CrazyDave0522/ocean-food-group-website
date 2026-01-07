@@ -1,7 +1,7 @@
 # site-legal Specification
 
 ## Purpose
-TBD - created by archiving change add-legal-pages-structure. Update Purpose after archive.
+Defines the legal pages structure for the Ocean Food Group website. Provides Privacy Policy and Terms & Conditions pages at `/privacy` and `/terms` that render content from static Markdown files. Implements server-side markdown parsing with DOMPurify sanitization to prevent XSS attacks while maintaining content security and editability.
 ## Requirements
 ### Requirement: Privacy and Terms pages rendered from static Markdown
 

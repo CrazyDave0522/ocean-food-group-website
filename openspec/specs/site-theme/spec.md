@@ -1,7 +1,7 @@
 # site-theme Specification
 
 ## Purpose
-TBD - created by archiving change prevent-dark-mode. Update Purpose after archive.
+Ensures the Ocean Food Group website always renders in light mode regardless of user operating system preferences. Prevents dark mode activation by forcing light theme color tokens and disabling color-scheme auto-switching. This maintains brand consistency and visual identity.
 ## Requirements
 ### Requirement: Site renders in light mode regardless of user preference
 

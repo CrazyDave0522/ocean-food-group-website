@@ -24,7 +24,7 @@ export default async function Page(): Promise<ReactElement> {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="prose-legal" dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   )
 }

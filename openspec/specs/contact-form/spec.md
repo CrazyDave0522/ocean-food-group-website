@@ -1,8 +1,7 @@
 # contact-form Specification
 
 ## Purpose
-
-TBD - created by archiving change add-contact-form. Update Purpose after archive.
+Defines the contact form feature for the Ocean Food Group website. Provides a user-facing contact form at `/contact` with client-side validation, server-side processing via Supabase storage, and email notifications. Includes form fields, validation rules, error handling, success messaging, and scroll-to-form behavior after submission.
 ## Requirements
 ### Requirement: Contact form displays all required fields
 

@@ -1,0 +1,112 @@
+# legal-content-typography Specification
+
+## Purpose
+TBD - created by archiving change style-legal-pages. Update Purpose after archive.
+## Requirements
+### Requirement: H2 Heading Styling
+The system SHALL render h2 elements using the --fs-h2 token for section headers with responsive sizing and spacing.
+
+#### Scenario:
+When a user views the privacy policy and sees a section header (e.g., "## How do we use your Personal Information?"), the h2 SHALL:
+- Render at `--fs-h2` (clamp(24px, 3vw, 36px))
+- Have `font-weight: 600` or `700`
+- Have top margin of `var(--space-xl)` (breathing room before the section)
+- Have bottom margin of `var(--space-md)` (separation from body text)
+- Use `line-height: 1.4` for stable heading rendering
+- Preserve `color: var(--color-text)` for brand consistency
+
+### Requirement: H3 Heading Styling
+The system SHALL render h3 elements using the --fs-h3 token for subsections with reduced prominence relative to h2.
+
+#### Scenario:
+A subsection header (e.g., "### What is Personal Information?") SHALL:
+- Render at `--fs-h3` (clamp(20px, 2.5vw, 28px))
+- Have `font-weight: 600`
+- Have top margin of `var(--space-lg)` (slightly less than h2)
+- Have bottom margin of `var(--space-sm)` (tighter spacing for subsections)
+- Use `line-height: 1.4`
+
+### Requirement: H4 Heading Styling
+The system SHALL render h4 elements using the --fs-h4 token for minor subsection headers with further reduced prominence.
+
+#### Scenario:
+Minor headers (e.g., "#### Scenario:") SHALL:
+- Render at `--fs-h4` (clamp(18px, 2vw, 24px))
+- Have `font-weight: 600`
+- Have top margin of `var(--space-md)`
+- Have bottom margin of `var(--space-sm)`
+- Use `line-height: 1.4`
+
+### Requirement: Body Paragraph Styling
+The system SHALL ensure readability for long-form legal text with appropriate line height and spacing.
+
+#### Scenario:
+Paragraphs in the privacy policy (e.g., "We understand and appreciate that you are concerned about privacy...") SHALL:
+- Render at `--fs-body` (clamp(14px, 1.2vw, 16px))
+- Have `line-height: 1.6` or `1.8` for comfortable reading
+- Have `letter-spacing: normal` (no change)
+- Have `margin-bottom: var(--space-md)` between paragraphs
+- Preserve `color: var(--color-text)` (#111111)
+
+### Requirement: Link Styling
+The system SHALL style anchor elements with brand color and interactive feedback.
+
+#### Scenario:
+When a link appears in legal content (e.g., "[www.oceanfoodgroup.com.au](http://www.oceanfoodgroup.com.au)"), it SHALL:
+- Be styled with `color: var(--color-primary)` (#111827)
+- Have `text-decoration: underline`
+- Have `text-decoration-offset: 2px` for visual separation
+- Change to `opacity: 0.8` on `:hover`
+- Change to `opacity: 0.6` on `:active`
+- Have `transition: opacity 0.2s ease-in-out` for smooth feedback
+- Maintain sufficient color contrast for accessibility (WCAG AA)
+
+### Requirement: Unordered List Styling
+The system SHALL style bullet lists with proper indentation and spacing for legal content.
+
+#### Scenario:
+An unordered list in the privacy policy (e.g., collection methods) SHALL:
+- Render with default bullet points (`list-style: disc`)
+- Have `margin-left: 1.5em` or equivalent padding for clear indentation
+- Have list items with `line-height: 1.6`
+- Have `margin-bottom: 0.5em` between list items (tighter than paragraphs)
+- Have `margin-bottom: var(--space-md)` after the entire list for separation from following content
+
+### Requirement: Ordered List Styling
+The system SHALL style numbered lists with proper indentation and spacing.
+
+#### Scenario:
+An ordered list (e.g., allergen disclaimers with numbered points) SHALL:
+- Render with default decimal numbering (`list-style: decimal`)
+- Have same indentation, spacing, and line-height as unordered lists
+- Support nested lists (e.g., subsections under a numbered item) with appropriate visual nesting
+
+### Requirement: Strong Emphasis Styling
+The system SHALL ensure `<strong>` elements stand out from body text.
+
+#### Scenario:
+When legal text uses **strong** emphasis (e.g., "**You consent to**"), it SHALL:
+- Have `font-weight: 700`
+- Use the same color and size as surrounding text
+- Provide visual distinction through weight alone
+
+### Requirement: Emphasis Styling
+The system SHALL ensure `<em>` elements are distinct without being distracting.
+
+#### Scenario:
+When text uses *italic* emphasis (e.g., "_Your consent_"), it SHALL:
+- Have `font-style: italic`
+- Use the same color and weight as surrounding text
+- Provide visual distinction through style alone
+
+### Requirement: Container Max-Width
+The system SHALL constrain legal content to optimal reading line length.
+
+#### Scenario:
+The prose container SHALL:
+- Have `max-width: 65ch` or similar (Tailwind: `max-w-prose`)
+- Center horizontally within the page via `margin: 0 auto`
+- Preserve responsive padding via existing page component styles
+
+---
+
