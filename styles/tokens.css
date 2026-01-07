@@ -20,10 +20,19 @@
   --fs-body: clamp(14px, 1.2vw, 16px);
 
   /* -------- Spacing -------- */
+  --space-2xs: 2px;
   --space-xs: 4px;
   --space-sm: 8px;
-  --space-md: clamp(12px, 2vw, 20px);
-  --space-lg: clamp(24px, 4vw, 64px);
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 80px;
+  --space-5xl: 96px;
+  --space-6xl: 128px;
+  --space-7xl: 160px;
+  --space-8xl: 192px;
 
   /* -------- Radius -------- */
   --radius-md: 12px;
