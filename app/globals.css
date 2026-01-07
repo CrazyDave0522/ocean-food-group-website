@@ -23,6 +23,7 @@
 @import "../styles/components/footer.css";
 @import "../styles/components/hero.css";
 @import "../styles/components/modal.css";
+@import "../styles/components/media-review-content.css";
 
 @theme inline {
   --color-background: var(--color-bg);

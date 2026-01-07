@@ -12,7 +12,7 @@ const mockReview: MediaReview = {
   publish_date: "2025-01-05T10:30:00Z",
   slug: "ocean-food-group-forbes",
   is_published: true,
-  content: null,
+  content: {},
   created_at: "2025-01-05T10:30:00Z",
   updated_at: null,
 };

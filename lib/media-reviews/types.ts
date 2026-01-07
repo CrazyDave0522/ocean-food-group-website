@@ -13,7 +13,7 @@ export type MediaReview = {
   publish_date: string; // ISO 8601 timestamp
   slug: string;
   is_published: boolean;
-  content: Record<string, unknown> | null; // JSONB field from Editor.js
+  content: Record<string, unknown>; // JSONB field from Editor.js (NOT NULL)
   created_at: string;
   updated_at: string | null;
 };
