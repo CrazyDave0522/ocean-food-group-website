@@ -5,8 +5,8 @@ import { parse } from "marked";
 import { JSDOM } from "jsdom";
 import DOMPurify from "dompurify";
 
-const window = new JSDOM("").window;
-const purify = DOMPurify(window as unknown as Window);
+const window = new JSDOM("").window as unknown as Window & typeof globalThis;
+const purify = DOMPurify(window);
 
 export const revalidate = 0;
 
