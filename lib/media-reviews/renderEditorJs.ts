@@ -1,4 +1,9 @@
-import DOMPurify from "isomorphic-dompurify";
+import { JSDOM } from "jsdom";
+import DOMPurify from "dompurify";
+
+// Create a JSDOM window for server-side sanitization
+const window = new JSDOM("").window;
+const purify = DOMPurify(window as unknown as Window);
 
 const ALLOWED_TAGS = [
   "p",
@@ -135,7 +140,7 @@ export function renderEditorJs(content: unknown, skipFirstBlock = true): string 
 
   const html = blocks.map(renderBlock).filter(Boolean).join("");
 
-  const sanitized = DOMPurify.sanitize(html, {
+  const sanitized = purify.sanitize(html, {
     ALLOWED_TAGS,
     ALLOWED_ATTR,
     ALLOW_DATA_ATTR: false,

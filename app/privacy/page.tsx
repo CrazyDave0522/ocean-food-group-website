@@ -2,7 +2,11 @@ import fs from 'fs/promises'
 import path from 'path'
 import type { ReactElement } from 'react'
 import { parse } from 'marked'
-import DOMPurify from 'isomorphic-dompurify'
+import { JSDOM } from 'jsdom'
+import DOMPurify from 'dompurify'
+
+const window = new JSDOM('').window
+const purify = DOMPurify(window as unknown as Window)
 
 export const revalidate = 0
 
@@ -20,7 +24,7 @@ export default async function Page(): Promise<ReactElement> {
     /* fallback message kept above */
   }
   const rawContent = parse(md, { mangle: false, headerIds: false })
-  const content = DOMPurify.sanitize(rawContent)
+  const content = purify.sanitize(rawContent)
 
   return (
     <div className="container mx-auto px-4 py-12">

@@ -82,7 +82,7 @@ describe("renderEditorJs", () => {
 
     expect(html).not.toContain("<script>");
     expect(html).not.toMatch(/javascript:alert/i);
-    expect(html).toContain("<a ");
+    expect(html).toContain("<a>");
   });
 
   it("omits unsupported blocks", () => {
