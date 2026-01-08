@@ -2,11 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import type { ReactElement } from "react";
 import { parse } from "marked";
-import { JSDOM } from "jsdom";
-import DOMPurify from "dompurify";
-
-const window = new JSDOM("").window as unknown as Window & typeof globalThis;
-const purify = DOMPurify(window);
+import sanitizeHtml from "sanitize-html";
 
 export const revalidate = 0;
 
@@ -25,7 +21,7 @@ export default async function Page(): Promise<ReactElement> {
   }
 
   const rawContent = parse(md, { mangle: false, headerIds: false });
-  const content = purify.sanitize(rawContent);
+  const content = sanitizeHtml(rawContent);
 
   return (
     <div className="container mx-auto px-4 py-12">

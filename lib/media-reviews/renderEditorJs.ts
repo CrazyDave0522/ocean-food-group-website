@@ -1,41 +1,37 @@
-import { JSDOM } from "jsdom";
-import DOMPurify from "dompurify";
+import sanitizeHtml from "sanitize-html";
 
-// Create a JSDOM window for server-side sanitization
-const window = new JSDOM("").window as unknown as Window & typeof globalThis;
-const purify = DOMPurify(window);
-
-const ALLOWED_TAGS = [
-  "p",
-  "h2",
-  "h3",
-  "h4",
-  "ul",
-  "ol",
-  "li",
-  "table",
-  "thead",
-  "tbody",
-  "tr",
-  "th",
-  "td",
-  "figure",
-  "img",
-  "figcaption",
-  "a",
-];
-
-const ALLOWED_ATTR = [
-  "href",
-  "src",
-  "alt",
-  "title",
-  "target",
-  "rel",
-  "colspan",
-  "rowspan",
-  "scope",
-];
+const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
+  allowedTags: [
+    "p",
+    "h2",
+    "h3",
+    "h4",
+    "ul",
+    "ol",
+    "li",
+    "table",
+    "thead",
+    "tbody",
+    "tr",
+    "th",
+    "td",
+    "figure",
+    "img",
+    "figcaption",
+    "a",
+  ],
+  allowedAttributes: {
+    a: ["href", "title", "target", "rel"],
+    img: ["src", "alt", "title"],
+    th: ["colspan", "rowspan", "scope"],
+    td: ["colspan", "rowspan"],
+  },
+  allowedSchemes: ["http", "https", "mailto", "tel"],
+  allowedSchemesByTag: {
+    a: ["http", "https", "mailto", "tel"],
+    img: ["http", "https"],
+  },
+};
 
 type EditorJsBlock = {
   type?: string;
@@ -140,19 +136,10 @@ export function renderEditorJs(content: unknown, skipFirstBlock = true): string 
 
   const html = blocks.map(renderBlock).filter(Boolean).join("");
 
-  const sanitized = purify.sanitize(html, {
-    ALLOWED_TAGS,
-    ALLOWED_ATTR,
-    ALLOW_DATA_ATTR: false,
-    ALLOWED_URI_REGEXP: /^(?:https?:|mailto:|tel:|\/|#)/i,
-    FORBID_ATTR: ["style", "onerror", "onload", "onclick", "onmouseover"],
-    ADD_ATTR: ["scope"],
-    ADD_TAGS: [],
-  });
+  const sanitized = sanitizeHtml(html, SANITIZE_OPTIONS);
 
-  let safeHtml = sanitized;
-  safeHtml = safeHtml.replace(/<th>([^<]*)/g, '<th scope="col">$1');
-  safeHtml = safeHtml.replace(/href\s*=\s*"javascript:[^"]*"/gi, 'href=""');
+  // Add scope attributes to table headers
+  const safeHtml = sanitized.replace(/<th>([^<]*)/g, '<th scope="col">$1');
 
   return safeHtml;
 }
