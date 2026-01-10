@@ -1,0 +1,87 @@
+/* Header Navigation Styling */
+.header-nav a {
+  font-size: var(--fs-body-lg);
+  font-weight: 500;
+  font-style: normal;
+  line-height: normal;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.header-nav a:hover {
+  color: var(--color-primary);
+}
+
+.header-nav a.active {
+  color: var(--color-primary);
+  border-bottom: 4px solid var(--color-primary);
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  padding-bottom: 2px;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  background: rgba(0, 0, 0, 0.90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+  overscroll-behavior: contain;
+  overflow-y: auto;
+}
+
+/* Responsive image sizing */
+.header-logo {
+  width: clamp(96px, 28vw, 140px);
+  height: auto;
+}
+
+.hamburger-icon {
+  width: clamp(var(--space-xl), 10vw, 50px);
+  height: clamp(var(--space-xl), 10vw, 50px);
+}
+
+.mobile-menu-nav {
+  width: 100%;
+  max-width: 600px;
+  padding: var(--space-2xl);
+  padding-top: var(--space-8xl);
+}
+
+/* Responsive vertical gap for mobile menu */
+.header-nav-mobile {
+  gap: clamp(var(--space-3xl), 12vw, var(--space-5xl));
+}
+
+.mobile-menu-nav li {
+  text-align: center;
+}
+
+.mobile-menu-nav a {
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  font-style: normal;
+  line-height: normal;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.mobile-menu-nav a.active {
+  color: var(--color-primary);
+  border-bottom: 4px solid var(--color-primary);
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  padding-bottom: 4px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,52 +1,6 @@
-# site-layout Specification
+# spec.md delta for site-layout
 
-## Purpose
-Defines the global layout structure for the Ocean Food Group website including sticky header and footer positioning. Ensures the header remains pinned at the top during scroll while the footer stays anchored at the bottom of the viewport or content, whichever is lower. Establishes consistent page structure with proper z-index layering.
-## Requirements
-### Requirement: Header remains pinned to top during scroll
-
-The site SHALL keep the main header visible at the top of the viewport while users scroll page content.
-
-#### Scenario: Scrolling long content with updated header styling
-
-- **GIVEN** a user is on a page with content exceeding viewport height
-- **WHEN** they scroll down
-- **THEN** the header remains visible at the top with the updated 60px padding and active nav styling
-- **AND** the header does not scroll out of view
-- **AND** content starts below the header without occlusion
-
-### Requirement: Footer anchors to bottom on short pages
-The site SHALL place the footer at the bottom of the viewport when page content is shorter than the viewport height.
-
-#### Scenario: Short page content
-- **GIVEN** a page whose content height is less than the viewport height
-- **WHEN** the page is rendered
-- **THEN** the footer is positioned at the bottom edge of the viewport with no empty gap below it
-- **AND** the footer still appears after the main content (not overlapping it)
-
-### Requirement: Reusable form title component for form headings
-The site SHALL provide a standalone `FormTitle` component that renders form titles and optional subtitles/descriptions with consistent typography and spacing, independent of form containers or other layout wrappers.
-
-#### Scenario: Display form title outside form container
-- **GIVEN** a page with a form (e.g., contact page)
-- **WHEN** the form title is rendered using `FormTitle` component
-- **THEN** the title and optional subtitle appear with consistent styling (h1 text-3xl font-semibold, subtitle text-gray-600)
-- **AND** the title can be placed outside or inside any layout container as needed
-
-#### Scenario: Reuse form title across multiple forms
-- **GIVEN** multiple forms requiring titles and subtitles
-- **WHEN** they use the `FormTitle` component
-- **THEN** all form titles share the same visual treatment and spacing without duplicating markup or styles
-
-### Requirement: Form container provides consistent layout wrapper
-The site SHALL provide a `FormShell` component that wraps form content with consistent container styling (card, padding, border, shadow) without embedding titles or subtitles.
-
-#### Scenario: Form container used with external form title
-- **GIVEN** a page with a form
-- **WHEN** the form is wrapped in `FormShell` and preceded by a separate `FormTitle`
-- **THEN** the form container provides card-style layout with appropriate spacing
-- **AND** the form title and form container can be composed independently
-- **AND** the form container does not accept title or description props
+## MODIFIED Requirements
 
 ### Requirement: Header displays brand logo with navigation
 
@@ -108,6 +62,20 @@ The site header SHALL display the Ocean Food Group logo image as a clickable lin
 - **AND** the page navigates to the selected link
 - **AND** the active state updates for the new page
 
+### Requirement: Header remains pinned to top during scroll
+
+The site SHALL keep the main header visible at the top of the viewport while users scroll page content.
+
+#### Scenario: Scrolling long content with updated header styling
+
+- **GIVEN** a user is on a page with content exceeding viewport height
+- **WHEN** they scroll down
+- **THEN** the header remains visible at the top with the updated 60px padding and active nav styling
+- **AND** the header does not scroll out of view
+- **AND** content starts below the header without occlusion
+
+## ADDED Requirements
+
 ### Requirement: Mobile navigation overlay accessible via hamburger menu
 
 The site SHALL provide a mobile-friendly navigation overlay that appears on small screens, triggered by a hamburger menu button.
@@ -120,4 +88,3 @@ The site SHALL provide a mobile-friendly navigation overlay that appears on smal
 - **AND** the menu overlay has `role="navigation"` and `aria-label="Mobile navigation"`
 - **AND** ESC key closes the overlay (optional enhancement for power users)
 - **AND** focus management keeps focus within the overlay while open (optional)
-
