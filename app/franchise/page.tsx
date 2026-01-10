@@ -2,6 +2,7 @@ import { getSupabaseServerClient } from "@/lib/supabase";
 import { FranchiseForm } from "@/components/franchise/FranchiseForm";
 import { FormShell } from "@/components/forms/FormShell";
 import { FormTitle } from "@/components/forms/FormTitle";
+import Hero from "@/components/Hero";
 
 export const metadata = {
   title: "Franchise — Ocean Food Group",
@@ -31,16 +32,26 @@ export default async function Page() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div id="form-section">
-        <FormTitle
-          title="Become Our Partner"
-          subtitle="If you share our passion for perfection and you would like to find out how Ocean Food Group can support you to establish and grow a successful business, then let's have a chat about your business goals."
-        />
-        <FormShell>
-          <FranchiseForm brands={brands || []} />
-        </FormShell>
+    <>
+      <Hero
+        title="Franchise Opportunities"
+        subtitle="Partner with Ocean Food Group and grow your business"
+        variant="center"
+        backgroundType="styled"
+        backgroundVariant="solid"
+      />
+
+      <div className="container mx-auto px-4 py-12">
+        <div id="form-section">
+          <FormTitle
+            title="Become Our Partner"
+            subtitle="If you share our passion for perfection and you would like to find out how Ocean Food Group can support you to establish and grow a successful business, then let's have a chat about your business goals."
+          />
+          <FormShell>
+            <FranchiseForm brands={brands || []} />
+          </FormShell>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

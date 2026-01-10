@@ -1,5 +1,6 @@
 import { fetchPublishedJobPostings } from "@/lib/actions/jobPostings";
 import { JobPostingsList } from "@/components/job-postings/JobPostingsList";
+import Hero from "@/components/Hero";
 
 export const metadata = {
   title: "Careers — Ocean Food Group",
@@ -11,25 +12,41 @@ export default async function Page() {
 
   if (result.error) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold mb-8">Careers</h1>
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-700">
-            Error loading job postings. Please try again later.
-          </p>
+      <>
+        <Hero
+          title="Join Our Team"
+          subtitle="Explore career opportunities at Ocean Food Group"
+          variant="center"
+          backgroundType="image"
+          backgroundImageUrl="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=540&fit=crop"
+        />
+        <div className="container mx-auto px-4 py-12">
+          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-700">
+              Error loading job postings. Please try again later.
+            </p>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-8">Careers</h1>
-      <JobPostingsList
-        initialItems={result.items}
-        initialHasMore={result.hasMore}
-        onFetchMore={fetchPublishedJobPostings}
+    <>
+      <Hero
+        title="Join Our Team"
+        subtitle="Explore career opportunities at Ocean Food Group"
+        variant="center"
+        backgroundType="image"
+        backgroundImageUrl="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=540&fit=crop"
       />
-    </div>
+      <div className="container mx-auto px-4 py-12">
+        <JobPostingsList
+          initialItems={result.items}
+          initialHasMore={result.hasMore}
+          onFetchMore={fetchPublishedJobPostings}
+        />
+      </div>
+    </>
   );
 }

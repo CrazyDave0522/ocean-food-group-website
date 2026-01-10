@@ -60,6 +60,6 @@ describe('SectionTitle Component', () => {
     );
 
     const paragraph = screen.getByText('Test Subtitle');
-    expect(paragraph).toHaveClass('text-[--fs-body]');
+    expect(paragraph).toHaveClass('text-(length:--fs-body)');
   });
 });
