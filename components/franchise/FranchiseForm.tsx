@@ -196,11 +196,11 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
   }
 
   const inputClass =
-    "mt-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200";
+    "mt-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary-lighter";
   const labelClass = "text-sm font-medium text-gray-800";
-  const requiredIndicator = <span className="text-red-600">*</span>;
+  const requiredIndicator = <span className="text-error">*</span>;
   const optionalIndicator = <span className="text-gray-500">(Optional)</span>;
-  const errorClass = "mt-1 text-sm text-red-600";
+  const errorClass = "mt-1 text-sm text-error";
 
   const getError = (field: FranchiseField) => combinedErrors[field];
 

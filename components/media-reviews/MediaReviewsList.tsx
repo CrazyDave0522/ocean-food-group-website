@@ -121,7 +121,7 @@ export function MediaReviewsList({
       {/* Error message */}
       {error && (
         <div className="mt-8 text-center">
-          <p className="text-red-600 text-sm">
+          <p className="text-error text-sm">
             Failed to load more reviews. Please try again.
           </p>
         </div>

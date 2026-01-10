@@ -37,8 +37,8 @@ export function JobPostingCard({ job }: JobPostingCardProps) {
           className="flex flex-col items-center gap-1 shrink-0 group"
           aria-label="Apply now"
         >
-          <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-blue-600 transition-colors" />
-          <span className="text-xs text-slate-500 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+          <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-primary transition-colors" />
+          <span className="text-xs text-slate-500 group-hover:text-primary transition-colors whitespace-nowrap">
             Apply Now
           </span>
         </button>

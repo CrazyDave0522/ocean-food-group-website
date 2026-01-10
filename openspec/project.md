@@ -10,6 +10,7 @@ Ocean Food Group public website — marketing and product information site for O
 - Language: TypeScript (strict mode enabled via `tsconfig.json`).
 - UI: React 19 with server and client components, `useActionState` for form state management.
 - Styling: Tailwind CSS v4 + PostCSS + global stylesheet at `app/globals.css`.
+- Package manager: pnpm (`pnpm-lock.yaml` is canonical).
 - State & UI libs: `@headlessui/react`, `framer-motion`, `lucide-react` for icons.
 - Backend / Data: Supabase (`@supabase/supabase-js`) for data storage and service role server actions.
 - Email: Resend API for transactional email notifications.
@@ -28,6 +29,12 @@ Ocean Food Group public website — marketing and product information site for O
 - TypeScript: `strict: true` — prefer typed interfaces and avoid `any` where possible.
 - File naming: PascalCase for React components (`MyComponent.tsx`), camelCase for hooks and helpers, kebab-case for CSS files if needed.
 - **Styling approach**: Use Tailwind CSS classes as the primary method (~80% of styling). When custom CSS is necessary (~20%), place it in separate `.css` files under `./styles/` — never mix CSS into component code via inline styles or `<style>` blocks. All CSS files are imported in `app/globals.css`, which aggregates them with Tailwind. Follow the existing structure: `tokens.css` for design tokens, `base.css` for global element styles, `layout.css` for layout-specific rules, `animations.css` for keyframes and animations, `utilities.css` for utility classes, and `components/` for component-scoped styles (e.g., `button.css`, `header.css`, `footer.css`, `hero.css`, `modal.css`, `carousel.css`). This keeps styling centralized, reusable, and maintainable.
+- **Tailwind v4 configuration**: Configure content scanning and theme values inside `app/globals.css` using `@source` (for globs) and `@theme` (for tokens). Add new folders to `@source` instead of creating `tailwind.config.ts`; extend colors and other tokens in `styles/tokens.css` and reference them from `@theme`.
+- **Color system (from logo)**:
+  - Brand: primary `#0f75bc`, primary-dark `#0d5d96`, primary-light `#25aae1`, primary-lighter `#e6f4fa`.
+  - Semantic: success `#10b981`, warning `#f59e0b`, error `#ef4444`, info `#3b82f6`.
+  - Neutrals: background `#ffffff`, text `#111111`, text-muted `#6b7280`, border `#e2e8f0`, bg-subtle `#f8fafc`, bg-muted `#f1f5f9`.
+  - Usage: colors defined in `styles/tokens.css`, exposed to Tailwind v4 via `@theme` in `app/globals.css` (utilities like `bg-primary`, `text-primary`, `border-primary`, etc.).
 - React: Prefer function components. Use server components by default in `app/` and add `"use client"` only when hooks/local state or browser-only APIs are required.
 - Server Actions: Place data mutations and validated server operations in `lib/actions/` with `"use server"` directive. Only async functions should be exported from server files.
 - **Image & asset handling**: When referencing image files in code, check the file's basic info first (especially dimensions and file size). Use Next.js Image component for optimized rendering; leverage Python PIL for bulk image processing (cropping, resizing, optimization) before committing assets.

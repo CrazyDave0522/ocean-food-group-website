@@ -1,6 +1,10 @@
 /* app/globals.css */
 @import "tailwindcss";
 
+/* Tailwind v4 content sources */
+@source "./app/**/*.{ts,tsx}";
+@source "./components/**/*.{ts,tsx}";
+
 /* Design system */
 @import "../styles/tokens.css";
 
@@ -31,4 +35,24 @@
   --color-foreground: var(--color-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Breakpoints (from prior tailwind.config.ts) */
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  
+  /* Brand colors */
+  --color-primary: var(--color-primary-base);
+  --color-primary-dark: var(--color-primary-dark-base);
+  --color-primary-light: var(--color-primary-light-base);
+  --color-primary-lighter: var(--color-primary-lighter-base);
+  
+  /* Semantic colors */
+  --color-success: var(--color-success-base);
+  --color-warning: var(--color-warning-base);
+  --color-error: var(--color-error-base);
+  --color-info: var(--color-info-base);
 }

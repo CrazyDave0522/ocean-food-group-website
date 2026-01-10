@@ -193,8 +193,8 @@ describe('Hero Component', () => {
       );
 
       const imageContainer = container.querySelector('.hero__image');
-      expect(imageContainer).toHaveClass('w-full', 'md:w-[414px]');
-      expect(imageContainer).toHaveClass('h-[266px]', 'md:h-[332px]');
+      expect(imageContainer).toHaveClass('w-full', 'md:w-103.5');
+      expect(imageContainer).toHaveClass('h-66.5', 'md:h-83');
     });
   });
 

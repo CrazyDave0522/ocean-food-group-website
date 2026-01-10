@@ -32,11 +32,11 @@
 
 /* Styled Background Variants */
 .hero--solid {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
 }
 
 .hero--gradient {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
 }
 
 /* Content Container */
@@ -49,7 +49,7 @@
 /* Text on image backgrounds */
 .hero:has(.hero__background) .hero__title,
 .hero:has(.hero__background) .hero__subtitle {
-  color: #ffffff;
+  color: var(--color-bg);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -58,5 +58,5 @@
 .hero--solid .hero__subtitle,
 .hero--gradient .hero__title,
 .hero--gradient .hero__subtitle {
-  color: #ffffff;
+  color: var(--color-bg);
 }

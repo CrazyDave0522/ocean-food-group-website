@@ -22,8 +22,8 @@ export default async function Page() {
 
       <div className="container mx-auto px-4 py-12">
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
-            <p className="text-red-700">
+          <div className="bg-error/10 border border-error/20 rounded-md p-4 mb-6">
+            <p className="text-error">
               Error loading media reviews. Please try again later.
             </p>
           </div>

@@ -86,7 +86,7 @@ describe('SubmitButton', () => {
   it('applies button styling classes', () => {
     render(<SubmitButton label="Submit" />)
     const button = screen.getByRole('button')
-    expect(button).toHaveClass('rounded-lg', 'bg-blue-600', 'text-white')
+    expect(button).toHaveClass('rounded-lg', 'bg-primary', 'text-white')
   })
 
   it('applies disabled styling when pending', () => {

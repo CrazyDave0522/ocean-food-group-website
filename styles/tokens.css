@@ -1,9 +1,37 @@
 /* app/styles/tokens.css */
 :root {
   /* -------- Colors -------- */
+  /* Brand Colors (from Ocean Food Group logo) */
+  --color-primary-base: #0f75bc; /* Primary ocean blue */
+  --color-primary-dark-base: #0d5d96; /* Darker shade for hover states */
+  --color-primary-light-base: #25aae1; /* Lighter blue for accents */
+  --color-primary-lighter-base: #e6f4fa; /* Very light blue for backgrounds */
+
+  /* Brand aliases (compat + readability) */
+  --color-primary: var(--color-primary-base);
+  --color-primary-dark: var(--color-primary-dark-base);
+  --color-primary-light: var(--color-primary-light-base);
+  --color-primary-lighter: var(--color-primary-lighter-base);
+  
+  /* Neutral Colors */
   --color-bg: #ffffff;
   --color-text: #111111;
-  --color-primary: #111827;
+  --color-text-muted: #6b7280; /* Gray for secondary text */
+  --color-border: #e2e8f0; /* Light gray for borders */
+  --color-bg-subtle: #f8fafc; /* Very light gray for subtle backgrounds */
+  --color-bg-muted: #f1f5f9; /* Light gray for code blocks, etc */
+  
+  /* Semantic Colors */
+  --color-success-base: #10b981; /* Green for success states */
+  --color-warning-base: #f59e0b; /* Amber for warnings */
+  --color-error-base: #ef4444; /* Red for errors */
+  --color-info-base: #3b82f6; /* Blue for info messages */
+
+  /* Semantic aliases (compat + readability) */
+  --color-success: var(--color-success-base);
+  --color-warning: var(--color-warning-base);
+  --color-error: var(--color-error-base);
+  --color-info: var(--color-info-base);
 
   /* -------- Fonts -------- */
   --font-geist-sans:

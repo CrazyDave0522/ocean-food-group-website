@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ocean Food Group Website
 
-## Getting Started
+Marketing site for Ocean Food Group, built with Next.js App Router. The app highlights products, franchise opportunities, media reviews, careers, and contact channels. Performance, accessibility, and spec-driven development (OpenSpec) are priorities.
 
-First, run the development server:
+## Quick Start
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Install dependencies (pnpm preferred):
+   ```bash
+   pnpm install
+   ```
+2. Configure environment variables in `.env.local`:
+   ```bash
+   SUPABASE_URL=
+   SUPABASE_SECRET_KEY=
+   RESEND_API_KEY=
+   CONTACT_INQUIRY_RECIPIENT=
+   ```
+3. Run the dev server:
+   ```bash
+   pnpm dev
+   ```
+   App runs at http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `pnpm dev` — start Next.js in development (Turbopack).
+- `pnpm build` — production build.
+- `pnpm start` — serve the production build.
+- `pnpm lint` — ESLint.
+- `pnpm typecheck` — TypeScript `--noEmit`.
+- `pnpm check` — typecheck + lint (recommended before commit).
+- `pnpm test` — Vitest in watch mode.
+- `pnpm test:run` — Vitest once (CI-friendly).
+- `pnpm test:coverage` — coverage report.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tooling & Conventions
 
-## Learn More
+- Next.js 16.1 (App Router), React 19, TypeScript (strict).
+- Tailwind CSS v4: theme defined in `app/globals.css` via `@theme`, design tokens in `styles/tokens.css`, and source globs via `@source`. Add new folders to `@source` instead of editing a tailwind config file.
+- Styling: prefer Tailwind utilities; shared CSS lives under `styles/` and is imported in `app/globals.css`.
+- Forms: server actions under `lib/actions/` with "use server" and client components using `useActionState`.
+- Email: Resend; data storage: Supabase service role client in `lib/supabase.ts`.
+- Specs: see `openspec/specs/` for capabilities and `openspec/changes/` for active proposals.
 
-To learn more about Next.js, take a look at the following resources:
+## Testing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Component and unit tests: Vitest + Testing Library (happy-dom environment).
+- Run `pnpm test:run` for CI-style runs or `pnpm test` while iterating.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/` — routes, layouts, and pages.
+- `components/` — shared UI (domain subfolders for forms, contact, franchise, media reviews).
+- `lib/` — server actions, Supabase helpers, validation, utilities.
+- `styles/` — design tokens, base/layout/utilities, component CSS; aggregated in `app/globals.css`.
+- `openspec/` — project conventions, specs, and change proposals.
