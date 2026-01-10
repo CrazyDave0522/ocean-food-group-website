@@ -437,7 +437,7 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
                   name="hasLiquidAssets"
                   value="Yes"
                   required
-                  className="h-4 w-4"
+                  className="h-4 w-4 accent-primary"
                 />
                 <label htmlFor="hasLiquidAssets-yes" className="ml-2 text-sm text-gray-900">Yes</label>
               </div>
@@ -448,7 +448,7 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
                   name="hasLiquidAssets"
                   value="No"
                   required
-                  className="h-4 w-4"
+                  className="h-4 w-4 accent-primary"
                 />
                 <label htmlFor="hasLiquidAssets-no" className="ml-2 text-sm text-gray-900">No</label>
               </div>
@@ -471,7 +471,7 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
                   name="canManageFullTime"
                   value="Yes"
                   required
-                  className="h-4 w-4"
+                  className="h-4 w-4 accent-primary"
                 />
                 <label htmlFor="canManageFullTime-yes" className="ml-2 text-sm text-gray-900">Yes</label>
               </div>
@@ -482,7 +482,7 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
                   name="canManageFullTime"
                   value="No"
                   required
-                  className="h-4 w-4"
+                  className="h-4 w-4 accent-primary"
                 />
                 <label htmlFor="canManageFullTime-no" className="ml-2 text-sm text-gray-900">No</label>
               </div>
