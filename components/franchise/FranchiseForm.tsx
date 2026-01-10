@@ -425,61 +425,69 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
       {/* Liquid Assets & Full-time */}
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className={labelClass} htmlFor="hasLiquidAssets">
-            Do you have at least AUD$400k in liquid assets? {requiredIndicator}
-          </label>
-          <div className="mt-2 space-y-2">
-            <label className="flex items-center">
-              <input
-                type="radio"
-                name="hasLiquidAssets"
-                value="Yes"
-                required
-                className="h-4 w-4"
-              />
-              <span className="ml-2 text-sm text-gray-900">Yes</span>
-            </label>
-            <label className="flex items-center">
-              <input
-                type="radio"
-                name="hasLiquidAssets"
-                value="No"
-                required
-                className="h-4 w-4"
-              />
-              <span className="ml-2 text-sm text-gray-900">No</span>
-            </label>
-          </div>
+          <fieldset>
+            <legend id="hasLiquidAssets-legend" className={labelClass}>
+              Do you have at least AUD$400k in liquid assets? {requiredIndicator}
+            </legend>
+            <div className="mt-2 space-y-2" role="radiogroup" aria-labelledby="hasLiquidAssets-legend">
+              <div className="flex items-center">
+                <input
+                  id="hasLiquidAssets-yes"
+                  type="radio"
+                  name="hasLiquidAssets"
+                  value="Yes"
+                  required
+                  className="h-4 w-4"
+                />
+                <label htmlFor="hasLiquidAssets-yes" className="ml-2 text-sm text-gray-900">Yes</label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="hasLiquidAssets-no"
+                  type="radio"
+                  name="hasLiquidAssets"
+                  value="No"
+                  required
+                  className="h-4 w-4"
+                />
+                <label htmlFor="hasLiquidAssets-no" className="ml-2 text-sm text-gray-900">No</label>
+              </div>
+            </div>
+          </fieldset>
           {getError("hasLiquidAssets") ? (
             <p className={errorClass}>{getError("hasLiquidAssets")}</p>
           ) : null}
         </div>
         <div>
-          <label className={labelClass} htmlFor="canManageFullTime">
-            Will you be able to manage your store full-time? {requiredIndicator}
-          </label>
-          <div className="mt-2 space-y-2">
-            <label className="flex items-center">
-              <input
-                type="radio"
-                name="canManageFullTime"
-                value="Yes"
-                required
-                className="h-4 w-4"
-              />
-              <span className="ml-2 text-sm text-gray-900">Yes</span>
-            </label>
-            <label className="flex items-center">
-              <input
-                type="radio"
-                name="canManageFullTime"
-                value="No"
-                required
-                className="h-4 w-4"
-              />
-              <span className="ml-2 text-sm text-gray-900">No</span>
-            </label>
-          </div>
+          <fieldset>
+            <legend id="canManageFullTime-legend" className={labelClass}>
+              Will you be able to manage your store full-time? {requiredIndicator}
+            </legend>
+            <div className="mt-2 space-y-2" role="radiogroup" aria-labelledby="canManageFullTime-legend">
+              <div className="flex items-center">
+                <input
+                  id="canManageFullTime-yes"
+                  type="radio"
+                  name="canManageFullTime"
+                  value="Yes"
+                  required
+                  className="h-4 w-4"
+                />
+                <label htmlFor="canManageFullTime-yes" className="ml-2 text-sm text-gray-900">Yes</label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="canManageFullTime-no"
+                  type="radio"
+                  name="canManageFullTime"
+                  value="No"
+                  required
+                  className="h-4 w-4"
+                />
+                <label htmlFor="canManageFullTime-no" className="ml-2 text-sm text-gray-900">No</label>
+              </div>
+            </div>
+          </fieldset>
           {getError("canManageFullTime") ? (
             <p className={errorClass}>{getError("canManageFullTime")}</p>
           ) : null}
