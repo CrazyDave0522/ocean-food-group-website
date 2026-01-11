@@ -20,7 +20,7 @@ export default function Page() {
         contentImageUrl="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?w=414&h=332&fit=crop"
       />
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container-main py-12">
         <div id="form-section">
           <FormTitle
             title="Reach Out To Us"

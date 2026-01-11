@@ -41,7 +41,7 @@ export default async function Page() {
         backgroundVariant="solid"
       />
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container-main py-12">
         <div id="form-section">
           <FormTitle
             title="Become Our Partner"

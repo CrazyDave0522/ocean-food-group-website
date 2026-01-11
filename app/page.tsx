@@ -20,7 +20,7 @@ export default async function Page() {
         backgroundVariant="solid"
       />
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container-main py-12">
         {/* Brands Section */}
         {brandsList && (
           <section className="py-[--space-3xl] md:py-[--space-4xl] mt-[--space-4xl] md:mt-[--space-5xl]">

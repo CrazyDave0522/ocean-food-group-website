@@ -24,7 +24,7 @@ export default async function Page(): Promise<ReactElement> {
   const content = sanitizeHtml(rawContent);
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container-main py-12">
       <div
         className="prose-legal"
         dangerouslySetInnerHTML={{ __html: content }}

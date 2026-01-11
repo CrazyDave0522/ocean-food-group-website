@@ -47,7 +47,7 @@ export default async function MediaReviewDetailPage({
   const bodyHtml = renderEditorJs(review.content);
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container-main py-12">
       <div className="space-y-(--space-lg)">
         <header className="space-y-(--space-xs)">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
