@@ -1,0 +1,59 @@
+/* Footer Component Styles */
+
+.brands-section {
+  background-color: #f9fafb; /* Slightly different from footer bg */
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+.brand-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-link {
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.brand-link:hover {
+  opacity: 0.8;
+}
+
+.brand-logo {
+  width: 120px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.footer-separator {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.company-section {
+  background-color: #f9fafb;
+}
