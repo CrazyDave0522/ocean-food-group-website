@@ -38,7 +38,7 @@ export function BrandCard({ brand, index }: BrandCardProps) {
           <h3 className="text-(length:--fs-h3) font-semibold text-[--color-text] group-hover:opacity-80 transition-opacity">
             {brand.name}
           </h3>
-          <p className="text-(length:--fs-body) text-slate-600 line-clamp-6 mt-2">
+          <p className="text-(length:--fs-body) text-slate-600 line-clamp-16 mt-2 text-justify whitespace-pre-line">
             {brand.introduction}
           </p>
         </div>
@@ -50,20 +50,20 @@ export function BrandCard({ brand, index }: BrandCardProps) {
           isOddIndex ? 'flex-row' : 'flex-row-reverse'
         }`}
       >
-        <div className="shrink-0 w-55 h-[137.5px] relative">
+        <div className="shrink-0 w-120 h-75 relative">
           <Image
             src={brand.logo_url}
             alt={brand.name}
             fill
             className="object-cover"
-            sizes="220px"
+            sizes="480px"
           />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-(length:--fs-h3) font-semibold text-[--color-text]">
             {brand.name}
           </h3>
-          <p className="text-(length:--fs-body) text-slate-600 line-clamp-6 mt-2">
+          <p className="text-(length:--fs-body) text-slate-600 line-clamp-12 mt-(--space-xl) text-justify whitespace-pre-line">
             {brand.introduction}
           </p>
         </div>

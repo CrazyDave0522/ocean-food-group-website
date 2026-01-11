@@ -17,10 +17,12 @@ export function SectionTitle({
   const alignmentClass = alignment === "left" ? "text-left" : "text-center";
 
   return (
-    <div className={alignmentClass}>
-      <h2 className="text-(length:--fs-h1) font-bold mb-[--space-md]">{title}</h2>
+    <div className={`${alignmentClass} mb-(--space-xl)`}>
+      <h2 className="text-(length:--fs-h2) font-bold mb-(--space-md)">
+        {title}
+      </h2>
       {subtitle && (
-        <p className="text-(length:--fs-body) mb-[--space-lg]">{subtitle}</p>
+        <p className="text-(length:--fs-body) mb-(--space-lg)">{subtitle}</p>
       )}
     </div>
   );

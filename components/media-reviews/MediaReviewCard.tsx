@@ -51,7 +51,7 @@ export function MediaReviewCard({ review }: MediaReviewCardProps) {
         </div>
 
         {/* Content Container */}
-        <div className="flex flex-col flex-1 space-y-(--space-sm) md:space-y-(--space-md) px-(--space-md) md:px-(--space-xl)">
+        <div className="flex flex-col flex-1 space-y-(--space-sm) md:space-y-(--space-md) px-(--space-md) md:px-(--space-xl) pt-(--space-md) md:pt-0">
           {/* Title */}
           <h3 className="text-lg md:text-xl font-semibold line-clamp-2">
             {review.title}

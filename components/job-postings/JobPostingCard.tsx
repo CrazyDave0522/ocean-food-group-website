@@ -18,7 +18,7 @@ export function JobPostingCard({ job }: JobPostingCardProps) {
   };
 
   return (
-    <div className="flex items-start justify-between gap-(--space-xl) bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+    <div className="flex items-center justify-between gap-(--space-xl) bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
       <div className="flex-1 min-w-0">
         <h2 className="text-lg font-semibold line-clamp-1 mb-2">
           {job.title} - {job.company_name}

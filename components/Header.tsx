@@ -58,7 +58,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur supports-backdrop-filter:bg-white/80">
-        <div className="container mx-auto px-4 md:px-(--space-3xl) py-4 flex items-center justify-between">
+        <div className="px-4 md:px-(--space-3xl) py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logos/Ocean-Food-bg-cropped.png"
@@ -66,14 +66,14 @@ export default function Header() {
               width={120}
               height={42}
               className="header-logo"
-              style={{ height: 'auto' }}
+              style={{ height: "auto" }}
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
           <nav aria-label="Primary navigation" className="hidden md:block">
-            <ul className="flex gap-(--space-4xl) header-nav">
+            <ul className="flex gap-[clamp(24px,4vw,80px)] header-nav">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -107,7 +107,7 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-          <div className="fixed inset-0 z-40 md:hidden mobile-menu-overlay">
+        <div className="fixed inset-0 z-40 md:hidden mobile-menu-overlay">
           <nav
             role="navigation"
             aria-label="Mobile navigation"
