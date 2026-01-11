@@ -34,7 +34,7 @@ export function BrandCard({ brand, index }: BrandCardProps) {
             sizes="(max-width: 640px) 100vw"
           />
         </div>
-        <div className="px-4">
+        <div>
           <h3 className="text-(length:--fs-h3) font-semibold text-[--color-text] group-hover:opacity-80 transition-opacity">
             {brand.name}
           </h3>
