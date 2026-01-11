@@ -14,10 +14,9 @@ export default function Page() {
       <Hero
         title="Get In Touch"
         subtitle="We'd love to hear from you"
-        variant="left"
+        variant="center"
         backgroundType="image"
-        backgroundImageUrl="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=540&fit=crop"
-        contentImageUrl="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?w=414&h=332&fit=crop"
+        backgroundImageUrl="/images/backgrounds/ocean-green.png"
       />
 
       <div className="container-main py-12">

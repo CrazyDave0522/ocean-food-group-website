@@ -37,8 +37,8 @@ export default async function Page() {
         title="Franchise Opportunities"
         subtitle="Partner with Ocean Food Group and grow your business"
         variant="center"
-        backgroundType="styled"
-        backgroundVariant="solid"
+        backgroundType="image"
+        backgroundImageUrl="/images/backgrounds/seefood-cartoon.jpg"
       />
 
       <div className="container-main py-12">

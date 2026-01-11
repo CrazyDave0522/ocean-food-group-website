@@ -16,8 +16,8 @@ export default async function Page() {
         title="Welcome to Ocean Food Group"
         subtitle="Quality seafood and franchise opportunities"
         variant="center"
-        backgroundType="styled"
-        backgroundVariant="solid"
+        backgroundType="image"
+        backgroundImageUrl="/images/backgrounds/ocean-blue.jpg"
       />
 
       <div className="container-main py-12">
