@@ -1,5 +1,5 @@
 import { SectionTitle } from "@/components/SectionTitle";
-import { BrandsList } from "@/components/brands/BrandsList";
+import { FeatureList } from "@/components/brands/FeatureList";
 import Hero from "@/components/Hero";
 import Callout from "@/components/Callout";
 
@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const brandsList = await BrandsList();
+  const brandsList = await FeatureList();
 
   return (
     <>

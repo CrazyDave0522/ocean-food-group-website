@@ -1,12 +1,12 @@
 /**
- * BrandsList component - displays vertical list of brands with alternating layout
+ * FeatureList component - displays vertical list of brands with alternating layout
  * Returns null if no active brands exist (entire section should not render)
  */
 
 import { fetchPublishedBrands } from '@/lib/actions/brands';
-import { BrandCard } from './BrandCard';
+import { FeatureCard } from './FeatureCard';
 
-export async function BrandsList() {
+export async function FeatureList() {
   const result = await fetchPublishedBrands();
 
   // Show error message if fetch failed
@@ -28,7 +28,7 @@ export async function BrandsList() {
   return (
     <div className="flex flex-col gap-12 md:gap-16">
       {result.items.map((brand, index) => (
-        <BrandCard key={brand.id} brand={brand} index={index} />
+        <FeatureCard key={brand.id} brand={brand} index={index} />
       ))}
     </div>
   );

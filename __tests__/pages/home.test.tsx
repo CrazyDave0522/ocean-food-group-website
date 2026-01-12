@@ -12,8 +12,8 @@ vi.mock('@/components/SectionTitle', () => ({
   SectionTitle: ({ title }: { title: string }) => <h2>{title}</h2>,
 }));
 
-vi.mock('@/components/brands/BrandsList', () => ({
-  BrandsList: vi.fn(async () => {
+vi.mock('@/components/brands/FeatureList', () => ({
+  FeatureList: vi.fn(async () => {
     const result = await brandsActions.fetchPublishedBrands();
     if (result.items.length === 0) return null;
     return <div data-testid="brands-list">Brands List</div>;

@@ -3,14 +3,14 @@
 ## Purpose
 TBD - created by archiving change add-brands-section. Update Purpose after archive.
 ## Requirements
-### Requirement: BrandCard component displays brand with alternating left-right layout
+### Requirement: FeatureCard component displays brand with alternating left-right layout
 
-The site SHALL provide a `BrandCard` component that renders a single brand item with alternating layout: odd items display image on left with text on right, even items display text on left with image on right. On mobile, items stack vertically regardless of position.
+The site SHALL provide a `FeatureCard` component that renders a single brand item with alternating layout: odd items display image on left with text on right, even items display text on left with image on right. On mobile, items stack vertically regardless of position.
 
 #### Scenario: Display odd brand card (image left, text right) on desktop
 
 - **GIVEN** a brand object with id, name, logo_url, and introduction at an odd index (0, 2, 4...)
-- **WHEN** the `BrandCard` component is rendered on a desktop viewport (md and larger)
+- **WHEN** the `FeatureCard` component is rendered on a desktop viewport (md and larger)
 - **THEN** the card displays with logo image on the left side
 - **AND** the brand name and introduction text appear on the right side
 - **AND** the logo image has a fixed width (e.g., 200–250px)
@@ -23,7 +23,7 @@ The site SHALL provide a `BrandCard` component that renders a single brand item 
 #### Scenario: Display even brand card (text left, image right) on desktop
 
 - **GIVEN** a brand object with id, name, logo_url, and introduction at an even index (1, 3, 5...)
-- **WHEN** the `BrandCard` component is rendered on a desktop viewport (md and larger)
+- **WHEN** the `FeatureCard` component is rendered on a desktop viewport (md and larger)
 - **THEN** the brand name and introduction text appear on the left side
 - **AND** the logo image appears on the right side
 - **AND** the logo image has a fixed width (e.g., 200–250px)
@@ -36,7 +36,7 @@ The site SHALL provide a `BrandCard` component that renders a single brand item 
 #### Scenario: Display brand card on mobile (stacked vertically)
 
 - **GIVEN** a brand object with id, name, logo_url, and introduction at any index
-- **WHEN** the `BrandCard` component is rendered on a mobile viewport (< md)
+- **WHEN** the `FeatureCard` component is rendered on a mobile viewport (< md)
 - **THEN** the layout stacks vertically
 - **AND** the logo image appears at the top
 - **AND** the brand name and introduction text appear below the logo
@@ -47,7 +47,7 @@ The site SHALL provide a `BrandCard` component that renders a single brand item 
 #### Scenario: Logo image is displayed with proper aspect ratio and alt text
 
 - **GIVEN** a brand with a logo_url (always present per schema)
-- **WHEN** the `BrandCard` is rendered
+- **WHEN** the `FeatureCard` is rendered
 - **THEN** the logo image is displayed with a consistent aspect ratio (16:10)
 - **AND** the image has a descriptive alt text (derived from brand name or filename)
 - **AND** the image is optimized using Next.js Image component (lazy loading, responsive sizing)
@@ -56,7 +56,7 @@ The site SHALL provide a `BrandCard` component that renders a single brand item 
 #### Scenario: Metadata is displayed with appropriate typography
 
 - **GIVEN** a brand with name and introduction text
-- **WHEN** the `BrandCard` is rendered
+- **WHEN** the `FeatureCard` is rendered
 - **THEN** the brand name is displayed with heading typography (h3, font-semibold, text-lg or text-xl)
 - **AND** the introduction text is displayed with body text size (text-sm or text-base)
 - **AND** the introduction text color is muted (e.g., text-slate-600)
@@ -64,7 +64,7 @@ The site SHALL provide a `BrandCard` component that renders a single brand item 
 
 #### Scenario: Clicking brand card opens external website in new tab
 
-- **GIVEN** a rendered `BrandCard` with a website_url field (external link)
+- **GIVEN** a rendered `FeatureCard` with a website_url field (external link)
 - **WHEN** the user clicks anywhere on the card
 - **THEN** the browser opens a new tab navigating to the brand's website_url
 - **AND** the original page remains open in the previous tab
@@ -74,7 +74,7 @@ The site SHALL provide a `BrandCard` component that renders a single brand item 
 
 #### Scenario: Card displays hover state for visual feedback
 
-- **GIVEN** a rendered `BrandCard`
+- **GIVEN** a rendered `FeatureCard`
 - **WHEN** the user hovers over the card on desktop
 - **THEN** the card displays visual feedback (opacity change, shadow increase, or subtle scale)
 - **AND** the cursor changes to pointer style
@@ -82,21 +82,21 @@ The site SHALL provide a `BrandCard` component that renders a single brand item 
 
 #### Scenario: Card displays hover state for visual feedback
 
-- **GIVEN** a rendered `BrandCard`
+- **GIVEN** a rendered `FeatureCard`
 - **WHEN** the user hovers over the card
 - **THEN** the card displays visual feedback (opacity change, shadow increase, or subtle scale)
 - **AND** the cursor changes to default (pointer if card is clickable in future)
 
-### Requirement: BrandsList component displays vertical list with alternating layouts
+### Requirement: FeatureList component displays vertical list with alternating layouts
 
-The site SHALL provide a `BrandsList` component that renders a vertical list of BrandCard components with alternating left-right layouts. Each brand item alternates position based on its index in the list.
+The site SHALL provide a `FeatureList` component that renders a vertical list of FeatureCard components with alternating left-right layouts. Each brand item alternates position based on its index in the list.
 
 #### Scenario: Display brands in alternating layout
 
 - **GIVEN** published brands fetched from Supabase
-- **WHEN** the `BrandsList` component is rendered
+- **WHEN** the `FeatureList` component is rendered
 - **THEN** the brands are displayed in a vertical list (not a grid)
-- **AND** each BrandCard receives an `index` prop to control layout alternation
+- **AND** each FeatureCard receives an `index` prop to control layout alternation
 - **AND** odd-indexed items (0, 2, 4...) display image on left, text on right (desktop)
 - **AND** even-indexed items (1, 3, 5...) display text on left, image on right (desktop)
 - **AND** items are spaced vertically with consistent gap (e.g., --space-3xl or --space-4xl)
@@ -104,7 +104,7 @@ The site SHALL provide a `BrandsList` component that renders a vertical list of 
 
 #### Scenario: Mobile layout stacks all items vertically
 
-- **GIVEN** the `BrandsList` component is rendered on a mobile viewport (< md)
+- **GIVEN** the `FeatureList` component is rendered on a mobile viewport (< md)
 - **WHEN** multiple brands are displayed
 - **THEN** all items display with image above text (vertical stack)
 - **AND** the alternating left-right layout is ignored on mobile
@@ -113,7 +113,7 @@ The site SHALL provide a `BrandsList` component that renders a vertical list of 
 
 #### Scenario: Loading or skeleton state while fetching data
 
-- **GIVEN** the `BrandsList` component is mounting
+- **GIVEN** the `FeatureList` component is mounting
 - **WHEN** the data fetch is in progress
 - **THEN** a loading indication may be displayed (optional skeleton loaders or spinner)
 - **AND** the user understands that content is being loaded
@@ -121,7 +121,7 @@ The site SHALL provide a `BrandsList` component that renders a vertical list of 
 #### Scenario: Empty state when no brands are active
 
 - **GIVEN** a successful fetch from Supabase returns zero active brands
-- **WHEN** the `BrandsList` component is rendered
+- **WHEN** the `FeatureList` component is rendered
 - **THEN** a friendly empty state message is displayed (e.g., "No brands available at this time")
 - **AND** the message uses appropriate typography and color (text-slate-500 or similar)
 - **AND** the message is centered and spaced appropriately
@@ -129,7 +129,7 @@ The site SHALL provide a `BrandsList` component that renders a vertical list of 
 #### Scenario: Error state displays user-friendly message
 
 - **GIVEN** the fetch from Supabase fails
-- **WHEN** the `BrandsList` component is rendered
+- **WHEN** the `FeatureList` component is rendered
 - **THEN** an error message is displayed (e.g., "Failed to load brands. Please try again later.")
 - **AND** the error message uses warning or error color (text-red-600 or similar)
 - **AND** the message is centered and provides clear user feedback
@@ -137,7 +137,7 @@ The site SHALL provide a `BrandsList` component that renders a vertical list of 
 
 #### Scenario: List styling is consistent with site design
 
-- **GIVEN** rendered `BrandsList` component
+- **GIVEN** rendered `FeatureList` component
 - **WHEN** the component is displayed on the home page
 - **THEN** the list uses consistent spacing and padding (leveraging design tokens)
 - **AND** the list integrates visually with surrounding page content
@@ -217,7 +217,7 @@ The site SHALL provide TypeScript types for brand objects and server action resu
   - `error?: string` (optional error message)
 - **AND** all consuming code properly handles both success and error cases via TypeScript narrowing
 
-### Requirement: BrandsList component does not render when no active brands exist
+### Requirement: FeatureList component does not render when no active brands exist
 
 The site SHALL NOT display the brands section if no active brands are available in the database. The entire section should conditionally not render, leaving no trace of the section on the home page.
 
@@ -225,8 +225,8 @@ The site SHALL NOT display the brands section if no active brands are available 
 
 - **GIVEN** the Supabase `brand` table contains zero records with `is_active = true`
 - **WHEN** the home page is loaded
-- **THEN** the BrandsList component returns `null`
-- **AND** the brands section (including section title and BrandsList) shall not render
+- **THEN** the FeatureList component returns `null`
+- **AND** the brands section (including section title and FeatureList) shall not render
 - **AND** no empty state message or placeholder appears
 - **AND** the page layout continues seamlessly without the section
 - **AND** the home page DOM does not contain any brands section elements
@@ -235,8 +235,8 @@ The site SHALL NOT display the brands section if no active brands are available 
 
 - **GIVEN** the Supabase `brand` table contains at least one record with `is_active = true`
 - **WHEN** the home page is loaded
-- **THEN** the BrandsList component renders the brands in a vertical list
-- **AND** the brands section (section title and BrandsList) appears on the home page
+- **THEN** the FeatureList component renders the brands in a vertical list
+- **AND** the brands section (section title and FeatureList) appears on the home page
 - **AND** all active brands are displayed with alternating left-right layout on desktop
 - **AND** all items stack vertically on mobile
 

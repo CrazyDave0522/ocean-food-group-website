@@ -1,5 +1,5 @@
 /**
- * BrandCard component - displays individual brand with alternating layout
+ * FeatureCard component - displays individual brand with alternating layout
  * Odd indexes: image left, text right
  * Even indexes: text left, image right
  * Mobile: always stacked vertically
@@ -8,12 +8,12 @@
 import Image from 'next/image';
 import type { Brand } from '@/lib/brands/types';
 
-interface BrandCardProps {
+interface FeatureCardProps {
   brand: Brand;
   index: number;
 }
 
-export function BrandCard({ brand, index }: BrandCardProps) {
+export function FeatureCard({ brand, index }: FeatureCardProps) {
   const isOddIndex = index % 2 === 0;
 
   return (

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { BrandsList } from '@/components/brands/BrandsList';
+import { FeatureList } from '@/components/brands/FeatureList';
 import * as brandsActions from '@/lib/actions/brands';
 import type { Brand } from '@/lib/brands/types';
 
@@ -19,7 +19,7 @@ const mockBrand: Brand = {
   updated_at: '2024-01-01T00:00:00Z',
 };
 
-describe('BrandsList Component', () => {
+describe('FeatureList Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -29,7 +29,7 @@ describe('BrandsList Component', () => {
       items: [],
     });
 
-    const result = await BrandsList();
+    const result = await FeatureList();
     expect(result).toBeNull();
   });
 
@@ -39,7 +39,7 @@ describe('BrandsList Component', () => {
       items: mockBrands,
     });
 
-    const result = await BrandsList();
+    const result = await FeatureList();
     expect(result).not.toBeNull();
   });
 
@@ -49,7 +49,7 @@ describe('BrandsList Component', () => {
       error: 'Failed to fetch brands',
     });
 
-    const result = await BrandsList();
+    const result = await FeatureList();
     // Component returns error div when error exists and items are empty
     expect(result).not.toBeNull();
   });
@@ -59,7 +59,7 @@ describe('BrandsList Component', () => {
       items: [mockBrand],
     });
 
-    await BrandsList();
+    await FeatureList();
 
     expect(brandsActions.fetchPublishedBrands).toHaveBeenCalled();
   });
@@ -70,7 +70,7 @@ describe('BrandsList Component', () => {
       items: mockBrands,
     });
 
-    const result = await BrandsList();
+    const result = await FeatureList();
     // Verify the component structure through its rendered result
     expect(result).toBeDefined();
     expect(result).not.toBeNull();
