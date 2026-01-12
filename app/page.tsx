@@ -1,6 +1,7 @@
 import { SectionTitle } from "@/components/SectionTitle";
 import { BrandsList } from "@/components/brands/BrandsList";
 import Hero from "@/components/Hero";
+import Callout from "@/components/Callout";
 
 export const metadata = {
   title: "Home — Ocean Food Group",
@@ -24,16 +25,16 @@ export default async function Page() {
         {/* Brands Section */}
         {brandsList && (
           <section className="py-[--space-3xl] md:py-[--space-4xl] mt-[--space-4xl] md:mt-[--space-5xl]">
-            <SectionTitle
-              title="Our Brands"
-              alignment="center"
-            />
-            <div className="mt-[--space-4xl]">
-              {brandsList}
-            </div>
+            <SectionTitle title="Our Brands" alignment="center" />
+            <div className="mt-[--space-4xl]">{brandsList}</div>
           </section>
         )}
       </div>
+      <Callout
+        text="Partner with Ocean Food Group and grow your business"
+        buttonText="Start Franchising"
+        buttonUrl="/franchise"
+      />
     </>
   );
 }

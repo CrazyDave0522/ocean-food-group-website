@@ -1,0 +1,64 @@
+/* styles/components/callout.css */
+
+.callout {
+  width: 100%;
+  height: var(--space-7xl);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-lighter),
+    var(--color-primary-light)
+  );
+  overflow: hidden;
+}
+
+.callout-background {
+  object-fit: cover;
+  z-index: 1;
+}
+
+.callout-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  color: #000;
+  font-size: var(--fs-h3);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.callout-text {
+  margin: 0;
+}
+
+.callout-gap {
+  height: var(--space-lg);
+}
+
+.callout-button {
+  display: inline-flex;
+  padding: var(--space-sm) var(--space-md);
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Semi-transparent for visibility on images */
+  transition: background 0.2s;
+}
+
+.callout-button:hover {
+  background: rgba(255, 255, 255, 1);
+}
