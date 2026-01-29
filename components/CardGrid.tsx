@@ -110,7 +110,10 @@ export default function CardGrid({
             <li
               key={i}
               className="flex items-start group-hover:text-white transition-colors duration-300"
-              style={{ fontSize: "var(--fs-body)" }}
+              style={{ 
+                fontSize: "var(--fs-body)",
+                lineHeight: "var(--lh-body)"
+              }}
               role="listitem"
             >
               <span
@@ -191,7 +194,11 @@ export default function CardGrid({
             <div className="flex-1">
               <p
                 className="text-white text-sm line-clamp-6 text-justify"
-                style={{ fontSize: "var(--fs-body)" }}
+                style={{ 
+                  fontSize: "var(--fs-body)",
+                  whiteSpace: "pre-line",
+                  lineHeight: "var(--lh-body)"
+                }}
               >
                 {card.text}
               </p>
@@ -242,7 +249,7 @@ export default function CardGrid({
           backgroundSize: "cover",
           backgroundPosition: "center",
           borderRadius: "32px",
-          height: "580px",
+          height: "435px",
         }}
         role="button"
         tabIndex={0}
@@ -277,7 +284,9 @@ export default function CardGrid({
             className="text-white transition-all duration-300 overflow-hidden"
             style={{
               fontSize: "var(--fs-body)",
-              maxHeight: isExpanded ? "200px" : "0px",
+              maxHeight: isExpanded ? "150px" : "0px",
+              whiteSpace: "pre-line",
+              lineHeight: "var(--lh-body)",
             }}
           >
             {card.text}
@@ -322,7 +331,10 @@ export default function CardGrid({
           >
             {card.title}
           </h3>
-          <p className="text-gray-600 text-justify" style={{ fontSize: "var(--fs-body)" }}>
+          <p className="text-gray-600 text-justify" style={{ 
+            fontSize: "var(--fs-body)",
+            lineHeight: "var(--lh-body)"
+          }}>
             {card.text}
           </p>
         </div>

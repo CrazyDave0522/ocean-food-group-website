@@ -175,7 +175,7 @@ describe('CardGrid Component', () => {
       expect(secondContent).toBeInTheDocument();
       
       // First card should be expanded by default
-      expect(firstContent).toHaveStyle({ maxHeight: '200px' });
+      expect(firstContent).toHaveStyle({ maxHeight: '150px' });
       expect(secondContent).toHaveStyle({ maxHeight: '0px' });
 
       // Target desktop cards specifically (they have aria-expanded attribute)
@@ -188,7 +188,7 @@ describe('CardGrid Component', () => {
 
       // After clicking second card, it should be expanded
       expect(firstContent).toHaveStyle({ maxHeight: '0px' });
-      expect(secondContent).toHaveStyle({ maxHeight: '200px' });
+      expect(secondContent).toHaveStyle({ maxHeight: '150px' });
     });
 
     it('supports keyboard navigation', () => {

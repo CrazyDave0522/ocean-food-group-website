@@ -39,26 +39,26 @@ export default async function Page() {
       id: "1",
       title: "Initial Investment",
       icon: "/images/components/card-grid/v3/hard-drive.svg",
-      text: "Starting a franchise with Ocean Food Group requires a total investment ranging from $150,000 to $300,000, depending on the concept and location. This includes franchise fees, equipment, initial inventory, and working capital."
+      text: "• Franchise Fee: $50,000 - $100,000 (varies by concept)\n• Equipment & Leasehold Improvements: $75,000 - $150,000\n• Initial Inventory & Supplies: $25,000 - $50,000\n• Working Capital (3-6 months): $25,000 - $50,000\n• Grand Opening Marketing: $10,000 - $20,000\n• Professional Fees & Permits: $5,000 - $10,000",
     },
     {
       id: "2",
-      title: "Royalty Structure", 
+      title: "Royalty Structure",
       icon: "/images/components/card-grid/v3/leaf.svg",
-      text: "Our royalty structure is designed to support your success. We charge a competitive royalty fee of 6% of gross sales, plus a 2% marketing contribution to fund local and national advertising campaigns."
+      text: "• Royalty Fee: 6% of gross sales (paid weekly/monthly)\n• Marketing Contribution: 2% of gross sales\n• National Advertising Fund access included\n• Local marketing co-op opportunities available\n• No hidden fees or unexpected charges\n• Transparent reporting and payment systems",
     },
     {
       id: "3",
       title: "Training Program",
       icon: "/images/components/card-grid/v3/org.svg",
-      text: "Comprehensive training is provided to all franchise owners and their staff. This includes initial training at our corporate headquarters, followed by on-site support during your first weeks of operation."
+      text: "• 2-week initial training at corporate headquarters\n• Hands-on kitchen and operations training\n• Business management and financial training\n• Marketing and customer service training\n• On-site opening support (first 2 weeks)\n• Ongoing refresher training sessions\n• Manager certification programs available",
     },
     {
       id: "4",
       title: "Ongoing Support",
       icon: "/images/components/card-grid/v3/gear.svg",
-      text: "Beyond the initial setup, we provide continuous support including operational guidance, marketing assistance, supply chain management, and access to our proprietary systems and processes."
-    }
+      text: "• 24/7 operational hotline support\n• Dedicated franchise business consultant\n• Monthly performance reviews and coaching\n• Marketing materials and campaign support\n• Supply chain and vendor relationship management\n• Technology platform access and training\n• Annual franchisee conferences and networking",
+    },
   ];
 
   return (
@@ -68,13 +68,16 @@ export default async function Page() {
         subtitle="Partner with Ocean Food Group and grow your business"
         variant="center"
         backgroundType="image"
-        backgroundImageUrl="/images/backgrounds/seefood-cartoon.jpg"
+        backgroundImageUrl="/images/backgrounds/seafood-cartoon.jpg"
       />
 
       {/* Expandable Cards Section - Below Hero */}
       <div className="container-main py-12">
         <section className="py-[--space-3xl] md:py-[--space-4xl]">
-          <SectionTitle title="Franchise Investment & Support" alignment="center" />
+          <SectionTitle
+            title="Franchise Investment & Support"
+            alignment="center"
+          />
           <div className="mt-[--space-4xl]">
             <CardGrid variant="expandable" cards={expandableCards} />
           </div>

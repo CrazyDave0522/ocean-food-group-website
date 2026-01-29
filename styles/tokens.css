@@ -53,6 +53,9 @@
   --fs-body-sm: clamp(12px, 1.2vw, 14px);
   --fs-caption: 12px;
 
+  /* -------- Line heights -------- */
+  --lh-body: 1.6;
+
   /* -------- Spacing -------- */
   --space-2xs: 2px;
   --space-xs: 4px;
