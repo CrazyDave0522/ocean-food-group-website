@@ -1,0 +1,25 @@
+/* Card Grid Component Styles */
+
+/* Mobile background images for expandable variant (v3) */
+@media (max-width: 767px) {
+  .expandable-card-bg-0 {
+    background-image: url('/images/components/card-grid/v3/bg-1-mb.png') !important;
+  }
+
+  .expandable-card-bg-1 {
+    background-image: url('/images/components/card-grid/v3/bg-2-mb.png') !important;
+  }
+
+  .expandable-card-bg-2 {
+    background-image: url('/images/components/card-grid/v3/bg-3-mb.png') !important;
+  }
+
+  .expandable-card-bg-3 {
+    background-image: url('/images/components/card-grid/v3/bg-4-mb.png') !important;
+  }
+
+  /* Mobile background for feature variant (v1) - always use 3card background */
+  .feature-card-bg {
+    background-image: url('/images/components/card-grid/v1/bg-3card.png') !important;
+  }
+}

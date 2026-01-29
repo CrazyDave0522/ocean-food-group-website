@@ -1,6 +1,8 @@
 import { fetchPublishedJobPostings } from "@/lib/actions/jobPostings";
 import { JobPostingsList } from "@/components/job-postings/JobPostingsList";
 import Hero from "@/components/Hero";
+import CardGrid from "@/components/CardGrid";
+import { SectionTitle } from "@/components/SectionTitle";
 
 export const metadata = {
   title: "Careers — Ocean Food Group",
@@ -9,6 +11,30 @@ export const metadata = {
 
 export default async function Page() {
   const result = await fetchPublishedJobPostings(0, 10);
+
+  // Placeholder data for centered cards (v4)
+  const centeredCards = [
+    {
+      id: "1",
+      title: "Great Culture",
+      text: "Work in a supportive environment where your contributions are valued and your professional growth is encouraged."
+    },
+    {
+      id: "2", 
+      title: "Competitive Benefits",
+      text: "Enjoy comprehensive benefits including health insurance, paid time off, retirement plans, and professional development opportunities."
+    },
+    {
+      id: "3",
+      title: "Career Growth",
+      text: "Advance your career with clear paths for promotion, skill development, and leadership opportunities within our growing organization."
+    },
+    {
+      id: "4",
+      title: "Work-Life Balance",
+      text: "We prioritize work-life balance with flexible scheduling options and a culture that respects your personal time and well-being."
+    }
+  ];
 
   if (result.error) {
     return (
@@ -20,6 +46,17 @@ export default async function Page() {
           backgroundType="image"
           backgroundImageUrl="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=540&fit=crop"
         />
+
+        {/* Centered Cards Section - Below Hero */}
+        <div className="container-main py-12">
+          <section className="py-[--space-3xl] md:py-[--space-4xl]">
+            <SectionTitle title="Why Work With Us" alignment="center" />
+            <div className="mt-[--space-4xl]">
+              <CardGrid variant="centered" cards={centeredCards} />
+            </div>
+          </section>
+        </div>
+
         <div className="container-main py-12">
           <div className="p-4 bg-error/10 border border-error/20 rounded-lg">
             <p className="text-error">
@@ -40,6 +77,17 @@ export default async function Page() {
         backgroundType="image"
         backgroundImageUrl="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=540&fit=crop"
       />
+
+      {/* Centered Cards Section - Below Hero */}
+      <div className="container-main py-12">
+        <section className="py-[--space-3xl] md:py-[--space-4xl]">
+          <SectionTitle title="Why Work With Us" alignment="center" />
+          <div className="mt-[--space-4xl]">
+            <CardGrid variant="centered" cards={centeredCards} />
+          </div>
+        </section>
+      </div>
+
       <div className="container-main py-12">
         <JobPostingsList
           initialItems={result.items}
