@@ -3,6 +3,7 @@ import { FeatureList } from "@/components/brands/FeatureList";
 import Hero from "@/components/Hero";
 import Callout from "@/components/Callout";
 import CardGrid from "@/components/CardGrid";
+import HeroSection from "@/components/HeroSection";
 
 export const metadata = {
   title: "Home — Ocean Food Group",
@@ -121,6 +122,15 @@ export default async function Page() {
           </div>
         </section>
       </div>
+
+      {/* Hero Section - Below Our Team */}
+      <HeroSection
+        backgroundImageUrl="/images/backgrounds/bg-hero-section.png"
+        mobileBackgroundImageUrl="/images/backgrounds/bg-hero-section-mb.png"
+        title="Excellence in Seafood"
+        text="Discover our commitment to quality, sustainability, and innovation in the seafood industry. From farm to table, we ensure every product meets the highest standards of freshness and taste."
+      />
+
       <Callout
         text="Partner with Ocean Food Group and grow your business"
         buttonText="Start Franchising"
