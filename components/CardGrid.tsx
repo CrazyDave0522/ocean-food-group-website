@@ -42,15 +42,29 @@ export default function CardGrid({
 
   const getGridClasses = () => {
     const baseClasses = "grid gap-4";
+    const cardCount = cards.length;
 
     switch (variant) {
       case "feature":
+        if (cardCount === 3) {
+          return `flex md:grid gap-4 overflow-x-auto md:overflow-x-visible grid-cols-3`;
+        }
         return `flex md:grid gap-4 overflow-x-auto md:overflow-x-visible grid-cols-3 lg:grid-cols-4`;
       case "image":
+        if (cardCount === 3) {
+          return `${baseClasses} grid-cols-2 md:grid-cols-3`;
+        }
         return `${baseClasses} grid-cols-2 md:grid-cols-3 lg:grid-cols-4`;
       case "expandable":
+        // Expandable cards need more columns for expansion to work properly
+        if (cardCount === 3) {
+          return `${baseClasses} grid-cols-1 md:grid-cols-4 lg:grid-cols-4`;
+        }
         return `${baseClasses} grid-cols-1 md:grid-cols-4 lg:grid-cols-5`;
       case "centered":
+        if (cardCount === 3) {
+          return `${baseClasses} grid-cols-1 md:grid-cols-3`;
+        }
         return `${baseClasses} grid-cols-1 md:grid-cols-3 lg:grid-cols-4`;
       default:
         return baseClasses;
@@ -304,7 +318,7 @@ export default function CardGrid({
     return (
       <article
         key={`${variant}-centered-${card.id}`}
-        className="bg-white rounded-lg p-9 shadow-lg text-center"
+        className="bg-white rounded-lg p-9 shadow-lg text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
         style={{
           backgroundImage: `url(/images/components/card-grid/v4/bg-${cards.length === 3 ? "3cards" : "4cards"}.png)`,
           backgroundSize: "cover",

@@ -269,7 +269,8 @@ describe('CardGrid Component', () => {
       const { container } = render(<CardGrid variant="feature" cards={mockFeatureCards} />);
 
       const gridElement = container.querySelector('.card-grid');
-      expect(gridElement).toHaveClass('flex', 'md:grid', 'grid-cols-3', 'lg:grid-cols-4');
+      expect(gridElement).toHaveClass('flex', 'md:grid', 'grid-cols-3');
+      expect(gridElement).not.toHaveClass('lg:grid-cols-4');
     });
 
     it('applies correct grid classes for image variant', () => {
