@@ -17,7 +17,10 @@ export default function HeroSection({
       <picture className="absolute inset-0">
         {/* Mobile image */}
         {mobileBackgroundImageUrl && (
-          <source media="(max-width: 767px)" srcSet={mobileBackgroundImageUrl} />
+          <source
+            media="(max-width: 767px)"
+            srcSet={mobileBackgroundImageUrl}
+          />
         )}
         {/* Desktop image (fallback) */}
         <Image
