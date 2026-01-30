@@ -57,7 +57,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur supports-backdrop-filter:bg-white/80">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur supports-backdrop-filter:bg-white/80" style={{ borderBottom: '1px solid #C4C9D6' }}>
         <div className="px-4 md:px-(--space-3xl) py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image

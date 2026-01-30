@@ -93,6 +93,7 @@ export default async function Page() {
         variant="center"
         backgroundType="image"
         backgroundImageUrl="/images/backgrounds/ocean-blue.jpg"
+        overlay={false}
       />
 
       {/* Feature Cards Section - Below Hero */}

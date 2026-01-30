@@ -16,7 +16,8 @@ export default function Page() {
         subtitle="We'd love to hear from you"
         variant="center"
         backgroundType="image"
-        backgroundImageUrl="/images/backgrounds/ocean-green.png"
+        backgroundImageUrl="/images/backgrounds/hero-fishing.png"
+        overlay={false}
       />
 
       <div className="container-main py-12">

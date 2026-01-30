@@ -68,7 +68,8 @@ export default async function Page() {
         subtitle="Partner with Ocean Food Group and grow your business"
         variant="center"
         backgroundType="image"
-        backgroundImageUrl="/images/backgrounds/seafood-cartoon.jpg"
+        backgroundImageUrl="/images/backgrounds/ocean-green.png"
+        overlay={false}
       />
 
       {/* Expandable Cards Section - Below Hero */}

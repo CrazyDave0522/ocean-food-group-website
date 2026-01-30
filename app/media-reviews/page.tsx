@@ -17,7 +17,8 @@ export default async function Page() {
         subtitle="Press coverage and reviews about Ocean Food Group"
         variant="center"
         backgroundType="image"
-        backgroundImageUrl="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&h=540&fit=crop"
+        backgroundImageUrl="/images/backgrounds/hero-food.png"
+        overlay={false}
       />
 
       <div className="container-main py-12">

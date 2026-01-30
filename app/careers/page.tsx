@@ -44,7 +44,8 @@ export default async function Page() {
           subtitle="Explore career opportunities at Ocean Food Group"
           variant="center"
           backgroundType="image"
-          backgroundImageUrl="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=540&fit=crop"
+          backgroundImageUrl="/images/backgrounds/hero-future.png"
+          overlay={false}
         />
 
         {/* Centered Cards Section - Below Hero */}
@@ -75,7 +76,8 @@ export default async function Page() {
         subtitle="Explore career opportunities at Ocean Food Group"
         variant="center"
         backgroundType="image"
-        backgroundImageUrl="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=540&fit=crop"
+        backgroundImageUrl="/images/backgrounds/hero-future.png"
+        overlay={false}
       />
 
       {/* Centered Cards Section - Below Hero */}
