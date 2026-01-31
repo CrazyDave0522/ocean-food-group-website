@@ -1,8 +1,7 @@
-# callout-component Specification
+# callout-component Specification Delta
 
-## Purpose
-TBD - created by archiving change add-callout-component. Update Purpose after archive.
-## Requirements
+## MODIFIED Requirements
+
 ### Requirement: Callout Component Rendering
 
 The Callout component SHALL render a container with one line of text, a GlassmorphismButton component, and a background that defaults to bg-callout.png on desktop and bg-callout-mb.png on mobile, with an optional user-provided image URL that falls back to the default if it fails to load.
@@ -74,36 +73,3 @@ The text in the Callout component SHALL be styled with white color, font-size us
 
 - **WHEN** the Callout text is rendered
 - **THEN** it uses the specified styling: color white, font-size var(--fs-h3), font-style normal, font-weight 600, line-height normal
-
-### Requirement: Callout Button Styling
-
-The button in the Callout component SHALL be styled with display inline-flex, padding var(--space-sm) var(--space-md), flex-direction column, align-items flex-start, border-radius var(--radius-sm), font-size var(--fs-body), font-weight 400.
-
-#### Scenario: Button styling application
-
-- **WHEN** the Callout button is rendered
-- **THEN** it uses the specified styling: display inline-flex, padding var(--space-sm) var(--space-md), flex-direction column, align-items flex-start, border-radius var(--radius-sm), font-size var(--fs-body), and font-weight 400
-
-### Requirement: Callout Button Functionality
-
-The Callout component SHALL include a button that navigates to the provided URL when clicked, supporting both internal and external links.
-
-#### Scenario: Internal link navigation
-
-- **WHEN** the user clicks the button with an internal URL
-- **THEN** the application navigates to the internal route
-
-#### Scenario: External link navigation
-
-- **WHEN** the user clicks the button with an external URL
-- **THEN** the browser navigates to the external URL
-
-### Requirement: Callout Accessibility
-
-The Callout component SHALL be accessible, including proper ARIA attributes for the button and text content.
-
-#### Scenario: Screen reader support
-
-- **WHEN** a Callout is rendered
-- **THEN** screen readers can announce the text and button appropriately
-

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import GlassmorphismButton from "./GlassmorphismButton";
 
 interface CalloutProps {
   text: string;
@@ -16,8 +16,6 @@ export default function Callout({
   imageUrl,
   alt,
 }: CalloutProps) {
-  const isInternal = buttonUrl.startsWith("/");
-
   return (
     <div className="callout">
       {imageUrl ? (
@@ -35,20 +33,7 @@ export default function Callout({
       <div className="callout-content">
         <p className="callout-text">{text}</p>
         <div className="callout-gap" />
-        {isInternal ? (
-          <Link href={buttonUrl} className="callout-button">
-            {buttonText}
-          </Link>
-        ) : (
-          <a
-            href={buttonUrl}
-            className="callout-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {buttonText}
-          </a>
-        )}
+        <GlassmorphismButton label={buttonText} url={buttonUrl} />
       </div>
     </div>
   );

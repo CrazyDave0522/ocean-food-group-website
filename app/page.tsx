@@ -133,7 +133,7 @@ export default async function Page() {
       />
 
       <Callout
-        text="Partner with Ocean Food Group and grow your business"
+        text="Partner with us and grow your business"
         buttonText="Start Franchising"
         buttonUrl="/franchise"
       />
