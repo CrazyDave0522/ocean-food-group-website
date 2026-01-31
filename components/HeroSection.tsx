@@ -43,13 +43,13 @@ export default function HeroSection({
           }}
         >
           <h2
-            className="font-bold text-gray-900 mb-2 truncate"
+            className="font-bold text-gray-900 truncate"
             style={{ fontSize: "var(--fs-h3)" }}
           >
             {title}
           </h2>
           <p
-            className="leading-(--lh-body) text-gray-700 line-clamp-3"
+            className="leading-(--lh-body) text-gray-700 line-clamp-4"
             style={{
               fontSize: "var(--fs-body)",
               lineHeight: "var(--lh-body)",

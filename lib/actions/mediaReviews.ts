@@ -45,3 +45,13 @@ export async function fetchPublishedMediaReviews(
     };
   }
 }
+
+export async function fetchLatestMediaReviews(): Promise<MediaReview[]> {
+  try {
+    const response = await fetchPublishedMediaReviews(0, 3);
+    return response.items;
+  } catch (err) {
+    console.error("Error fetching latest media reviews:", err);
+    return [];
+  }
+}
