@@ -6,6 +6,7 @@ import CardGrid from "@/components/CardGrid";
 import HeroSection from "@/components/HeroSection";
 import { FeatureGrid } from "@/components/FeatureGrid";
 import { fetchLatestMediaReviews } from "@/lib/actions/mediaReviews";
+import Image from "next/image";
 
 export const metadata = {
   title: "Home — Ocean Food Group",
@@ -127,38 +128,76 @@ export default async function Page() {
       />
 
       {/* Feature Cards Section - Below Hero */}
-      <div className="container-main py-12">
-        <section className="py-[--space-3xl] md:py-[--space-4xl]">
-          <SectionTitle
-            title="Why Choose Ocean Food Group"
-            alignment="center"
+      <section className="relative py-12">
+        {/* Background Image */}
+        <picture className="absolute inset-0">
+          <source
+            media="(max-width: 767px)"
+            srcSet="/images/section-backgrounds/home-card-grid-mb.png"
           />
-          <div className="mt-[--space-4xl]">
-            <CardGrid variant="feature" cards={featureCards} />
+          <Image
+            src="/images/section-backgrounds/home-card-grid.png"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+            aria-hidden="true"
+          />
+        </picture>
+
+        {/* Content */}
+        <div className="container-main relative z-10">
+          <div className="py-[--space-3xl] md:py-[--space-4xl]">
+            <SectionTitle
+              title="Why Choose Ocean Food Group"
+              alignment="center"
+            />
+            <div className="mt-[--space-4xl]">
+              <CardGrid variant="feature" cards={featureCards} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brands Section */}
+      {brandsList && (
+        <section className="relative pt-12 mt-[--space-4xl] md:mt-[--space-5xl]">
+          {/* Content */}
+          <div className="container-main relative z-10">
+            <div className="py-[--space-3xl] md:py-[--space-4xl]">
+              <SectionTitle title="Our Brands" alignment="center" />
+              <div className="mt-[--space-4xl]">{brandsList}</div>
+            </div>
           </div>
         </section>
-      </div>
-
-      <div className="container-main py-12">
-        {/* Brands Section */}
-        {brandsList && (
-          <section className="py-[--space-3xl] md:py-[--space-4xl] mt-[--space-4xl] md:mt-[--space-5xl]">
-            <SectionTitle title="Our Brands" alignment="center" />
-            <div className="mt-[--space-4xl]">{brandsList}</div>
-          </section>
-        )}
-      </div>
+      )}
       <Callout
         text="Partner with us and grow your business"
         buttonText="Start Franchising"
         buttonUrl="/franchise"
       />
-      <div className="container-main py-12">
+      <div className="container-main pb-12">
         {/* Image Cards Section - Below Brands */}
-        <section className="py-[--space-3xl] md:py-[--space-4xl] mt-[--space-4xl] md:mt-[--space-5xl]">
-          <SectionTitle title="Our Team" alignment="center" />
-          <div className="mt-[--space-4xl]">
-            <CardGrid variant="image" cards={imageCards} />
+        <section className="py-[--space-3xl] md:py-[--space-4xl] mt-[--space-4xl] md:mt-[--space-5xl] relative">
+          {/* Background Image - Full Width */}
+          <div
+            className="absolute"
+            style={{
+              marginLeft: 'calc(-50vw + 50%)',
+              marginRight: 'calc(-50vw + 50%)',
+              width: '100vw',
+              height: '100%',
+              background: 'linear-gradient(180deg, #B4D2FF 0%, rgba(219, 241, 255, 0.00) 97.96%, rgba(195, 219, 255, 0.00) 100%)',
+              opacity: 0.6
+            }}
+          />
+
+          {/* Content */}
+          <div className="relative z-10">
+            <SectionTitle title="Our Team" alignment="center" />
+            <div className="mt-[--space-4xl]">
+              <CardGrid variant="image" cards={imageCards} />
+            </div>
           </div>
         </section>
       </div>
@@ -172,13 +211,17 @@ export default async function Page() {
       />
 
       {/* FeatureGrid Section - Below Callout */}
-      <div className="container-main py-12 feature-grid-container">
-        <section className="py-[--space-3xl] md:py-[--space-4xl]">
-          <div className="mt-[--space-4xl]">
-            <FeatureGrid
-              intro={featureGridIntro}
-              features={featureGridFeatures}
-            />
+      <div className="container-main py-12 feature-grid-container" style={{ background: 'radial-gradient(ellipse at bottom center, rgba(0, 84, 255, 0.50) 0%, rgba(0, 84, 255, 0.3) 30%, rgba(0, 84, 255, 0.1) 60%, transparent 100%)' }}>
+        <section 
+          className="py-[--space-3xl] md:py-[--space-4xl] relative"
+        >
+          <div className="relative z-10">
+            <div className="mt-[--space-4xl]">
+              <FeatureGrid
+                intro={featureGridIntro}
+                features={featureGridFeatures}
+              />
+            </div>
           </div>
         </section>
       </div>

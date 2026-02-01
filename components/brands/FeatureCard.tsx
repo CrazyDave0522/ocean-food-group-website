@@ -3,6 +3,7 @@
  * Odd indexes: image left, text right
  * Even indexes: text left, image right
  * Mobile: always stacked vertically
+ * Background logic: single item gets background, or second item in multiple items
  */
 
 import Image from 'next/image';
@@ -11,12 +12,15 @@ import type { Brand } from '@/lib/brands/types';
 interface FeatureCardProps {
   brand: Brand;
   index: number;
+  totalItems: number;
 }
 
-export function FeatureCard({ brand, index }: FeatureCardProps) {
+export function FeatureCard({ brand, index, totalItems }: FeatureCardProps) {
   const isOddIndex = index % 2 === 0;
+  // Apply background to first item if single, or second item if multiple
+  const hasBackground = totalItems === 1 ? index === 0 : index === 1;
 
-  return (
+  const cardContent = (
     <a
       href={brand.website_url}
       target="_blank"
@@ -70,4 +74,33 @@ export function FeatureCard({ brand, index }: FeatureCardProps) {
       </div>
     </a>
   );
+
+  if (hasBackground) {
+    return (
+      <div className="relative" style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', width: '100vw' }}>
+        {/* Background Image - Full Width */}
+        <picture className="absolute inset-0">
+          <source
+            media="(max-width: 767px)"
+            srcSet="/images/section-backgrounds/home-brand-item-mb.png"
+          />
+          <Image
+            src="/images/section-backgrounds/home-brand-item.png"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+            aria-hidden="true"
+          />
+        </picture>
+
+        {/* Content */}
+        <div className="relative z-10 px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-8 mx-auto max-w-screen-2xl">
+          {cardContent}
+        </div>
+      </div>
+    );
+  }
+
+  return cardContent;
 }

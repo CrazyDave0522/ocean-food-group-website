@@ -28,7 +28,7 @@ export async function FeatureList() {
   return (
     <div className="flex flex-col gap-12 md:gap-16">
       {result.items.map((brand, index) => (
-        <FeatureCard key={brand.id} brand={brand} index={index} />
+        <FeatureCard key={brand.id} brand={brand} index={index} totalItems={result.items.length} />
       ))}
     </div>
   );

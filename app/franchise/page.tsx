@@ -5,6 +5,7 @@ import { FormTitle } from "@/components/forms/FormTitle";
 import Hero from "@/components/Hero";
 import CardGrid from "@/components/CardGrid";
 import { SectionTitle } from "@/components/SectionTitle";
+import Image from "next/image";
 
 export const metadata = {
   title: "Franchise — Ocean Food Group",
@@ -85,17 +86,49 @@ export default async function Page() {
         </section>
       </div>
 
-      <div className="container-main py-12">
-        <div id="form-section">
-          <FormTitle
-            title="Become Our Partner"
-            subtitle="If you share our passion for perfection and you would like to find out how Ocean Food Group can support you to establish and grow a successful business, then let's have a chat about your business goals."
+      <section className="relative py-12">
+        {/* Background Image */}
+        <picture className="absolute inset-0">
+          <source
+            media="(max-width: 767px)"
+            srcSet="/images/section-backgrounds/franchise-form-mb.png"
           />
-          <FormShell>
-            <FranchiseForm brands={brands || []} />
-          </FormShell>
+          <Image
+            src="/images/section-backgrounds/franchise-form.png"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+            aria-hidden="true"
+          />
+        </picture>
+
+        {/* Content */}
+        <div className="container-main relative z-10">
+          <div id="form-section">
+            <FormTitle
+              title="Become Our Partner"
+              subtitle="If you share our passion for perfection and you would like to find out how Ocean Food Group can support you to establish and grow a successful business, then let's have a chat about your business goals."
+            />
+            <FormShell>
+              <FranchiseForm brands={brands || []} />
+            </FormShell>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* Franchise Form Footer */}
+      <section className="relative md:hidden">
+        <Image
+          src="/images/section-backgrounds/franchise-form-footer.png"
+          alt=""
+          width={750}
+          height={118}
+          className="w-full h-auto"
+          priority={false}
+          aria-hidden="true"
+        />
+      </section>
     </>
   );
 }

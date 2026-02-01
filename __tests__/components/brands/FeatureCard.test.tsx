@@ -24,7 +24,7 @@ const mockBrand: Brand = {
 
 describe('FeatureCard Component', () => {
   it('should wrap entire card in <a> tag', () => {
-    const { container } = render(<FeatureCard brand={mockBrand} index={0} />);
+    const { container } = render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
     const link = container.querySelector('a');
 
     expect(link).toBeInTheDocument();
@@ -32,28 +32,28 @@ describe('FeatureCard Component', () => {
   });
 
   it('should link to correct website_url', () => {
-    const { container } = render(<FeatureCard brand={mockBrand} index={0} />);
+    const { container } = render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
     const link = container.querySelector('a');
 
     expect(link).toHaveAttribute('href', 'https://testbrand.com');
   });
 
   it('should open link in new tab (target="_blank")', () => {
-    const { container } = render(<FeatureCard brand={mockBrand} index={0} />);
+    const { container } = render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
     const link = container.querySelector('a');
 
     expect(link).toHaveAttribute('target', '_blank');
   });
 
   it('should have rel="noopener noreferrer" for security', () => {
-    const { container } = render(<FeatureCard brand={mockBrand} index={0} />);
+    const { container } = render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
     const link = container.querySelector('a');
 
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('should render logo image with alt text', () => {
-    render(<FeatureCard brand={mockBrand} index={0} />);
+    render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
 
     const images = screen.getAllByAltText('Test Brand');
     expect(images.length).toBeGreaterThan(0);
@@ -61,7 +61,7 @@ describe('FeatureCard Component', () => {
   });
 
   it('should render brand name', () => {
-    render(<FeatureCard brand={mockBrand} index={0} />);
+    render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
 
     const headings = screen.getAllByText('Test Brand');
     expect(headings.length).toBeGreaterThan(0);
@@ -69,7 +69,7 @@ describe('FeatureCard Component', () => {
   });
 
   it('should render introduction text', () => {
-    render(<FeatureCard brand={mockBrand} index={0} />);
+    render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
 
     const intros = screen.getAllByText('This is a test brand introduction');
     expect(intros.length).toBeGreaterThan(0);
@@ -77,30 +77,58 @@ describe('FeatureCard Component', () => {
   });
 
   it('should apply hover opacity effect', () => {
-    const { container } = render(<FeatureCard brand={mockBrand} index={0} />);
+    const { container } = render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
     const link = container.querySelector('a');
 
     expect(link).toHaveClass('group');
   });
 
   it('should display odd index layout with flex-row on desktop', () => {
-    const { container } = render(<FeatureCard brand={mockBrand} index={0} />);
+    const { container } = render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
     const desktopLayout = container.querySelector('.md\\:flex');
 
     expect(desktopLayout).toHaveClass('flex-row');
   });
 
   it('should display even index layout with flex-row-reverse on desktop', () => {
-    const { container } = render(<FeatureCard brand={mockBrand} index={1} />);
+    const { container } = render(<FeatureCard brand={mockBrand} index={1} totalItems={2} />);
     const desktopLayout = container.querySelector('.md\\:flex');
 
     expect(desktopLayout).toHaveClass('flex-row-reverse');
   });
 
   it('should stack vertically on mobile regardless of index', () => {
-    const { container } = render(<FeatureCard brand={mockBrand} index={1} />);
+    const { container } = render(<FeatureCard brand={mockBrand} index={1} totalItems={2} />);
     const mobileLayout = container.querySelector('.md\\:hidden');
 
     expect(mobileLayout).toHaveClass('flex-col');
+  });
+
+  it('should apply background to single item', () => {
+    const { container } = render(<FeatureCard brand={mockBrand} index={0} totalItems={1} />);
+    const backgroundContainer = container.querySelector('.relative');
+
+    expect(backgroundContainer).toBeInTheDocument();
+  });
+
+  it('should apply background to second item when multiple items', () => {
+    const { container } = render(<FeatureCard brand={mockBrand} index={1} totalItems={3} />);
+    const backgroundContainer = container.querySelector('.relative');
+
+    expect(backgroundContainer).toBeInTheDocument();
+  });
+
+  it('should not apply background to first item when multiple items', () => {
+    const { container } = render(<FeatureCard brand={mockBrand} index={0} totalItems={3} />);
+    const backgroundContainer = container.querySelector('.relative.-mx-8');
+
+    expect(backgroundContainer).not.toBeInTheDocument();
+  });
+
+  it('should not apply background to third item when multiple items', () => {
+    const { container } = render(<FeatureCard brand={mockBrand} index={2} totalItems={3} />);
+    const backgroundContainer = container.querySelector('.relative.-mx-8');
+
+    expect(backgroundContainer).not.toBeInTheDocument();
   });
 });

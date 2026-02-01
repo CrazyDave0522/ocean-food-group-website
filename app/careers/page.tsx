@@ -3,6 +3,7 @@ import { JobPostingsList } from "@/components/job-postings/JobPostingsList";
 import Hero from "@/components/Hero";
 import CardGrid from "@/components/CardGrid";
 import { SectionTitle } from "@/components/SectionTitle";
+import Image from "next/image";
 
 export const metadata = {
   title: "Careers — Ocean Food Group",
@@ -81,21 +82,48 @@ export default async function Page() {
       />
 
       {/* Centered Cards Section - Below Hero */}
-      <div className="container-main py-12">
-        <section className="py-[--space-3xl] md:py-[--space-4xl]">
-          <SectionTitle title="Why Work With Us" alignment="center" />
-          <div className="mt-[--space-4xl]">
-            <CardGrid variant="centered" cards={centeredCards} />
-          </div>
-        </section>
-      </div>
+      <section className="relative py-12">
+        {/* Background Image */}
+        <picture className="absolute inset-0">
+          <source
+            media="(max-width: 767px)"
+            srcSet="/images/section-backgrounds/contact-form-mb.png"
+          />
+          <Image
+            src="/images/section-backgrounds/career-card-grid.png"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+            aria-hidden="true"
+          />
+        </picture>
 
-      <div className="container-main py-12">
-        <JobPostingsList
-          initialItems={result.items}
-          initialHasMore={result.hasMore}
-          onFetchMore={fetchPublishedJobPostings}
-        />
+        {/* Content */}
+        <div className="container-main relative z-10">
+          <div className="py-[--space-3xl] md:py-[--space-4xl]">
+            <SectionTitle title="Why Work With Us" alignment="center" />
+            <div className="mt-[--space-4xl]">
+              <CardGrid variant="centered" cards={centeredCards} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div 
+        className="container-main py-12 relative"
+        style={{
+          background: 'linear-gradient(180deg, #B4D2FF 0%, rgba(219, 241, 255, 0.00) 97.96%, rgba(195, 219, 255, 0.00) 100%)',
+          opacity: 0.6
+        }}
+      >
+        <div className="relative z-10">
+          <JobPostingsList
+            initialItems={result.items}
+            initialHasMore={result.hasMore}
+            onFetchMore={fetchPublishedJobPostings}
+          />
+        </div>
       </div>
     </>
   );
