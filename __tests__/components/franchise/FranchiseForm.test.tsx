@@ -41,7 +41,6 @@ describe("FranchiseForm", () => {
       screen.getByLabelText(/Preferred contact method/)
     ).toBeInTheDocument();
     expect(screen.getByLabelText(/^Email/)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Which concept/)).toBeInTheDocument();
     expect(screen.getByLabelText(/Preferred location/)).toBeInTheDocument();
     // Radio buttons - check by role with specific names
     const radios = screen.getAllByRole("radio");
@@ -54,16 +53,6 @@ describe("FranchiseForm", () => {
     expect(
       screen.getByRole("button", { name: /Start your journey/ })
     ).toBeInTheDocument();
-  });
-
-  it("renders brand options in concept select", () => {
-    render(<FranchiseForm brands={mockBrands} />);
-
-    const conceptSelect = screen.getByLabelText(/Which concept/);
-    expect(conceptSelect).toBeInTheDocument();
-    expect(screen.getByText("Brand A")).toBeInTheDocument();
-    expect(screen.getByText("Brand B")).toBeInTheDocument();
-    expect(screen.getByText("Brand C")).toBeInTheDocument();
   });
 
   it("renders all australian states in location select", () => {
@@ -150,7 +139,6 @@ describe("FranchiseForm", () => {
       /Preferred contact method/
     );
     const emailInput = screen.getByLabelText(/Email/);
-    const conceptSelect = screen.getByLabelText(/Which concept/);
     const locationSelect = screen.getByLabelText(/Preferred location/);
 
     // Fill in all fields
@@ -160,7 +148,6 @@ describe("FranchiseForm", () => {
     await user.type(phoneInput, "400 123 456");
     await user.selectOptions(contactMethodSelect, "whatsapp");
     await user.type(emailInput, "invalid-email");
-    await user.selectOptions(conceptSelect, "Brand A");
     await user.selectOptions(locationSelect, "NSW");
 
     // Select yes for radio buttons
@@ -192,7 +179,6 @@ describe("FranchiseForm", () => {
       /Preferred contact method/
     );
     const emailInput = screen.getByLabelText(/Email/);
-    const conceptSelect = screen.getByLabelText(/Which concept/);
     const locationSelect = screen.getByLabelText(/Preferred location/);
 
     await user.type(firstNameInput, "John");
@@ -201,7 +187,6 @@ describe("FranchiseForm", () => {
     await user.type(phoneInput, "400 123 456");
     await user.selectOptions(contactMethodSelect, "whatsapp");
     await user.type(emailInput, "john@example.com");
-    await user.selectOptions(conceptSelect, "Brand A");
     await user.selectOptions(locationSelect, "NSW");
 
     const yesRadios = screen.getAllByRole("radio", { name: "Yes" });
@@ -240,7 +225,6 @@ describe("FranchiseForm", () => {
       /Preferred contact method/
     );
     const emailInput = screen.getByLabelText(/Email/);
-    const conceptSelect = screen.getByLabelText(/Which concept/);
     const locationSelect = screen.getByLabelText(/Preferred location/);
     const referralInput = screen.getByLabelText(/How did you find us/);
 
@@ -250,7 +234,6 @@ describe("FranchiseForm", () => {
     await user.type(phoneInput, "400 123 456");
     await user.selectOptions(contactMethodSelect, "whatsapp");
     await user.type(emailInput, "john@example.com");
-    await user.selectOptions(conceptSelect, "Brand A");
     await user.selectOptions(locationSelect, "NSW");
     await user.type(referralInput, "Google Search");
 
@@ -286,7 +269,6 @@ describe("FranchiseForm", () => {
       /Preferred contact method/
     );
     const emailInput = screen.getByLabelText(/Email/);
-    const conceptSelect = screen.getByLabelText(/Which concept/);
     const locationSelect = screen.getByLabelText(/Preferred location/);
 
     await user.type(firstNameInput, "John");
@@ -295,7 +277,6 @@ describe("FranchiseForm", () => {
     await user.type(phoneInput, "400 123 456");
     await user.selectOptions(contactMethodSelect, "whatsapp");
     await user.type(emailInput, "john@example.com");
-    await user.selectOptions(conceptSelect, "Brand A");
     await user.selectOptions(locationSelect, "NSW");
 
     const yesRadios = screen.getAllByRole("radio", { name: "Yes" });
@@ -320,7 +301,6 @@ describe("FranchiseForm", () => {
       status: "error",
       message: "Please fix the highlighted fields.",
       errors: {
-        conceptInterest: "Please select a valid concept.",
         preferredLocation: "Please select a valid location.",
       },
     });
@@ -335,7 +315,6 @@ describe("FranchiseForm", () => {
       /Preferred contact method/
     );
     const emailInput = screen.getByLabelText(/Email/);
-    const conceptSelect = screen.getByLabelText(/Which concept/);
     const locationSelect = screen.getByLabelText(/Preferred location/);
 
     await user.type(firstNameInput, "John");
@@ -344,7 +323,6 @@ describe("FranchiseForm", () => {
     await user.type(phoneInput, "400 123 456");
     await user.selectOptions(contactMethodSelect, "whatsapp");
     await user.type(emailInput, "john@example.com");
-    await user.selectOptions(conceptSelect, "Brand A");
     await user.selectOptions(locationSelect, "NSW");
 
     const yesRadios = screen.getAllByRole("radio", { name: "Yes" });
@@ -357,9 +335,6 @@ describe("FranchiseForm", () => {
     await user.click(submitButton);
 
     await waitFor(() => {
-      expect(
-        screen.getByText("Please select a valid concept.")
-      ).toBeInTheDocument();
       expect(
         screen.getByText("Please select a valid location.")
       ).toBeInTheDocument();
@@ -390,9 +365,6 @@ describe("FranchiseForm", () => {
     const contactMethodSelect = screen.getByLabelText(
       /Preferred contact method/
     ) as HTMLSelectElement;
-    const conceptSelect = screen.getByLabelText(
-      /Which concept/
-    ) as HTMLSelectElement;
     const locationSelect = screen.getByLabelText(
       /Preferred location/
     ) as HTMLSelectElement;
@@ -403,7 +375,6 @@ describe("FranchiseForm", () => {
     await user.type(phoneInput, "400 123 456");
     await user.selectOptions(contactMethodSelect, "whatsapp");
     await user.type(emailInput, "john@example.com");
-    await user.selectOptions(conceptSelect, "Brand A");
     await user.selectOptions(locationSelect, "NSW");
 
     const yesRadios = screen.getAllByRole("radio", { name: "Yes" });
@@ -441,7 +412,6 @@ describe("FranchiseForm", () => {
       /Preferred contact method/
     );
     const emailInput = screen.getByLabelText(/Email/);
-    const conceptSelect = screen.getByLabelText(/Which concept/);
     const locationSelect = screen.getByLabelText(/Preferred location/);
     const referralInput = screen.getByLabelText(
       /How did you find us/
@@ -454,7 +424,6 @@ describe("FranchiseForm", () => {
     await user.type(phoneInput, "400 123 456");
     await user.selectOptions(contactMethodSelect, "whatsapp");
     await user.type(emailInput, "john@example.com");
-    await user.selectOptions(conceptSelect, "Brand A");
     await user.selectOptions(locationSelect, "NSW");
 
     const yesRadios = screen.getAllByRole("radio", { name: "Yes" });

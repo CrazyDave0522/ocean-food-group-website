@@ -51,7 +51,6 @@ function validateClient(formData: FormData): FieldErrors {
     regionCode: readField(formData, "regionCode"),
     phone: readField(formData, "phone"),
     email: readField(formData, "email"),
-    conceptInterest: readField(formData, "conceptInterest"),
     preferredLocation: readField(formData, "preferredLocation"),
     referralSource: readField(formData, "referralSource"),
   };
@@ -80,9 +79,6 @@ function validateClient(formData: FormData): FieldErrors {
   }
   if (!values.email) {
     errors.email = "This field is required.";
-  }
-  if (!values.conceptInterest) {
-    errors.conceptInterest = "This field is required.";
   }
   if (!values.preferredLocation) {
     errors.preferredLocation = "This field is required.";
@@ -372,30 +368,6 @@ export function FranchiseForm({ brands }: FranchiseFormProps) {
             <p className={errorClass}>{getError("email")}</p>
           ) : null}
         </div>
-      </div>
-
-      {/* Concept Interest */}
-      <div>
-        <label className={labelClass} htmlFor="conceptInterest">
-          Which concept are you interested in? {requiredIndicator}
-        </label>
-        <select
-          id="conceptInterest"
-          name="conceptInterest"
-          required
-          className={inputClass}
-          aria-invalid={Boolean(getError("conceptInterest"))}
-        >
-          <option value="">Select a concept</option>
-          {brands.map((brand) => (
-            <option key={brand.name} value={brand.name}>
-              {brand.name}
-            </option>
-          ))}
-        </select>
-        {getError("conceptInterest") ? (
-          <p className={errorClass}>{getError("conceptInterest")}</p>
-        ) : null}
       </div>
 
       {/* Preferred Location */}

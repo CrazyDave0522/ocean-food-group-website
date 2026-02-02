@@ -22,7 +22,6 @@ type FranchiseFormInput = {
     phone: string;
     preferredContactMethod: string;
     email: string;
-    conceptInterest: string;
     preferredLocation: string;
     hasLiquidAssets: string;
     canManageFullTime: string;
@@ -45,7 +44,6 @@ async function validateInput(formData: FormData): Promise<{
         phone: readField(formData, "phone"),
         preferredContactMethod: readField(formData, "preferredContactMethod"),
         email: readField(formData, "email"),
-        conceptInterest: readField(formData, "conceptInterest"),
         preferredLocation: readField(formData, "preferredLocation"),
         hasLiquidAssets: readField(formData, "hasLiquidAssets"),
         canManageFullTime: readField(formData, "canManageFullTime"),
@@ -111,31 +109,6 @@ async function validateInput(formData: FormData): Promise<{
         },
     );
 
-    // Validate concept against active brands from Supabase
-    if (data.conceptInterest) {
-        let supabase: ReturnType<typeof getSupabaseServerClient>;
-        try {
-            supabase = getSupabaseServerClient();
-            const { data: brands, error } = await supabase
-                .from("brand")
-                .select("name")
-                .eq("is_active", true);
-
-            if (error) {
-                errors.conceptInterest =
-                    "Could not validate concept. Please try again.";
-            } else {
-                const validConcepts = brands.map((b) => b.name);
-                if (!validConcepts.includes(data.conceptInterest)) {
-                    errors.conceptInterest = "Please select a valid concept.";
-                }
-            }
-        } catch {
-            errors.conceptInterest =
-                "Could not validate concept. Please try again.";
-        }
-    }
-
     return { data, errors };
 }
 
@@ -149,7 +122,6 @@ function buildEmailText(payload: FranchiseFormInput): string {
         `Phone: ${payload.phone}`,
         `Preferred contact method: ${payload.preferredContactMethod}`,
         `Email: ${payload.email}`,
-        `Interested concept: ${payload.conceptInterest}`,
         `Preferred location: ${payload.preferredLocation}`,
         `Has liquid assets (AUD$400k+): ${payload.hasLiquidAssets}`,
         `Can manage full-time: ${payload.canManageFullTime}`,
@@ -192,7 +164,6 @@ export async function submitFranchiseInquiry(
             phone: data.phone,
             email: data.email,
             preferred_contact_method: data.preferredContactMethod,
-            interested_brand: data.conceptInterest,
             preferred_state: data.preferredLocation,
             has_liquid_assets_400k: data.hasLiquidAssets === "Yes",
             can_manage_full_time: data.canManageFullTime === "Yes",
@@ -209,7 +180,7 @@ export async function submitFranchiseInquiry(
 
     // Send email notification
     const emailText = buildEmailText(data);
-    const emailSubject = `New Franchise Inquiry — ${data.conceptInterest} — ${data.preferredLocation}`;
+    const emailSubject = `New Franchise Inquiry — ${data.preferredLocation}`;
 
     const emailSent = await sendFormNotification({
         from: "franchise_inquiry@notify.oceanfoodgroup.com.au",

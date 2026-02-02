@@ -37,7 +37,6 @@ describe('Franchise Form Validation', () => {
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('lastName')
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('regionCode')
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('phone')
-            expect(REQUIRED_FRANCHISE_FIELDS).toContain('conceptInterest')
             expect(REQUIRED_FRANCHISE_FIELDS).toContain('preferredLocation')
         })
 
@@ -87,7 +86,6 @@ describe('Franchise Form Validation', () => {
             phone: '400 123 456',
             preferredContactMethod: 'whatsapp',
             email: 'john@example.com',
-            conceptInterest: 'Concept A',
             preferredLocation: 'NSW',
             hasLiquidAssets: 'Yes',
             canManageFullTime: 'Yes',
@@ -158,18 +156,6 @@ describe('Franchise Form Validation', () => {
 
             expect(result.status).toBe('error')
             expect(result.errors?.email).toBe('This field is required.')
-        })
-
-        it('should return validation error for missing conceptInterest', async () => {
-            const formData = createFormData({
-                ...validData,
-                conceptInterest: '',
-            })
-
-            const result = await submitFranchiseInquiry({ status: 'idle' }, formData)
-
-            expect(result.status).toBe('error')
-            expect(result.errors?.conceptInterest).toBe('This field is required.')
         })
 
         it('should return validation error for missing preferredLocation', async () => {
@@ -320,25 +306,8 @@ describe('Franchise Form Validation', () => {
         })
 
         it('should return error when Supabase client initialization fails during main submission', async () => {
-            // Mock successful validation by providing a mock brands query first
-            let callCount = 0
-            const mockSelect = vi.fn().mockImplementation(() => ({
-                eq: vi.fn().mockResolvedValue({
-                    data: [{ name: 'Concept A' }],
-                    error: null,
-                }),
-            }))
             mockGetSupabaseServerClient.mockImplementation(() => {
-                callCount++
-                if (callCount === 1) {
-                    // First call during validation succeeds
-                    return {
-                        from: vi.fn().mockReturnValue({ select: mockSelect }),
-                    }
-                } else {
-                    // Second call during insert throws
-                    throw new Error('Supabase not configured')
-                }
+                throw new Error('Supabase not configured')
             })
 
             const formData = createFormData(validData)
@@ -376,48 +345,6 @@ describe('Franchise Form Validation', () => {
 
             expect(result.status).toBe('error')
             expect(result.message).toBe('Failed to submit application. Please try again.')
-        })
-
-        it('should return error when concept validation query fails', async () => {
-            const mockSelect = vi.fn().mockReturnValue({
-                eq: vi.fn().mockResolvedValue({
-                    data: null,
-                    error: { message: 'Query error' },
-                }),
-            })
-            const mockSupabaseClient = {
-                from: vi.fn().mockReturnValue({ select: mockSelect }),
-            }
-            mockGetSupabaseServerClient.mockReturnValue(mockSupabaseClient)
-
-            const formData = createFormData(validData)
-            const result = await submitFranchiseInquiry({ status: 'idle' }, formData)
-
-            expect(result.status).toBe('error')
-            expect(result.errors?.conceptInterest).toBe('Could not validate concept. Please try again.')
-        })
-
-        it('should return error when concept is not in active brands list', async () => {
-            const mockSelect = vi.fn().mockReturnValue({
-                eq: vi.fn().mockResolvedValue({
-                    data: [{ name: 'Concept A' }, { name: 'Concept B' }],
-                    error: null,
-                }),
-            })
-            const mockSupabaseClient = {
-                from: vi.fn().mockReturnValue({ select: mockSelect }),
-            }
-            mockGetSupabaseServerClient.mockReturnValue(mockSupabaseClient)
-
-            const formData = createFormData({
-                ...validData,
-                conceptInterest: 'Invalid Concept',
-            })
-
-            const result = await submitFranchiseInquiry({ status: 'idle' }, formData)
-
-            expect(result.status).toBe('error')
-            expect(result.errors?.conceptInterest).toBe('Please select a valid concept.')
         })
 
         it('should successfully submit with valid data and send email', async () => {
