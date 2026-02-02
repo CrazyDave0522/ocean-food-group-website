@@ -184,11 +184,11 @@ export function FranchiseForm() {
   }
 
   const inputClass =
-    "mt-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary-lighter";
-  const labelClass = "text-sm font-medium text-gray-800";
-  const requiredIndicator = <span className="text-error">*</span>;
-  const optionalIndicator = <span className="text-gray-500">(Optional)</span>;
-  const errorClass = "mt-1 text-sm text-error";
+    "mt-2 w-full rounded-[10px] border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.1)] backdrop-blur-sm px-3 py-2 text-sm text-white shadow-sm placeholder:text-[rgba(255,255,255,0.88)] focus:border-white focus:outline-none focus:ring-2 focus:ring-white/20";
+  const labelClass = "text-[16px] font-medium text-white opacity-60";
+  const requiredIndicator = <span className="text-red-300">*</span>;
+  const optionalIndicator = <span className="text-[rgba(255,255,255,0.6)]">(Optional)</span>;
+  const errorClass = "mt-1 text-sm text-red-300";
 
   const getError = (field: FranchiseField) => combinedErrors[field];
 
@@ -201,13 +201,13 @@ export function FranchiseForm() {
       noValidate
     >
       {state.status === "success" ? (
-        <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+        <div className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-800">
           {state.message}
         </div>
       ) : null}
 
       {state.status === "error" && state.message ? (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-800">
           {state.message}
         </div>
       ) : null}
@@ -403,7 +403,7 @@ export function FranchiseForm() {
                   required
                   className="h-4 w-4 accent-primary"
                 />
-                <label htmlFor="hasLiquidAssets-yes" className="ml-2 text-sm text-gray-900">Yes</label>
+                <label htmlFor="hasLiquidAssets-yes" className="ml-2 text-sm text-[rgba(255,255,255,0.88)]">Yes</label>
               </div>
               <div className="flex items-center">
                 <input
@@ -414,7 +414,7 @@ export function FranchiseForm() {
                   required
                   className="h-4 w-4 accent-primary"
                 />
-                <label htmlFor="hasLiquidAssets-no" className="ml-2 text-sm text-gray-900">No</label>
+                <label htmlFor="hasLiquidAssets-no" className="ml-2 text-sm text-[rgba(255,255,255,0.88)]">No</label>
               </div>
             </div>
           </fieldset>
@@ -437,7 +437,7 @@ export function FranchiseForm() {
                   required
                   className="h-4 w-4 accent-primary"
                 />
-                <label htmlFor="canManageFullTime-yes" className="ml-2 text-sm text-gray-900">Yes</label>
+                <label htmlFor="canManageFullTime-yes" className="ml-2 text-sm text-[rgba(255,255,255,0.88)]">Yes</label>
               </div>
               <div className="flex items-center">
                 <input
@@ -448,7 +448,7 @@ export function FranchiseForm() {
                   required
                   className="h-4 w-4 accent-primary"
                 />
-                <label htmlFor="canManageFullTime-no" className="ml-2 text-sm text-gray-900">No</label>
+                <label htmlFor="canManageFullTime-no" className="ml-2 text-sm text-[rgba(255,255,255,0.88)]">No</label>
               </div>
             </div>
           </fieldset>
@@ -477,10 +477,11 @@ export function FranchiseForm() {
       </div>
 
       {/* Submit Button */}
-      <div className="pt-2">
+      <div className="flex justify-center pt-2">
         <SubmitButton
           label="Start your journey?"
           loadingLabel="Submitting..."
+          variant="glassmorphism"
         />
       </div>
     </form>

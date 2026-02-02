@@ -12,14 +12,14 @@ describe('FormShell', () => {
     expect(screen.getByText('Test content')).toBeInTheDocument()
   })
 
-  it('applies container max width to section', () => {
+  it('takes full width in section', () => {
     const { container } = render(
       <FormShell>
         <div>Test</div>
       </FormShell>
     )
     const section = container.querySelector('section')
-    expect(section).toHaveClass('max-w-3xl')
+    expect(section).not.toHaveClass('mx-auto')
   })
 
   it('applies card styling to inner div', () => {
@@ -29,7 +29,7 @@ describe('FormShell', () => {
       </FormShell>
     )
     const innerDiv = container.querySelector('div.rounded-2xl')
-    expect(innerDiv).toHaveClass('rounded-2xl', 'border', 'bg-white')
+    expect(innerDiv).toHaveClass('rounded-2xl', 'bg-transparent')
   })
 
   it('applies padding to inner div', () => {

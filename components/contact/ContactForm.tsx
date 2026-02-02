@@ -99,8 +99,8 @@ export function ContactForm() {
   }
 
   const inputClass =
-    "mt-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary-lighter";
-  const labelClass = "text-sm font-medium text-gray-800";
+    "mt-2 w-full rounded-[10px] border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary-lighter";
+  const labelClass = "text-sm font-medium text-gray-800 opacity-60";
   const errorClass = "mt-1 text-sm text-error";
   const requiredIndicator = <span className="text-error">*</span>;
 
@@ -115,13 +115,13 @@ export function ContactForm() {
       noValidate
     >
       {state.status === "success" ? (
-        <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+        <div className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-800">
           {state.message}
         </div>
       ) : null}
 
       {state.status === "error" && state.message ? (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-800">
           {state.message}
         </div>
       ) : null}
@@ -240,7 +240,7 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <div className="pt-2">
+      <div className="flex justify-center pt-2">
         <SubmitButton label="Talk To Us" loadingLabel="Sending..." />
       </div>
     </form>

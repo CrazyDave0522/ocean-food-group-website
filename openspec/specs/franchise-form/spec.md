@@ -4,16 +4,25 @@
 Defines the franchise inquiry form for the Ocean Food Group website. Provides a comprehensive application form at `/franchise` for prospective franchisees with 11 fields including contact details, brand preferences, location, financial qualifications, and referral source. Implements country code suggestions from a maintained external dataset, client-side validation, server-side processing via Supabase, and email notifications.
 ## Requirements
 ### Requirement: Franchise form UI and fields
-- The `/franchise` page SHALL render the franchise application form as the primary content, titled "Become Our Partner" with the provided subtitle and submit button label "Start your journey?".
-- Eleven fields render in order: firstName, lastName, countryCode (with suggestions), phone, preferredContactMethod, email, conceptInterest (active brands only), preferredLocation (AU states), hasLiquidAssets, canManageFullTime, referralSource (optional).
-- Country code input limits to 20 characters, suggests up to five matching country codes, and lets users click a suggestion to populate the field.
-- Country code suggestions SHALL be populated from a maintained external dataset/library with global coverage (not a manually curated list) and filtered client-side for matches.
-- Preferred contact method options display as "Whatsapp" and "Mobile" but submit lowercase values `whatsapp` and `mobile`.
-- Concept options are sourced from `brand` rows where `is_active = true`; inactive brands are not shown.
-- Preferred location options are NSW, VIC, QLD, WA, SA, TAS, ACT, NT.
-#### Scenario: Render form and options with maintained country codes
+- The `/franchise` page SHALL render the franchise application form as the primary content, titled "Become Our Partner" with responsive typography (clamp function with maximum `--space-xl`) and the provided subtitle and submit button label "Start your journey?".
+- The form wrapper SHALL span the full width of its containing section with transparent background for glassmorphism overlay effects.
+- Form labels SHALL use font-size `--space-md` and color `rgba(255, 255, 255, 0.88)` for glassmorphism readability.
+- Form input fields SHALL use glassmorphism styling: border-radius `--radius-lg`, border `1px solid rgba(255, 255, 255, 0.15)`, background `rgba(255, 255, 255, 0.08)`, and backdrop-filter `blur(10px)`.
+- The submit button SHALL use pill styling: border-radius `100px`, border `1.5px solid #FFF`, and background `#FFF`.
+- Form components SHALL support variant props to enable different styling modes while maintaining reusability across forms.
+
+#### Scenario: Form renders with glassmorphism styling on background
 - WHEN a user visits `/franchise`
-- THEN the form shows all 11 fields, country code suggestions appear as the user types using the maintained dataset, contact method options show Whatsapp/Mobile, concept options list active brands, and the state select lists AU states.
+- THEN the form title uses responsive sizing with maximum `--space-xl`
+- AND the form wrapper spans full width with transparent background
+- AND form labels use `--space-md` font-size and white semi-transparent color
+- AND form inputs display with glassmorphism border, background, and blur effects
+- AND the submit button displays with pill shape, white border, and white background
+
+#### Scenario: Shared components maintain backward compatibility
+- WHEN other forms (like contact form) use the same components without variant props
+- THEN they render with standard styling unchanged
+- AND the franchise form can use glassmorphism variants without affecting other forms
 
 ### Requirement: Validation rules
 - The form SHALL enforce the following required fields: firstName, lastName, countryCode, phone, preferredContactMethod, email, conceptInterest, preferredLocation, hasLiquidAssets, canManageFullTime; referralSource is optional.

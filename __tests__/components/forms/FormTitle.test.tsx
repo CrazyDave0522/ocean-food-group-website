@@ -28,7 +28,7 @@ describe('FormTitle', () => {
   it('applies correct heading typography classes', () => {
     render(<FormTitle title="Get In Touch" />)
     const heading = screen.getByRole('heading', { level: 1 })
-    expect(heading).toHaveClass('text-3xl', 'font-semibold')
+    expect(heading).toHaveClass('text-[32px]', 'font-semibold')
   })
 
   it('applies subtitle text color class', () => {

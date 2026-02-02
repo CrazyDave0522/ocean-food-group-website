@@ -1,0 +1,33 @@
+/* styles/components/franchise-form.css */
+
+/* Glassmorphism form styles for franchise inquiry form */
+.franchise-form-label {
+  font-size: 16px;
+  color: white;
+  opacity: 0.6;
+}
+
+.franchise-form-input {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  color: white;
+  border-radius: 10px;
+}
+
+.franchise-form-input::placeholder {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.franchise-form-input:focus {
+  border-color: white;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.franchise-form-error {
+  color: #fca5a5; /* red-300 for better contrast on glassmorphism */
+}
+
+.franchise-form-optional {
+  color: rgba(255, 255, 255, 0.6);
+}
