@@ -36,6 +36,7 @@ describe('FormTitle', () => {
       <FormTitle
         title="Get In Touch"
         subtitle="We'd love to hear from you"
+        subtitleColor="text-gray-600"
       />
     )
     const subtitle = screen.getByText("We'd love to hear from you")

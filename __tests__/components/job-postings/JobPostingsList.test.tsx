@@ -51,6 +51,33 @@ describe("JobPostingsList", () => {
     ).toBeInTheDocument();
   });
 
+  it("renders list title", () => {
+    const mockFetch = vi.fn();
+    render(
+      <JobPostingsList
+        initialItems={mockJobs}
+        initialHasMore={false}
+        onFetchMore={mockFetch}
+      />
+    );
+
+    expect(screen.getByText("Open Positions")).toBeInTheDocument();
+  });
+
+  it("applies section background styling", () => {
+    const mockFetch = vi.fn();
+    const { container } = render(
+      <JobPostingsList
+        initialItems={mockJobs}
+        initialHasMore={false}
+        onFetchMore={mockFetch}
+      />
+    );
+
+    const section = container.querySelector(".job-postings-section");
+    expect(section).toBeInTheDocument();
+  });
+
   it("shows empty state when no jobs", () => {
     const mockFetch = vi.fn();
     render(
@@ -80,7 +107,7 @@ describe("JobPostingsList", () => {
     expect(briefcaseIcon).toBeInTheDocument();
   });
 
-  it("separates jobs with divider lines", () => {
+  it("does not have divider lines between jobs", () => {
     const mockFetch = vi.fn();
     const { container } = render(
       <JobPostingsList
@@ -91,6 +118,20 @@ describe("JobPostingsList", () => {
     );
 
     const divider = container.querySelector(".divide-y");
-    expect(divider).toBeInTheDocument();
+    expect(divider).not.toBeInTheDocument();
+  });
+
+  it("passes index to job cards for alternating backgrounds", () => {
+    const mockFetch = vi.fn();
+    const { container } = render(
+      <JobPostingsList
+        initialItems={mockJobs}
+        initialHasMore={false}
+        onFetchMore={mockFetch}
+      />
+    );
+
+    const cards = container.querySelectorAll(".job-posting-card");
+    expect(cards).toHaveLength(2);
   });
 });

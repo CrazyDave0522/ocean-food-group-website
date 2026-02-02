@@ -23,7 +23,8 @@ describe("JobPostingCard", () => {
     render(<JobPostingCard job={mockJob} />);
 
     expect(screen.getByText(/Software Engineer - Tech Corp/)).toBeInTheDocument();
-    expect(screen.getByText(/Sydney NSW \| Full Time/)).toBeInTheDocument();
+    expect(screen.getByText("Sydney NSW")).toBeInTheDocument();
+    expect(screen.getByText("Full Time")).toBeInTheDocument();
     expect(
       screen.getByText(
         "We are looking for a talented software engineer to join our team."
@@ -48,24 +49,36 @@ describe("JobPostingCard", () => {
     const jobPartTime = { ...mockJob, employment_type: "part_time" as const };
     render(<JobPostingCard job={jobPartTime} />);
 
-    expect(screen.getByText(/Part Time/)).toBeInTheDocument();
+    expect(screen.getByText("Part Time")).toBeInTheDocument();
   });
 
-  it("truncates title to 1 line", () => {
+  it("truncates title to 2 lines", () => {
     const longTitle = "A".repeat(200);
     const jobLongTitle = { ...mockJob, title: longTitle };
     const { container } = render(<JobPostingCard job={jobLongTitle} />);
 
-    const titleElement = container.querySelector(".line-clamp-1");
+    const titleElement = container.querySelector(".job-posting-title");
     expect(titleElement).toBeInTheDocument();
   });
 
-  it("truncates description to 2 lines", () => {
+  it("truncates description to 4 lines", () => {
     const longDesc = "This is a description. ".repeat(50);
     const jobLongDesc = { ...mockJob, description: longDesc };
     const { container } = render(<JobPostingCard job={jobLongDesc} />);
 
-    const descElement = container.querySelector(".line-clamp-2");
+    const descElement = container.querySelector(".job-posting-description");
     expect(descElement).toBeInTheDocument();
+  });
+
+  it("renders location and employment type as tag elements", () => {
+    const { container } = render(<JobPostingCard job={mockJob} />);
+
+    const locationTag = container.querySelector(".location-tag");
+    const employmentTag = container.querySelector(".employment-type-tag");
+
+    expect(locationTag).toBeInTheDocument();
+    expect(employmentTag).toBeInTheDocument();
+    expect(locationTag).toHaveTextContent("Sydney NSW");
+    expect(employmentTag).toHaveTextContent("Full Time");
   });
 });

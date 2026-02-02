@@ -1,7 +1,7 @@
 # job-postings-list Specification
 
 ## Purpose
-TBD - created by archiving change add-job-postings-list. Update Purpose after archive.
+Defines the job postings list feature for the Ocean Food Group careers page, including job posting cards with alternating backgrounds, responsive layout, background images, and infinite scroll pagination.
 ## Requirements
 ### Requirement: JobPostingCard component displays job posting with metadata
 
@@ -11,40 +11,47 @@ The site SHALL provide a `JobPostingCard` component that renders a single job po
 
 - **GIVEN** a job posting object with title, company_name, suburb, state, employment_type, and description
 - **WHEN** the `JobPostingCard` component is rendered on a desktop viewport (md and larger)
-- **THEN** the card displays with white background and subtle shadow
+- **THEN** the card displays with white background, subtle border, and shadow
 - **AND** the card uses a flex layout with content on the left and action indicator on the right
 - **AND** the right side content has `--space-xl` (32px) horizontal spacing from the left content
 - **AND** the left side displays title and company name in format: "[title] - [company_name]" (e.g., "Kitchen Manager - Ocean Food Group")
-- **AND** the title and company name line is limited to 1 line maximum with ellipsis (`...`) if text overflows
-- **AND** the title and company name appear as an h2 heading with appropriate typography
-- **AND** below that displays location and employment type in format: "[suburb] [state] | [employment_type]" (e.g., "Sydney NSW | Full Time")
-- **AND** the location and employment type appear with body text styling and muted color
-- **AND** the description appears below, truncated to 2 lines maximum with ellipsis (`...`) if longer
-- **AND** the right side displays an icon (e.g., arrow or external link icon from lucide-react) aligned to the top
-- **AND** below the icon displays "Apply Now" text with smaller font size and muted color
-- **AND** the right side content is vertically centered or top-aligned with the title
-- **AND** the card has consistent padding (e.g., px-6 py-4)
+- **AND** the title and company name line is limited to 2 lines maximum with ellipsis (`...`) if text overflows
+- **AND** the title and company name appear as an h2 heading with `--fs-body-lg` font size and primary blue color
+- **AND** below that displays the description, truncated to 2 lines maximum with ellipsis (`...`) if longer
+- **AND** below the description displays location and employment type as styled tag elements
+- **AND** the location tag shows "[suburb] [state]" (e.g., "Sydney NSW")
+- **AND** the employment type tag shows the formatted label (e.g., "Full Time")
+- **AND** the tags have rounded corners and appropriate styling
+- **AND** the right side displays a paper plane icon with "Apply Now" text below it
+- **AND** the icon and text are vertically centered
+- **AND** the card has `--space-md` (16px) vertical padding and `--space-xl` (32px) horizontal padding
+- **AND** cards have alternating background colors for visual separation
 
 #### Scenario: Display job posting on mobile
 
 - **GIVEN** a job posting object with title, company_name, suburb, state, employment_type, and description
 - **WHEN** the `JobPostingCard` component is rendered on a mobile viewport (< md)
-- **THEN** the layout uses flex with icon and "Apply Now" remaining on the right
+- **THEN** the layout uses column layout with content stacked vertically
+- **AND** displays title and company name at the top
+- **AND** below that displays the description
+- **AND** below the description displays location and employment type as styled tag elements
+- **AND** below the tags displays the "Apply Now" button centered horizontally
+- **AND** the "Apply Now" button includes a paper plane icon
+- **AND** the card has `--space-md` (16px) padding on all sides
 - **AND** font sizes are adjusted for mobile readability
-- **AND** padding is reduced appropriately (e.g., px-4 py-3)
 - **AND** all content remains readable without horizontal scrolling
-- **AND** the icon and "Apply Now" text scale appropriately for mobile
 
 #### Scenario: Metadata is displayed with appropriate typography
 
 - **GIVEN** a job posting with title, company_name, suburb, state, employment_type, and description
-- **WHEN** the `JobPostingCard` is rendered
-- **THEN** the first line "[title] - [company_name]" is displayed with heading typography (text-lg or text-xl, font-semibold)
-- **AND** the title and company name line is limited to 1 line maximum, with ellipsis (`...`) if text overflows (use `line-clamp-1`)
-- **AND** the second line "[suburb] [state] | [employment_type]" is displayed with body text size and muted color (e.g., text-slate-600)
-- **AND** the employment type value uses the formatted label from `formatEmploymentType` utility (e.g., "Full Time", "Part Time")
-- **AND** the description is displayed with body text size (text-sm or text-base)
-- **AND** the description is limited to 2 lines maximum, with ellipsis (`...`) if text overflows (use `line-clamp-2`)
+- **WHEN** the `JobPostingCard` component renders the employment type
+- **THEN** the title displays in format "[title] - [company_name]" with `--fs-body-lg` font size and primary blue color
+- **AND** the title is limited to 2 lines maximum with ellipsis (`...`) if text overflows
+- **AND** the description is displayed with body text size and limited to 2 lines with ellipsis
+- **AND** the location and employment type are displayed as separate styled tag elements
+- **AND** the location tag shows "[suburb] [state]" with appropriate styling
+- **AND** the employment type tag shows the formatted label from `formatEmploymentType` utility
+- **AND** the tags have rounded corners, padding, and appropriate colors
 - **AND** no company logos are displayed; the card displays only text content
 
 #### Scenario: Clicking icon or Apply Now opens external link in new tab
@@ -70,6 +77,145 @@ The site SHALL provide a `JobPostingCard` component that renders a single job po
 - **THEN** the icon and text change color from slate-500 to blue-600 for visual feedback
 - **AND** the cursor changes to pointer style over the clickable button
 - **AND** the rest of the card (title, company, location, employment type, description) does not show hover effects and uses default cursor
+
+### Requirement: JobPostingCard component displays job posting with enhanced styling
+
+The site SHALL provide a `JobPostingCard` component that renders a single job posting item with improved visual design including alternating background colors, tag-style elements, and enhanced typography.
+
+#### Scenario: Display job posting with alternating background colors
+
+- **GIVEN** a job posting object with title, company_name, suburb, state, employment_type, and description
+- **WHEN** the `JobPostingCard` component is rendered with an index prop
+- **THEN** the card uses alternating background colors:
+  - Even index (0, 2, 4...): light blue background `rgba(57, 98, 242, 0.02)`
+  - Odd index (1, 3, 5...): light gray background `#F3F6FE`
+- **AND** the card maintains shadow and rounded corner styling
+
+#### Scenario: Display job title with enhanced typography
+
+- **GIVEN** a job posting with title and company_name
+- **WHEN** the `JobPostingCard` component renders the title
+- **THEN** the title displays in format "[title] - [company_name]" (e.g., "Seafood Processing Worker - Pacific Seafood Co")
+- **AND** the title uses color `#0F75BC` (primary blue)
+- **AND** the title uses font size `--fs-body-lg`
+- **AND** the title remains limited to 2 line with ellipsis
+- **AND** there is 12px gap between title, location+job type, and description
+
+#### Scenario: Display location and employment type as tag elements
+
+- **GIVEN** a job posting with suburb, state, and employment_type
+- **WHEN** the `JobPostingCard` component renders location and employment type
+- **THEN** the location "[suburb] [state]" displays as a tag with:
+  - Border radius: 48px
+  - Border: 1.2px solid #015AED
+  - Background: #F3F8FF
+  - Font size: `--fs-caption`
+  - Text color: `#0F75BC`
+- **AND** the employment type displays as a tag with:
+  - Border radius: 56px
+  - Background: #D6F2ED
+  - Font size: `--fs-caption`
+  - Text color: `#0E493F`
+- **AND** the tags have `--space-md` gap between them
+
+#### Scenario: Display description with enhanced typography
+
+- **GIVEN** a job posting with description
+- **WHEN** the `JobPostingCard` component renders the description
+- **THEN** the description uses color `#5D6C7D`
+- **AND** the description uses font size `--fs-body`
+- **AND** the description remains limited to 4 lines with ellipsis
+
+#### Scenario: Display apply now with paper plane icon
+
+- **GIVEN** a job posting with external_apply_url
+- **WHEN** the `JobPostingCard` component renders the apply action
+- **THEN** the icon uses `public/images/icons/paper-plane.svg` instead of arrow
+- **AND** the icon maintains hover states and proper sizing
+- **AND** the "Apply Now" text has color `#0F75BC`
+- **AND** the "Apply Now" text has text align center
+- **AND** the "Apply Now" text has font size `--fs-body-sm`
+- **AND** the "Apply Now" text has font style normal
+- **AND** the "Apply Now" text has font weight 500
+- **AND** the "Apply Now" text has line height normal
+- **AND** the "Apply Now" text has text transform capitalize
+
+### Requirement: Job postings use alternating background colors
+
+The site SHALL display job posting cards with alternating background colors for visual separation.
+
+#### Scenario: Job posting cards have alternating background colors
+
+- **GIVEN** a list of job posting cards
+- **WHEN** the cards are rendered
+- **THEN** even-indexed cards (1st, 3rd, 5th...) have light blue background `rgba(57, 98, 242, 0.02)`
+- **AND** odd-indexed cards (2nd, 4th, 6th...) have light gray background `#F3F6FE`
+- **AND** the alternating colors are implemented using CSS nth-child selectors
+
+### Requirement: Job posting cards have styled outer wrapper
+
+The site SHALL style the outer wrapper of job posting cards with specific fill and stroke properties.
+
+#### Scenario: Job posting card wrapper has styled border and fill
+
+- **GIVEN** a job posting card component
+- **WHEN** the card wrapper is rendered
+- **THEN** the wrapper has fill color `#FFF` (white)
+- **AND** the wrapper has stroke width `1.2px`
+- **AND** the wrapper has stroke color `#DBDEED` (light gray)
+- **AND** the styling maintains rounded corners and shadow effects
+
+### Requirement: Job postings list has no separator lines
+
+The site SHALL remove separator lines between job posting cards in the list.
+
+#### Scenario: Job postings list displays without separator lines
+
+- **GIVEN** a job postings list with multiple job cards
+- **WHEN** the `JobPostingsList` component is rendered
+- **THEN** there are no separator lines between job cards
+- **AND** the alternating background colors provide visual separation
+
+### Requirement: Job postings list displays title above job cards
+
+The site SHALL display a title "Open Positions" above the job postings list within the outer wrapper.
+
+#### Scenario: Job postings list shows title at the top
+
+- **GIVEN** a job postings list with job cards
+- **WHEN** the `JobPostingsList` component is rendered
+- **THEN** the title "Open Positions" appears above the job cards
+- **AND** the title is positioned within the outer wrapper
+- **AND** the title has color `#153E5E`
+- **AND** the title has font size `--fs-h4`
+- **AND** the title has font style normal
+- **AND** the title has font weight 600
+- **AND** the title has line height 100%
+- **AND** the title has border radius 8px
+- **AND** the title has background `#E7ECFD`
+- **AND** the title background spans the full width of its outer wrapper
+- **AND** the title has padding 16px
+- **AND** there is appropriate spacing between the title and the first job card
+
+### Requirement: Job posting cards have responsive layout
+
+The site SHALL display job posting cards with different layouts on desktop and mobile.
+
+#### Scenario: Desktop layout maintains side-by-side structure
+
+- **GIVEN** a job posting card displayed on desktop (screen width >= 768px)
+- **WHEN** the `JobPostingCard` component is rendered
+- **THEN** the layout shows info (title, description, tags) on the left side
+- **AND** the apply now section appears on the right side
+- **AND** the elements maintain horizontal alignment
+
+#### Scenario: Mobile layout stacks elements vertically
+
+- **GIVEN** a job posting card displayed on mobile (screen width < 768px)
+- **WHEN** the `JobPostingCard` component is rendered
+- **THEN** the layout stacks elements vertically: title, description, tags, apply now
+- **AND** the apply now section shows icon on the left and text on the right
+- **AND** all elements are centered or left-aligned appropriately
 
 ### Requirement: Employment type formatting is consistent and reusable
 
@@ -146,12 +292,9 @@ The site SHALL provide a careers page at `/careers` that fetches published job p
 - **WHEN** a user navigates to `/careers`
 - **THEN** the page calls `fetchPublishedJobPostings` server action
 - **AND** renders a `JobPostingCard` component for each job posting
-- **AND** displays job postings in vertical list layout with `--space-2xl` (48px) total gap between cards
-- **AND** each card wrapper has `py-(--space-lg)` (24px) padding on top and bottom
-- **AND** the first card wrapper has `first:pt-0` to remove top padding
-- **AND** the last card wrapper has `last:pb-0` to remove bottom padding
-- **AND** displays a horizontal divider line between each card using `divide-y` utility (border appears between the padding, creating centered separation)
-- **AND** the divider line uses a subtle color (e.g., `divide-slate-200`)
+- **AND** displays job postings in vertical list layout with `--space-6xl` (128px) gap between cards
+- **AND** the job postings section has background images that differ between desktop and mobile
+- **AND** the section container has a white background with border and padding
 - **AND** job postings are ordered by publish date with latest jobs appearing first
 - **AND** the page title remains "Careers — Ocean Food Group"
 - **AND** the page displays an h1 heading "Careers" or similar
@@ -222,7 +365,41 @@ The site SHALL provide a `JobPostingsList` client component that displays job po
 - **AND** the component stops the loading indicator
 - **AND** the component may retry once automatically after a delay (optional, following media reviews pattern)
 
-### Requirement: TypeScript types are defined for job postings
+### Requirement: Job posting section has background images
+
+The site SHALL display background images for the job posting section with different images for desktop and mobile.
+
+#### Scenario: Job posting section has background images
+
+- **GIVEN** the job postings section
+- **WHEN** the section is rendered
+- **THEN** the section has background image `public/images/section-backgrounds/job-list.png` on desktop
+- **AND** the section has background image `public/images/section-backgrounds/job-list-mb.png` on mobile
+
+### Requirement: Job postings have alternating background colors
+
+The site SHALL display job posting cards with alternating background colors for visual separation.
+
+#### Scenario: Job posting cards have alternating background colors
+
+- **GIVEN** a list of job posting cards
+- **WHEN** the cards are rendered
+- **THEN** even-indexed cards have light blue background `rgba(57, 98, 242, 0.02)`
+- **AND** odd-indexed cards have light gray background `#F3F6FE`
+- **AND** the alternating colors are implemented using CSS nth-child selectors
+
+### Requirement: Job posting section has styled container
+
+The site SHALL display the job postings section with a white background, border, and appropriate padding.
+
+#### Scenario: Job posting section has styled container
+
+- **GIVEN** the job postings section
+- **WHEN** the section is rendered
+- **THEN** the section container has a white background
+- **AND** the section container has a border with `--color-border` color and `--radius-md` border radius
+- **AND** the section container has `--space-xl` padding
+- **AND** the section displays an "Open Positions" title
 
 The site SHALL define TypeScript types for job posting data that match the Supabase database schema.
 

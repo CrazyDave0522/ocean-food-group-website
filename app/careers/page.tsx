@@ -18,23 +18,23 @@ export default async function Page() {
     {
       id: "1",
       title: "Great Culture",
-      text: "Work in a supportive environment where your contributions are valued and your professional growth is encouraged."
+      text: "Work in a supportive environment where your contributions are valued and your professional growth is encouraged.",
     },
     {
-      id: "2", 
+      id: "2",
       title: "Competitive Benefits",
-      text: "Enjoy comprehensive benefits including health insurance, paid time off, retirement plans, and professional development opportunities."
+      text: "Enjoy comprehensive benefits including health insurance, paid time off, retirement plans, and professional development opportunities.",
     },
     {
       id: "3",
       title: "Career Growth",
-      text: "Advance your career with clear paths for promotion, skill development, and leadership opportunities within our growing organization."
+      text: "Advance your career with clear paths for promotion, skill development, and leadership opportunities within our growing organization.",
     },
     {
       id: "4",
       title: "Work-Life Balance",
-      text: "We prioritize work-life balance with flexible scheduling options and a culture that respects your personal time and well-being."
-    }
+      text: "We prioritize work-life balance with flexible scheduling options and a culture that respects your personal time and well-being.",
+    },
   ];
 
   if (result.error) {
@@ -110,20 +110,12 @@ export default async function Page() {
         </div>
       </section>
 
-      <div 
-        className="container-main py-12 relative"
-        style={{
-          background: 'linear-gradient(180deg, #B4D2FF 0%, rgba(219, 241, 255, 0.00) 97.96%, rgba(195, 219, 255, 0.00) 100%)',
-          opacity: 0.6
-        }}
-      >
-        <div className="relative z-10">
-          <JobPostingsList
-            initialItems={result.items}
-            initialHasMore={result.hasMore}
-            onFetchMore={fetchPublishedJobPostings}
-          />
-        </div>
+      <div className="container-main py-8 job-postings-section-container">
+        <JobPostingsList
+          initialItems={result.items}
+          initialHasMore={result.hasMore}
+          onFetchMore={fetchPublishedJobPostings}
+        />
       </div>
     </>
   );

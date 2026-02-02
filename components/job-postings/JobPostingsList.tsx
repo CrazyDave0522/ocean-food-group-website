@@ -3,12 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 import { Loader2, Briefcase } from "lucide-react";
 import { JobPostingCard } from "./JobPostingCard";
-import type { JobPosting, FetchJobPostingsResult } from "@/lib/job-postings/types";
+import type {
+  JobPosting,
+  FetchJobPostingsResult,
+} from "@/lib/job-postings/types";
 
 interface JobPostingsListProps {
   initialItems: JobPosting[];
   initialHasMore: boolean;
-  onFetchMore: (offset: number, limit: number) => Promise<FetchJobPostingsResult>;
+  onFetchMore: (
+    offset: number,
+    limit: number,
+  ) => Promise<FetchJobPostingsResult>;
 }
 
 export function JobPostingsList({
@@ -51,7 +57,7 @@ export function JobPostingsList({
           }
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sentinelRef.current) {
@@ -73,17 +79,11 @@ export function JobPostingsList({
   }
 
   return (
-    <div>
-      <div className="divide-y divide-slate-200">
-        {items.map((job, index) => (
-          <div
-            key={job.id}
-            className={`py-(--space-lg) ${index === 0 ? "first:pt-0" : ""} ${
-              index === items.length - 1 ? "last:pb-0" : ""
-            }`}
-          >
-            <JobPostingCard job={job} />
-          </div>
+    <div className="job-postings-section">
+      <div className="job-postings-title">Open Positions</div>
+      <div className="space-y-6">
+        {items.map((job) => (
+          <JobPostingCard key={job.id} job={job} />
         ))}
       </div>
 

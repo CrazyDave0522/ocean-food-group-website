@@ -183,12 +183,13 @@ export default async function Page() {
           <div
             className="absolute"
             style={{
-              marginLeft: 'calc(-50vw + 50%)',
-              marginRight: 'calc(-50vw + 50%)',
-              width: '100vw',
-              height: '100%',
-              background: 'linear-gradient(180deg, #B4D2FF 0%, rgba(219, 241, 255, 0.00) 97.96%, rgba(195, 219, 255, 0.00) 100%)',
-              opacity: 0.6
+              marginLeft: "calc(-50vw + 50%)",
+              marginRight: "calc(-50vw + 50%)",
+              width: "100vw",
+              height: "100%",
+              background:
+                "linear-gradient(180deg, #B4D2FF 0%, rgba(219, 241, 255, 0.00) 97.96%, rgba(195, 219, 255, 0.00) 100%)",
+              opacity: 0.6,
             }}
           />
 
@@ -211,10 +212,14 @@ export default async function Page() {
       />
 
       {/* FeatureGrid Section - Below Callout */}
-      <div className="container-main py-12 feature-grid-container" style={{ background: 'radial-gradient(ellipse at bottom center, rgba(0, 84, 255, 0.50) 0%, rgba(0, 84, 255, 0.3) 30%, rgba(0, 84, 255, 0.1) 60%, transparent 100%)' }}>
-        <section 
-          className="py-[--space-3xl] md:py-[--space-4xl] relative"
-        >
+      <div
+        className="container-main py-12 feature-grid-container"
+        style={{
+          background:
+            "radial-gradient(ellipse at bottom center, rgba(0, 84, 255, 0.50) 0%, rgba(0, 84, 255, 0.3) 30%, rgba(0, 84, 255, 0.1) 60%, transparent 100%)",
+        }}
+      >
+        <section className="py-[--space-3xl] md:py-[--space-4xl] relative">
           <div className="relative z-10">
             <div className="mt-[--space-4xl]">
               <FeatureGrid
