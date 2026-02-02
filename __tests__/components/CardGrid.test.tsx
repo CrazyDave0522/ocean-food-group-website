@@ -262,6 +262,73 @@ describe('CardGrid Component', () => {
       expect(images[0]).toHaveAttribute('src', '/test-icon1.svg');
       expect(images[1]).toHaveAttribute('src', '/images/components/card-grid/v4/2.svg');
     });
+
+    it('renders mobile layout with left-right structure', () => {
+      render(<CardGrid variant="centered" cards={[mockCenteredCards[0]]} />);
+
+      const article = screen.getByRole('article');
+      const container = article.querySelector('.flex');
+      
+      // Check mobile layout classes
+      expect(container).toHaveClass('flex-row');
+      expect(container).toHaveClass('md:flex-col');
+      
+      // Check mobile padding
+      expect(article).toHaveClass('py-4', 'px-6');
+      expect(article).toHaveClass('md:py-9', 'md:px-8');
+    });
+
+    it('renders desktop layout with centered structure', () => {
+      render(<CardGrid variant="centered" cards={[mockCenteredCards[0]]} />);
+
+      const article = screen.getByRole('article');
+      const container = article.querySelector('.flex');
+      
+      // Check desktop layout classes
+      expect(container).toHaveClass('md:flex-col');
+      expect(container).toHaveClass('items-center');
+      
+      // Check desktop padding
+      expect(article).toHaveClass('md:py-9', 'md:px-8');
+    });
+
+    it('applies responsive icon sizing', () => {
+      render(<CardGrid variant="centered" cards={[mockCenteredCards[0]]} />);
+
+      const image = document.querySelector('img');
+      
+      // Check responsive icon sizing
+      expect(image).toHaveClass('w-16', 'h-16');
+      expect(image).toHaveClass('md:w-24', 'md:h-24');
+    });
+
+    it('applies mobile content layout with proper spacing', () => {
+      render(<CardGrid variant="centered" cards={[mockCenteredCards[0]]} />);
+
+      const contentDiv = document.querySelector('.flex-1');
+      expect(contentDiv).toBeInTheDocument();
+      expect(contentDiv).toHaveClass('ml-4');
+      expect(contentDiv).toHaveClass('md:ml-0');
+      expect(contentDiv).toHaveClass('md:text-center');
+    });
+
+    it('uses mobile background image', () => {
+      render(<CardGrid variant="centered" cards={[mockCenteredCards[0]]} />);
+
+      const article = screen.getByRole('article');
+      const computedStyle = window.getComputedStyle(article);
+      expect(computedStyle.backgroundImage).toContain('bg-card-mb.png');
+    });
+
+    it('maintains text alignment responsive behavior', () => {
+      render(<CardGrid variant="centered" cards={[mockCenteredCards[0]]} />);
+
+      const paragraph = screen.getByText('Content for centered card one');
+      
+      // Mobile and Desktop: text-justify
+      expect(paragraph).toHaveClass('text-justify');
+      expect(paragraph).not.toHaveClass('md:text-justify');
+    });
   });
 
   describe('Grid responsiveness', () => {

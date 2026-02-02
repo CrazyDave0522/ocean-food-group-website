@@ -318,39 +318,41 @@ export default function CardGrid({
     return (
       <article
         key={`${variant}-centered-${card.id}`}
-        className="bg-white rounded-lg p-9 shadow-lg text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        className="bg-white rounded-lg py-4 px-6 md:py-9 md:px-8 shadow-lg text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
         style={{
-          backgroundImage: `url(/images/components/card-grid/v4/bg-${cards.length === 3 ? "3cards" : "4cards"}.png)`,
+          backgroundImage: `url(/images/components/card-grid/v4/bg-card-mb.png)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
         role="article"
         aria-labelledby={`centered-card-title-${card.id}`}
       >
-        <div className="flex flex-col items-center">
-          <div className="mb-6">
+        <div className="flex flex-row md:flex-col items-center">
+          <div className="mb-0 md:mb-6">
             <Image
               src={iconSrc}
               alt=""
               width={150}
               height={150}
-              className="w-24 h-24 max-w-37.5"
+              className="w-16 h-16 md:w-24 md:h-24 max-w-37.5"
               aria-hidden="true"
             />
           </div>
-          <h3
-            id={`centered-card-title-${card.id}`}
-            className="font-semibold mb-4"
-            style={{ fontSize: "var(--fs-h4)" }}
-          >
-            {card.title}
-          </h3>
-          <p className="text-gray-600 text-justify" style={{ 
-            fontSize: "var(--fs-body)",
-            lineHeight: "var(--lh-body)"
-          }}>
-            {card.text}
-          </p>
+          <div className="flex-1 ml-4 md:ml-0 md:text-center">
+            <h3
+              id={`centered-card-title-${card.id}`}
+              className="font-semibold mb-4"
+              style={{ fontSize: "var(--fs-h4)" }}
+            >
+              {card.title}
+            </h3>
+            <p className="text-gray-600 text-justify" style={{ 
+              fontSize: "var(--fs-body)",
+              lineHeight: "var(--lh-body)"
+            }}>
+              {card.text}
+            </p>
+          </div>
         </div>
       </article>
     );
