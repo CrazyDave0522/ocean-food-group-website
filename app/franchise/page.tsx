@@ -1,4 +1,3 @@
-import { getSupabaseServerClient } from "@/lib/supabase";
 import { FranchiseForm } from "@/components/franchise/FranchiseForm";
 import { FormShell } from "@/components/forms/FormShell";
 import { FormTitle } from "@/components/forms/FormTitle";
@@ -15,25 +14,6 @@ export const metadata = {
 export const revalidate = 3600; // Cache for 1 hour, then regenerate in background
 
 export default async function Page() {
-  let brands: Array<{ name: string }> = [];
-
-  try {
-    const supabase = getSupabaseServerClient();
-
-    // Fetch active brands for concept selection dropdown
-    const { data: brandsData = [] } = await supabase
-      .from("brand")
-      .select("name")
-      .eq("is_active", true)
-      .order("name");
-
-    brands = brandsData || [];
-  } catch {
-    // During prerendering or if Supabase is not configured,
-    // gracefully fall back to empty brands array
-    brands = [];
-  }
-
   // Placeholder data for expandable cards (v3)
   const expandableCards = [
     {
@@ -111,7 +91,7 @@ export default async function Page() {
               subtitle="If you share our passion for perfection and you would like to find out how Ocean Food Group can support you to establish and grow a successful business, then let's have a chat about your business goals."
             />
             <FormShell>
-              <FranchiseForm brands={brands || []} />
+              <FranchiseForm />
             </FormShell>
           </div>
         </div>

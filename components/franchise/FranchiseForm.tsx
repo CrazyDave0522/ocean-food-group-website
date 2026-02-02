@@ -133,15 +133,7 @@ function validateClient(formData: FormData): FieldErrors {
   return errors;
 }
 
-interface BrandOption {
-  name: string;
-}
-
-interface FranchiseFormProps {
-  brands: BrandOption[];
-}
-
-export function FranchiseForm({ brands }: FranchiseFormProps) {
+export function FranchiseForm() {
   const [state, formAction] = useActionState<FranchiseFormState, FormData>(
     submitFranchiseInquiry,
     initialFranchiseFormState

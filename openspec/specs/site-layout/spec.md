@@ -52,32 +52,17 @@ The site SHALL provide a `FormShell` component that wraps form content with cons
 
 The site header SHALL display the Ocean Food Group logo image as a clickable link to the home page, alongside primary navigation links, with professional spacing and typography.
 
-#### Scenario: Desktop header with active navigation
-
-- **GIVEN** a user is on a desktop viewport (≥768px)
-- **WHEN** they view any page (e.g., `/franchise`)
-- **THEN** the header displays with --space-3xl horizontal padding (64px left/right)
-- **AND** the logo remains left-aligned and clickable
-- **AND** navigation buttons are right-aligned with:
-  - Consistent typography (font-size: --fs-body-lg, font-weight: 500, normal style, normal line-height)
-  - Gap between buttons: --space-4xl (80px)
-- **AND** the button for the current page (e.g., "Franchise") is highlighted with:
-  - Text color: primary (#0f75bc)
-  - Bottom border indicator: 4px solid primary (#0f75bc) with border-radius: --radius-md (8px)
-- **AND** other buttons show default text color with no border
-- **AND** buttons support hover/focus states for accessibility
-
-#### Scenario: Mobile header with hamburger menu
+#### MODIFIED Scenario: Mobile header with hamburger menu
 
 - **GIVEN** a user is on a mobile viewport (<768px)
 - **WHEN** they view any page
-- **THEN** the header displays with responsive padding (reduced for mobile)
-- **AND** the logo remains left-aligned and clickable
-- **AND** navigation buttons are hidden, replaced with a hamburger menu icon on the right (`nav-mb.svg`)
-- **AND** the menu icon sizing: width 50px, height 50px (at 750px baseline, responsive scaling for other viewports)
+- **THEN** the header displays with responsive horizontal padding `clamp(16px, 4vw, 32px)` scaling smoothly across mobile devices
+- **AND** the logo remains left-aligned and clickable with refined responsive sizing `clamp(96px, 24vw, 128px)`
+- **AND** navigation buttons are hidden, replaced with a hamburger menu icon on the right with optimized touch targets
+- **AND** the menu icon sizing: `clamp(32px, 10vw, 48px)` with 8px padding ensuring 44px+ touch target
 - **AND** the hamburger button has `aria-label="Toggle menu"` and `aria-expanded` attribute
 
-#### Scenario: Mobile menu overlay opens on hamburger click
+#### MODIFIED Scenario: Mobile menu overlay opens on hamburger click
 
 - **GIVEN** a user is on a mobile viewport
 - **WHEN** they click the hamburger menu button
@@ -87,10 +72,10 @@ The site header SHALL display the Ocean Food Group logo image as a clickable lin
 - **AND** the underlying page scroll is locked (body `position: fixed` with scroll position preserved)
 - **AND** overlay scrolling does not chain to the page behind (`overscroll-behavior: contain`)
 - **AND** the overlay menu content has top padding `--space-8xl` so the first item sits below the sticky header
-- **AND** navigation buttons are stacked vertically with:
-  - Gap between buttons: responsive clamp (64px–96px, 96px at ~750px baseline)
+- **AND** navigation buttons are stacked vertically with optimized spacing:
+  - Gap between buttons: refined `clamp(72px, 10vw, 100px)` for better vertical rhythm
   - Typography:
-    - Font size: `--fs-h1`
+    - Font size: gentler scaling `clamp(24px, 4vw, 48px)` instead of aggressive `clamp(32px, 4vw, 48px)`
     - Font style: normal
     - Font weight: 600
     - Line height: normal
@@ -99,14 +84,21 @@ The site header SHALL display the Ocean Food Group logo image as a clickable lin
   - Bottom border indicator: 4px solid primary (#0f75bc) with border-radius: --radius-md (8px)
 - **AND** the menu has smooth slide-in animation (Framer Motion)
 
-#### Scenario: Mobile menu closes on link click
+#### MODIFIED Scenario: Desktop header with active navigation
 
-- **GIVEN** the mobile menu overlay is open
-- **WHEN** a user clicks a navigation link
-- **THEN** the overlay closes with smooth animation
-- **AND** the underlying page scroll is re-enabled
-- **AND** the page navigates to the selected link
-- **AND** the active state updates for the new page
+- **GIVEN** a user is on a desktop viewport (≥768px)
+- **WHEN** they view any page (e.g., `/franchise`)
+- **THEN** the header displays with --space-3xl horizontal padding (64px left/right)
+- **AND** the logo remains left-aligned and clickable with responsive sizing `clamp(96px, 24vw, 128px)`
+- **AND** navigation buttons are right-aligned with:
+  - Consistent typography (font-size: --fs-body-lg, font-weight: 500, normal style, normal line-height)
+  - Gap between buttons: --space-4xl (80px)
+- **AND** the button for the current page (e.g., "Franchise") is highlighted with enhanced emphasis:
+  - Text color: primary (#0f75bc)
+  - Font weight: 600 (semibold for stronger visual hierarchy)
+  - Bottom border indicator: 4px solid primary (#0f75bc) with border-radius: --radius-md (8px)
+- **AND** other buttons show default text color with no border
+- **AND** buttons support hover/focus states for accessibility
 
 ### Requirement: Mobile navigation overlay accessible via hamburger menu
 

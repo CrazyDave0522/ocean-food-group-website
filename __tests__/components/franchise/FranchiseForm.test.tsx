@@ -14,12 +14,6 @@ const mockSubmitFranchiseInquiry = submitFranchiseInquiry as ReturnType<
   typeof vi.fn
 >;
 
-const mockBrands = [
-  { name: "Brand A" },
-  { name: "Brand B" },
-  { name: "Brand C" },
-];
-
 describe("FranchiseForm", () => {
   beforeEach(() => {
     mockSubmitFranchiseInquiry.mockReset();
@@ -31,7 +25,7 @@ describe("FranchiseForm", () => {
   });
 
   it("renders form with all required fields", () => {
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     expect(screen.getByLabelText(/First name/)).toBeInTheDocument();
     expect(screen.getByLabelText(/Last name/)).toBeInTheDocument();
@@ -49,14 +43,14 @@ describe("FranchiseForm", () => {
   });
 
   it("renders submit button with correct label", () => {
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
     expect(
       screen.getByRole("button", { name: /Start your journey/ })
     ).toBeInTheDocument();
   });
 
   it("renders all australian states in location select", () => {
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const locationSelect = screen.getByLabelText(/Preferred location/);
     expect(locationSelect).toBeInTheDocument();
@@ -67,7 +61,7 @@ describe("FranchiseForm", () => {
   });
 
   it("renders contact method options", () => {
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const contactMethodSelect = screen.getByLabelText(
       /Preferred contact method/
@@ -79,7 +73,7 @@ describe("FranchiseForm", () => {
 
   it("shows region code suggestions from maintained dataset", async () => {
     const user = userEvent.setup();
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const countryCodeInput = screen.getByLabelText(/Region code/);
     await user.type(countryCodeInput, "AUS");
@@ -92,7 +86,7 @@ describe("FranchiseForm", () => {
   });
 
   it("shows required indicator (*) on required fields", () => {
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     // Check for asterisk indicators in labels
     const firstNameLabel =
@@ -101,7 +95,7 @@ describe("FranchiseForm", () => {
   });
 
   it("shows optional indicator on referralSource", () => {
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const referralLabel =
       screen.getByLabelText(/How did you find us/).parentElement?.textContent;
@@ -110,7 +104,7 @@ describe("FranchiseForm", () => {
 
   it("prevents submission with empty required fields", async () => {
     const user = userEvent.setup();
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const submitButton = screen.getByRole("button", {
       name: /Start your journey/,
@@ -129,7 +123,7 @@ describe("FranchiseForm", () => {
 
   it("validates email format on client", async () => {
     const user = userEvent.setup();
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
@@ -169,7 +163,7 @@ describe("FranchiseForm", () => {
 
   it("validates region code format on client", async () => {
     const user = userEvent.setup();
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
@@ -215,7 +209,7 @@ describe("FranchiseForm", () => {
       errors: undefined,
     });
 
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
@@ -259,7 +253,7 @@ describe("FranchiseForm", () => {
       errors: undefined,
     });
 
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
@@ -305,7 +299,7 @@ describe("FranchiseForm", () => {
       },
     });
 
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
@@ -349,7 +343,7 @@ describe("FranchiseForm", () => {
       errors: undefined,
     });
 
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const firstNameInput = screen.getByLabelText(
       /First name/
@@ -402,7 +396,7 @@ describe("FranchiseForm", () => {
       errors: undefined,
     });
 
-    render(<FranchiseForm brands={mockBrands} />);
+    render(<FranchiseForm />);
 
     const firstNameInput = screen.getByLabelText(/First name/);
     const lastNameInput = screen.getByLabelText(/Last name/);
