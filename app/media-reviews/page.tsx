@@ -18,6 +18,7 @@ export default async function Page() {
         variant="center"
         backgroundType="image"
         backgroundImageUrl="/images/backgrounds/hero-food.png"
+        mobileBackgroundImageUrl="/images/backgrounds/hero-food-mb.png"
         overlay={false}
       />
 
