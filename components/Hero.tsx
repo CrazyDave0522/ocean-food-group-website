@@ -1,5 +1,8 @@
+"use client";
+
 import type { HeroProps } from "@/lib/hero/types";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Hero({
   title,
@@ -8,13 +11,15 @@ export default function Hero({
   backgroundType = "styled",
   backgroundImageUrl,
   mobileBackgroundImageUrl,
+  backgroundVideoUrl,
   backgroundVariant = "solid",
   contentImageUrl,
-  overlay = backgroundType === "image",
+  overlay = (backgroundType === "image" || backgroundType === "video"),
 }: HeroProps) {
   const isCenterVariant = variant === "center";
   const isLeftVariant = variant === "left";
   const hasContentImage = isLeftVariant && contentImageUrl;
+  const [videoError, setVideoError] = useState(false);
 
   return (
     <section
@@ -67,8 +72,31 @@ export default function Hero({
           </div>
         )}
 
+      {/* Background Video */}
+      {backgroundType === "video" && backgroundVideoUrl && !videoError && (
+        <div className="hero__background">
+          <video
+            src={backgroundVideoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls={false}
+            className="object-cover w-full h-full"
+            preload="metadata"
+            aria-label="Background video"
+            onError={() => setVideoError(true)}
+          />
+        </div>
+      )}
+
+      {/* Video Fallback - Styled Background */}
+      {backgroundType === "video" && (videoError || !backgroundVideoUrl) && (
+        <div className="hero--solid" />
+      )}
+
       {/* Overlay */}
-      {backgroundType === "image" && overlay && (
+      {(backgroundType === "image" || backgroundType === "video") && overlay && (
         <div className="hero__overlay" />
       )}
 

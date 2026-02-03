@@ -122,8 +122,8 @@ export default async function Page() {
         title="Welcome to Ocean Food Group"
         subtitle="Quality seafood and franchise opportunities"
         variant="center"
-        backgroundType="image"
-        backgroundImageUrl="/images/backgrounds/ocean-blue.jpg"
+        backgroundType="video"
+        backgroundVideoUrl="/images/backgrounds/hero-home.mp4"
         overlay={false}
       />
 

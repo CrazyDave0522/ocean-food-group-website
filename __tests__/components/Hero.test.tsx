@@ -198,6 +198,74 @@ describe('Hero Component', () => {
     });
   });
 
+  describe('Video background', () => {
+    it('renders center variant with video background', () => {
+      render(
+        <Hero
+          title="Welcome"
+          subtitle="Test"
+          variant="center"
+          backgroundType="video"
+          backgroundVideoUrl="/test-video.mp4"
+        />
+      );
+
+      expect(screen.getByText('Welcome')).toBeInTheDocument();
+      const video = screen.getByLabelText('Background video');
+      expect(video).toBeInTheDocument();
+      expect(video).toHaveAttribute('autoplay');
+      expect(video).toHaveAttribute('muted');
+      expect(video).toHaveAttribute('loop');
+      expect(video).toHaveAttribute('playsInline');
+      expect(video).not.toHaveAttribute('controls');
+    });
+
+    it('renders left variant with video background', () => {
+      render(
+        <Hero
+          title="About Us"
+          subtitle="Learn more"
+          variant="left"
+          backgroundType="video"
+          backgroundVideoUrl="/test-video.mp4"
+        />
+      );
+
+      expect(screen.getByText('About Us')).toBeInTheDocument();
+      const video = screen.getByLabelText('Background video');
+      expect(video).toBeInTheDocument();
+      expect(video).toHaveAttribute('src', '/test-video.mp4');
+    });
+
+    it('does not render video when backgroundVideoUrl is not provided', () => {
+      render(
+        <Hero
+          title="Welcome"
+          variant="center"
+          backgroundType="video"
+        />
+      );
+
+      expect(screen.getByText('Welcome')).toBeInTheDocument();
+      expect(screen.queryByLabelText('Background video')).not.toBeInTheDocument();
+    });
+
+    it('applies overlay for video background when overlay is true', () => {
+      const { container } = render(
+        <Hero
+          title="Welcome"
+          variant="center"
+          backgroundType="video"
+          backgroundVideoUrl="/test-video.mp4"
+          overlay={true}
+        />
+      );
+
+      const overlay = container.querySelector('.hero__overlay');
+      expect(overlay).toBeInTheDocument();
+    });
+  });
+
   describe('Responsive layout', () => {
     it('applies mobile stacking classes for left variant with content image', () => {
       const { container } = render(
