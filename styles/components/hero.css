@@ -3,14 +3,16 @@
 .hero {
   position: relative;
   width: 100%;
-  /* Height ratio: 540px at 1920px baseline = 28.125% */
-  min-height: clamp(300px, 28.125vw, 540px);
+  /* Mobile aspect ratio: 750x540 = 1.39:1 (height = width / 1.39) */
+  min-height: calc(100vw / 1.39);
   padding: var(--space-4xl) var(--space-lg);
   overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .hero {
+    /* Desktop aspect ratio: 1920x700 = 2.74:1 (height = width / 2.74) */
+    min-height: calc(100vw / 2.74);
     padding: var(--space-4xl) var(--space-2xl);
   }
 }
@@ -20,6 +22,20 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+}
+
+/* Desktop Background Image */
+.hero__background img:first-child {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hero__background img:first-child {
+    display: block;
+  }
+  .hero__background img:last-child {
+    display: none;
+  }
 }
 
 /* Overlay */
@@ -32,11 +48,19 @@
 
 /* Styled Background Variants */
 .hero--solid {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
 }
 
 .hero--gradient {
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-light) 0%,
+    var(--color-primary) 100%
+  );
 }
 
 /* Content Container */

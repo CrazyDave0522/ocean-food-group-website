@@ -18,6 +18,7 @@ export default function Page() {
         variant="center"
         backgroundType="image"
         backgroundImageUrl="/images/backgrounds/hero-fishing.png"
+        mobileBackgroundImageUrl="/images/backgrounds/hero-fishing-mb.png"
         overlay={false}
       />
 

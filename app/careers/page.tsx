@@ -46,6 +46,7 @@ export default async function Page() {
           variant="center"
           backgroundType="image"
           backgroundImageUrl="/images/backgrounds/hero-future.png"
+          mobileBackgroundImageUrl="/images/backgrounds/hero-future-mb.png"
           overlay={false}
         />
 
@@ -78,6 +79,7 @@ export default async function Page() {
         variant="center"
         backgroundType="image"
         backgroundImageUrl="/images/backgrounds/hero-future.png"
+        mobileBackgroundImageUrl="/images/backgrounds/hero-future-mb.png"
         overlay={false}
       />
 

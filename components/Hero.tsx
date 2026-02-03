@@ -1,18 +1,19 @@
-import type { HeroProps } from '@/lib/hero/types';
-import Image from 'next/image';
+import type { HeroProps } from "@/lib/hero/types";
+import Image from "next/image";
 
 export default function Hero({
   title,
   subtitle,
-  variant = 'center',
-  backgroundType = 'styled',
+  variant = "center",
+  backgroundType = "styled",
   backgroundImageUrl,
-  backgroundVariant = 'solid',
+  mobileBackgroundImageUrl,
+  backgroundVariant = "solid",
   contentImageUrl,
-  overlay = backgroundType === 'image',
+  overlay = backgroundType === "image",
 }: HeroProps) {
-  const isCenterVariant = variant === 'center';
-  const isLeftVariant = variant === 'left';
+  const isCenterVariant = variant === "center";
+  const isLeftVariant = variant === "left";
   const hasContentImage = isLeftVariant && contentImageUrl;
 
   return (
@@ -20,48 +21,72 @@ export default function Hero({
       role="region"
       aria-label="Hero section"
       className={`hero relative flex ${
-        isCenterVariant ? 'items-center justify-center text-center' : ''
-      } ${isLeftVariant && !hasContentImage ? 'items-center' : ''} ${
-        backgroundType === 'styled'
-          ? backgroundVariant === 'gradient'
-            ? 'hero--gradient'
-            : 'hero--solid'
-          : ''
+        isCenterVariant ? "items-center justify-center text-center" : ""
+      } ${isLeftVariant && !hasContentImage ? "items-center" : ""} ${
+        backgroundType === "styled"
+          ? backgroundVariant === "gradient"
+            ? "hero--gradient"
+            : "hero--solid"
+          : ""
       }`}
     >
       {/* Background Image */}
-      {backgroundType === 'image' && backgroundImageUrl && (
-        <div className="hero__background">
-          <Image
-            src={backgroundImageUrl}
-            alt=""
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      )}
+      {backgroundType === "image" &&
+        (backgroundImageUrl || mobileBackgroundImageUrl) && (
+          <div className="hero__background">
+            {/* Desktop Background Image */}
+            {backgroundImageUrl && (
+              <Image
+                src={backgroundImageUrl}
+                alt=""
+                fill
+                className="object-cover"
+                priority
+              />
+            )}
+            {/* Mobile Background Image */}
+            {mobileBackgroundImageUrl && (
+              <Image
+                src={mobileBackgroundImageUrl}
+                alt=""
+                fill
+                className="object-cover"
+                priority
+              />
+            )}
+            {/* Fallback for single image */}
+            {backgroundImageUrl && !mobileBackgroundImageUrl && (
+              <Image
+                src={backgroundImageUrl}
+                alt=""
+                fill
+                className="object-cover"
+                priority
+              />
+            )}
+          </div>
+        )}
 
       {/* Overlay */}
-      {backgroundType === 'image' && overlay && (
+      {backgroundType === "image" && overlay && (
         <div className="hero__overlay" />
       )}
 
       {/* Content */}
       <div
         className={`hero__content relative z-10 ${
-          isCenterVariant ? 'flex flex-col items-center' : ''
+          isCenterVariant ? "flex flex-col items-center" : ""
         } ${
           isLeftVariant
             ? hasContentImage
-              ? 'flex flex-col md:flex-row md:items-center md:justify-between gap-8 md:gap-12'
-              : 'flex flex-col'
-            : ''
+              ? "flex flex-col md:flex-row md:items-center md:justify-between gap-8 md:gap-12"
+              : "flex flex-col"
+            : ""
         }`}
       >
         <div
           className={`hero__text ${
-            isCenterVariant ? 'text-center' : 'text-left'
+            isCenterVariant ? "text-center" : "text-left"
           }`}
         >
           <h1 className="hero__title text-(length:--fs-h1) font-bold text-foreground">

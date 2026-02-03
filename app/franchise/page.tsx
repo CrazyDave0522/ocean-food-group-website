@@ -49,7 +49,8 @@ export default async function Page() {
         subtitle="Partner with Ocean Food Group and grow your business"
         variant="center"
         backgroundType="image"
-        backgroundImageUrl="/images/backgrounds/ocean-green.png"
+        backgroundImageUrl="/images/backgrounds/hero-profession.png"
+        mobileBackgroundImageUrl="/images/backgrounds/hero-profession-mb.png"
         overlay={false}
       />
 

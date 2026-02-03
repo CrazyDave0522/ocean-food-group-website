@@ -123,7 +123,7 @@ describe('Hero Component', () => {
 
       expect(screen.getByText('Services')).toBeInTheDocument();
       const images = screen.getAllByRole('presentation');
-      expect(images.length).toBe(1);
+      expect(images.length).toBe(2);
     });
   });
 
