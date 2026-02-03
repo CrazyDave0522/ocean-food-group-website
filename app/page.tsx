@@ -161,7 +161,7 @@ export default async function Page() {
 
       {/* Brands Section */}
       {brandsList && (
-        <section className="relative pt-12 mt-[--space-4xl] md:mt-[--space-5xl]">
+        <section className="relative mt-[--space-4xl] md:mt-[--space-5xl]">
           {/* Content */}
           <div className="container-main relative z-10">
             <div className="py-[--space-3xl] md:py-[--space-4xl]">

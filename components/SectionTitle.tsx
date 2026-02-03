@@ -18,7 +18,7 @@ export function SectionTitle({
 
   return (
     <div className={`${alignmentClass} mb-(--space-xl)`}>
-      <h2 className="text-(length:--fs-h2) font-bold mb-(--space-md)">
+      <h2 className="text-(length:--fs-h2) font-bold pt-(--space-md) mb-(--space-md)">
         {title}
       </h2>
       {subtitle && (
