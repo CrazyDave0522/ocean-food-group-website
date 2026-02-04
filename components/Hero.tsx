@@ -4,6 +4,38 @@ import type { HeroProps } from "@/lib/hero/types";
 import Image from "next/image";
 import { useState } from "react";
 
+/**
+ * Hero component with support for various background types and layouts.
+ *
+ * @param title - The main heading text
+ * @param subtitle - Optional subtitle text
+ * @param variant - Layout variant: 'center' or 'left' alignment
+ * @param backgroundType - Background type: 'image', 'styled', or 'video'
+ * @param backgroundImageUrl - URL for image background (desktop)
+ * @param mobileBackgroundImageUrl - URL for mobile-specific image background
+ * @param backgroundVideoUrl - URL for video background
+ * @param backgroundVideoPosterUrl - URL for poster image displayed while video loads
+ * @param backgroundVariant - Style variant for styled backgrounds: 'solid' or 'gradient'
+ * @param contentImageUrl - URL for content image (left variant only)
+ * @param overlay - Whether to show dark overlay on image/video backgrounds
+ *
+ * @example
+ * // Image background
+ * <Hero
+ *   title="Welcome"
+ *   backgroundType="image"
+ *   backgroundImageUrl="/hero.jpg"
+ * />
+ *
+ * @example
+ * // Video background with poster
+ * <Hero
+ *   title="Welcome"
+ *   backgroundType="video"
+ *   backgroundVideoUrl="/hero.mp4"
+ *   backgroundVideoPosterUrl="/hero-poster.jpg"
+ * />
+ */
 export default function Hero({
   title,
   subtitle,
@@ -12,14 +44,16 @@ export default function Hero({
   backgroundImageUrl,
   mobileBackgroundImageUrl,
   backgroundVideoUrl,
+  backgroundVideoPosterUrl,
   backgroundVariant = "solid",
   contentImageUrl,
-  overlay = (backgroundType === "image" || backgroundType === "video"),
+  overlay = backgroundType === "image" || backgroundType === "video",
 }: HeroProps) {
   const isCenterVariant = variant === "center";
   const isLeftVariant = variant === "left";
   const hasContentImage = isLeftVariant && contentImageUrl;
   const [videoError, setVideoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
     <section
@@ -72,6 +106,24 @@ export default function Hero({
           </div>
         )}
 
+      {/* Background Video Poster */}
+      {backgroundType === "video" && backgroundVideoPosterUrl && (
+        <div
+          className={`hero__background ${videoLoaded ? "hero__background--hidden" : ""}`}
+        >
+          {/* Desktop Poster Image */}
+          {backgroundVideoPosterUrl && (
+            <Image
+              src={backgroundVideoPosterUrl}
+              alt=""
+              fill
+              className="object-cover"
+              priority
+            />
+          )}
+        </div>
+      )}
+
       {/* Background Video */}
       {backgroundType === "video" && backgroundVideoUrl && !videoError && (
         <div className="hero__background">
@@ -85,7 +137,11 @@ export default function Hero({
             className="object-cover w-full h-full"
             preload="metadata"
             aria-label="Background video"
-            onError={() => setVideoError(true)}
+            onCanPlay={() => setVideoLoaded(true)}
+            onError={() => {
+              setVideoError(true);
+              setVideoLoaded(false);
+            }}
           />
         </div>
       )}
@@ -96,9 +152,8 @@ export default function Hero({
       )}
 
       {/* Overlay */}
-      {(backgroundType === "image" || backgroundType === "video") && overlay && (
-        <div className="hero__overlay" />
-      )}
+      {(backgroundType === "image" || backgroundType === "video") &&
+        overlay && <div className="hero__overlay" />}
 
       {/* Content */}
       <div

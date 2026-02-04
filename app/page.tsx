@@ -124,6 +124,7 @@ export default async function Page() {
         variant="center"
         backgroundType="video"
         backgroundVideoUrl="/images/backgrounds/hero-home.mp4"
+        backgroundVideoPosterUrl="/images/backgrounds/hero-home.png"
         overlay={false}
       />
 

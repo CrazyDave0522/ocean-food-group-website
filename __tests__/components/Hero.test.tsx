@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Hero from '@/components/Hero';
 
@@ -248,6 +248,80 @@ describe('Hero Component', () => {
 
       expect(screen.getByText('Welcome')).toBeInTheDocument();
       expect(screen.queryByLabelText('Background video')).not.toBeInTheDocument();
+    });
+
+    it('renders poster image initially for video backgrounds', () => {
+      render(
+        <Hero
+          title="Welcome"
+          variant="center"
+          backgroundType="video"
+          backgroundVideoUrl="/test-video.mp4"
+          backgroundVideoPosterUrl="/poster.jpg"
+        />
+      );
+
+      expect(screen.getByText('Welcome')).toBeInTheDocument();
+      const images = screen.getAllByRole('presentation');
+      expect(images.length).toBe(1); // Poster image should be rendered
+      expect(images[0]).toHaveAttribute('src');
+      expect(images[0].getAttribute('src')).toContain('poster.jpg');
+    });
+
+    it('hides poster image when video loads successfully', () => {
+      render(
+        <Hero
+          title="Welcome"
+          variant="center"
+          backgroundType="video"
+          backgroundVideoUrl="/test-video.mp4"
+          backgroundVideoPosterUrl="/poster.jpg"
+        />
+      );
+
+      const video = screen.getByLabelText('Background video');
+      fireEvent.canPlay(video); // Simulate video load
+
+      const posterContainer = video.parentElement?.previousElementSibling;
+      expect(posterContainer).toHaveClass('hero__background--hidden');
+    });
+
+    it('keeps poster image visible when video fails to load', () => {
+      render(
+        <Hero
+          title="Welcome"
+          variant="center"
+          backgroundType="video"
+          backgroundVideoUrl="/test-video.mp4"
+          backgroundVideoPosterUrl="/poster.jpg"
+        />
+      );
+
+      const video = screen.getByLabelText('Background video');
+      fireEvent.error(video); // Simulate video error
+
+      // Video should not be rendered after error
+      expect(screen.queryByLabelText('Background video')).not.toBeInTheDocument();
+      
+      // Poster should still be visible
+      const images = screen.getAllByRole('presentation');
+      expect(images.length).toBe(1);
+      expect(images[0].getAttribute('src')).toContain('poster.jpg');
+    });
+
+    it('does not render poster when backgroundVideoPosterUrl is not provided', () => {
+      render(
+        <Hero
+          title="Welcome"
+          variant="center"
+          backgroundType="video"
+          backgroundVideoUrl="/test-video.mp4"
+        />
+      );
+
+      expect(screen.getByText('Welcome')).toBeInTheDocument();
+      const images = screen.queryAllByRole('presentation');
+      expect(images.length).toBe(0); // No poster image
     });
 
     it('applies overlay for video background when overlay is true', () => {

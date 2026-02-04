@@ -6,6 +6,7 @@ export interface HeroProps {
   backgroundImageUrl?: string;
   mobileBackgroundImageUrl?: string;
   backgroundVideoUrl?: string;
+  backgroundVideoPosterUrl?: string;
   backgroundVariant?: 'solid' | 'gradient';
   contentImageUrl?: string;
   overlay?: boolean;
